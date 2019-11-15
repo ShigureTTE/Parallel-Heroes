@@ -27,3 +27,8 @@ Miitopia achtige overworld met lopen en random encounters en shit
 drie karakters
 vier enemies
 verzin vier combat situaties
+
+damage / accuracy boosten hoe verder naar voren
+command -> move -> target
+sommige attacks alleen in bepaalde range effect
+max attack range voor melee meestal 3 lanes naar voren
