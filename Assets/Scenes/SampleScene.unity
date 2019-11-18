@@ -2143,6 +2143,11 @@ PrefabInstance:
       propertyPath: currentLane
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -3267473680993169320, guid: 2b4d655a4012d2745b589f11e92edc62,
+        type: 3}
+      propertyPath: faction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8735773223049620876, guid: 2b4d655a4012d2745b589f11e92edc62,
         type: 3}
       propertyPath: m_Name
