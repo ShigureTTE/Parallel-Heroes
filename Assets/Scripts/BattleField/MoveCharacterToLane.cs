@@ -20,13 +20,15 @@ public class MoveCharacterToLane : MonoBehaviour {
     public List<CharacterBase> Player { get; private set; }
     public List<CharacterBase> Enemy { get; private set; }
 
-    private void Start() {
+    private void Awake() {
         RefreshLists();
     }
 
     public void RegisterCharacterToBattle(CharacterBase character) {
         if (character.Faction == Faction.Player) Player.Add(character);
         else Enemy.Add(character);
+
+        SetCharacterToLane(character, character.Lane);
     }
 
     private void RefreshLists() {
