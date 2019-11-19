@@ -6,7 +6,7 @@
             "id": "1e20ed67-9e2c-4322-b4ce-8dd8c48c7ccf",
             "actions": [
                 {
-                    "name": "PressButton",
+                    "name": "Submit",
                     "type": "Button",
                     "id": "6242d91a-05ed-474f-a80c-1f7f1c5eaf23",
                     "expectedControlType": "",
@@ -14,9 +14,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Navigate",
+                    "name": "Cancel",
                     "type": "Button",
                     "id": "6c497da3-925a-4321-a8da-a1d6ed65c44c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Navigate",
+                    "type": "Button",
+                    "id": "269b40c6-8d61-4a82-9979-02a879972b17",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -26,11 +34,11 @@
                 {
                     "name": "",
                     "id": "77ac37e4-4adf-4e7b-8de6-6dfa47adffc5",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "Player",
-                    "action": "PressButton",
+                    "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -88,6 +96,17 @@
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f2c6e627-d02c-4dcf-8252-0cd07b4140a5",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

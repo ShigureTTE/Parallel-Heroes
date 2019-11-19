@@ -19,7 +19,7 @@ public class @Controls : IInputActionCollection, IDisposable
             ""id"": ""1e20ed67-9e2c-4322-b4ce-8dd8c48c7ccf"",
             ""actions"": [
                 {
-                    ""name"": ""PressButton"",
+                    ""name"": ""Submit"",
                     ""type"": ""Button"",
                     ""id"": ""6242d91a-05ed-474f-a80c-1f7f1c5eaf23"",
                     ""expectedControlType"": """",
@@ -27,9 +27,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Navigate"",
+                    ""name"": ""Cancel"",
                     ""type"": ""Button"",
                     ""id"": ""6c497da3-925a-4321-a8da-a1d6ed65c44c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Navigate"",
+                    ""type"": ""Button"",
+                    ""id"": ""269b40c6-8d61-4a82-9979-02a879972b17"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -39,11 +47,11 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""77ac37e4-4adf-4e7b-8de6-6dfa47adffc5"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player"",
-                    ""action"": ""PressButton"",
+                    ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -101,6 +109,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2c6e627-d02c-4dcf-8252-0cd07b4140a5"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -126,7 +145,8 @@ public class @Controls : IInputActionCollection, IDisposable
 }");
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
-        m_Debug_PressButton = m_Debug.FindAction("PressButton", throwIfNotFound: true);
+        m_Debug_Submit = m_Debug.FindAction("Submit", throwIfNotFound: true);
+        m_Debug_Cancel = m_Debug.FindAction("Cancel", throwIfNotFound: true);
         m_Debug_Navigate = m_Debug.FindAction("Navigate", throwIfNotFound: true);
     }
 
@@ -177,13 +197,15 @@ public class @Controls : IInputActionCollection, IDisposable
     // Debug
     private readonly InputActionMap m_Debug;
     private IDebugActions m_DebugActionsCallbackInterface;
-    private readonly InputAction m_Debug_PressButton;
+    private readonly InputAction m_Debug_Submit;
+    private readonly InputAction m_Debug_Cancel;
     private readonly InputAction m_Debug_Navigate;
     public struct DebugActions
     {
         private @Controls m_Wrapper;
         public DebugActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @PressButton => m_Wrapper.m_Debug_PressButton;
+        public InputAction @Submit => m_Wrapper.m_Debug_Submit;
+        public InputAction @Cancel => m_Wrapper.m_Debug_Cancel;
         public InputAction @Navigate => m_Wrapper.m_Debug_Navigate;
         public InputActionMap Get() { return m_Wrapper.m_Debug; }
         public void Enable() { Get().Enable(); }
@@ -194,9 +216,12 @@ public class @Controls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_DebugActionsCallbackInterface != null)
             {
-                @PressButton.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnPressButton;
-                @PressButton.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnPressButton;
-                @PressButton.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnPressButton;
+                @Submit.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnSubmit;
+                @Submit.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnSubmit;
+                @Submit.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnSubmit;
+                @Cancel.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnCancel;
                 @Navigate.started -= m_Wrapper.m_DebugActionsCallbackInterface.OnNavigate;
                 @Navigate.performed -= m_Wrapper.m_DebugActionsCallbackInterface.OnNavigate;
                 @Navigate.canceled -= m_Wrapper.m_DebugActionsCallbackInterface.OnNavigate;
@@ -204,9 +229,12 @@ public class @Controls : IInputActionCollection, IDisposable
             m_Wrapper.m_DebugActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @PressButton.started += instance.OnPressButton;
-                @PressButton.performed += instance.OnPressButton;
-                @PressButton.canceled += instance.OnPressButton;
+                @Submit.started += instance.OnSubmit;
+                @Submit.performed += instance.OnSubmit;
+                @Submit.canceled += instance.OnSubmit;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
                 @Navigate.started += instance.OnNavigate;
                 @Navigate.performed += instance.OnNavigate;
                 @Navigate.canceled += instance.OnNavigate;
@@ -225,7 +253,8 @@ public class @Controls : IInputActionCollection, IDisposable
     }
     public interface IDebugActions
     {
-        void OnPressButton(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
         void OnNavigate(InputAction.CallbackContext context);
     }
 }
