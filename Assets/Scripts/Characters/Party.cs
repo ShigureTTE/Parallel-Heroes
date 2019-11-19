@@ -8,6 +8,8 @@ public class Party : MonoBehaviour {
     [SerializeField] private MoveCharacterToLane battlefield;
     private List<CharacterBase> characters;
 
+    public CharacterBase currentTurn;
+
     private void Start() {
         characters = GetComponentsInChildren<CharacterBase>().ToList();
 
