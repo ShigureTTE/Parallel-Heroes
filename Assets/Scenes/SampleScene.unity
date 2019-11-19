@@ -3698,6 +3698,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SaberContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 9203021907734517960, guid: a3d79627968681e4fb667577228abbc7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9203021907734518071, guid: a3d79627968681e4fb667577228abbc7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6414,6 +6419,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RinContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 9031589840231450957, guid: 0baafd53a80a0184bb2fcf0797414335,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9031589840231450958, guid: 0baafd53a80a0184bb2fcf0797414335,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7649,6 +7659,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GasperContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 246194629399531056, guid: b095f7247ddbeb348a7bb1869d0582fc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 246194629399531055, guid: b095f7247ddbeb348a7bb1869d0582fc,
         type: 3}

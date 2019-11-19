@@ -83,7 +83,7 @@ public class MoveCharacterToLane : MonoBehaviour {
             }
            
             characterTransform.DOMove(laneCharacters[i].Faction == Faction.Player ?
-                targetPosition.position : new Vector3(targetPosition.position.x - (targetPosition.position.x * 2),targetPosition.position.y,targetPosition.position.z),
+                targetPosition.position : new Vector3(transform.position.x * 2 - targetPosition.position.x, targetPosition.position.y,targetPosition.position.z),
                 moveDuration).SetEase(easeType);
         }
     }
