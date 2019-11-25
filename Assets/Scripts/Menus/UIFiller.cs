@@ -28,4 +28,8 @@ public class UIFiller : MonoBehaviour {
         secondSpell.text = stats.spells[1].attackName;
         spellCost.text = stats.spells[0].mPCost.ToString();
     }
+
+    public void UpdateSpellCost(int index) {
+        spellCost.text = stats.spells[index].mPCost.ToString();
+    }
 }
