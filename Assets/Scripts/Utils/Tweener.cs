@@ -8,10 +8,15 @@ using UnityEngine.InputSystem.UI;
 
 public class Tweener : MonoBehaviour {
 
-    [SerializeField] private List<TweenObject> tweenObjects;
+    public List<TweenObject> tweenObjects;
+
+    public bool IsPlaying { get; private set; }
 
     public void PlayTween() {
+        if (IsPlaying) return;
+
         DOTween.KillAll(true);
+        IsPlaying = true;
         foreach (TweenObject to in tweenObjects) {
             Transform toTransform = to.objectToTween.transform;
             switch (to.type) {
@@ -38,7 +43,10 @@ public class Tweener : MonoBehaviour {
     }
 
     public void PlayTweenReversed() {
+        if (IsPlaying) return;
+
         DOTween.KillAll(true);
+        IsPlaying = true;
         foreach (TweenObject to in tweenObjects) {
             Transform toTransform = to.objectToTween.transform;
             switch (to.type) {
@@ -65,11 +73,13 @@ public class Tweener : MonoBehaviour {
     }
 
     public void InvokeOnCompleteEvent(TweenObject to) {
-        to.onCompleteTweenEvent.Invoke();
+        IsPlaying = false;
+        to.onCompleteTweenEvent.Invoke();        
     }
 
     public void InvokeOnCompleteEventReverse(TweenObject to) {
-        to.onCompleteTweenReverseEvent.Invoke();
+        IsPlaying = false;
+        to.onCompleteTweenReverseEvent.Invoke();        
     }
 }
 
