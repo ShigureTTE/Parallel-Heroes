@@ -304,8 +304,8 @@ MonoBehaviour:
     type: 0
     easeSetting: 28
     easeSettingReverse: 28
-    duration: 0.75
-    durationReverse: 0.75
+    duration: 0.6
+    durationReverse: 0.6
     startPosition: {x: -504.2, y: 486, z: 0}
     endPosition: {x: -504.2, y: 35, z: 0}
     onCompleteTweenEvent:
@@ -5578,6 +5578,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 525177495}
+          m_MethodName: UpdateSpellCost
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1254450840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8727,8 +8742,8 @@ MonoBehaviour:
     type: 0
     easeSetting: 28
     easeSettingReverse: 28
-    duration: 0.75
-    durationReverse: 0.75
+    duration: 0.6
+    durationReverse: 0.6
     startPosition: {x: -309, y: 486, z: 0}
     endPosition: {x: -309, y: 204, z: 0}
     onCompleteTweenEvent:
@@ -9648,6 +9663,21 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 1689785395}
             m_ObjectArgumentAssemblyTypeName: Tweener, Assembly-CSharp
             m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 525177495}
+          m_MethodName: UpdateSpellCost
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0

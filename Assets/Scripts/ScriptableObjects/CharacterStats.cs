@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine.UIElements;
-using UnityEditor.UIElements;
+#endif
 
 [CreateAssetMenu(fileName = "New Character", menuName = "Characters/New Character")]
 public class CharacterStats : ScriptableObject {
@@ -20,7 +20,7 @@ public class CharacterStats : ScriptableObject {
     public int defense;
     public int resistance;
     public int skill;
-    [HideInInspector] public int speed;
+    public int speed;
 
     [Header("Attacks")]
     public Attack normalAttack;
@@ -38,6 +38,7 @@ public class Attack {
     public CharacterStats comboCharacter;
 }
 
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(Attack), true)]
 public class AttackDrawerUIE : PropertyDrawer {
 
@@ -100,3 +101,4 @@ public class AttackDrawerUIE : PropertyDrawer {
         return base.GetPropertyHeight(property, label) + 100;
     }
 }
+#endif

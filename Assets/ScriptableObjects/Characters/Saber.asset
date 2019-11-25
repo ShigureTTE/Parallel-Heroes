@@ -22,7 +22,7 @@ MonoBehaviour:
   defense: 30
   resistance: 40
   skill: 30
-  speed: 70
+  speed: 50
   normalAttack:
     type: 0
     attackName: Excalibur
