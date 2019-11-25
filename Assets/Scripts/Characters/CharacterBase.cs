@@ -7,4 +7,5 @@ public class CharacterBase : MonoBehaviour {
     public Faction Faction { get { return faction; } }
     [SerializeField] private Lane currentLane;
     public Lane Lane { get { return currentLane; } set { currentLane = value; } }
+    public CharacterStats stats;
 }
