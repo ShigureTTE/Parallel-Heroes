@@ -33,6 +33,8 @@ public class Attack {
     public AttackType type;
     public string attackName;
     public Lane preferredLane;
+    public Lane badLane;
+    public Element element;
     public int mPCost;
     public int basePower;
     public CharacterStats comboCharacter;
@@ -61,6 +63,14 @@ public class AttackDrawerUIE : PropertyDrawer {
 
         EditorGUI.PropertyField(new Rect(position.x, position.y + positionAdjust, position.width, 16),
             property.FindPropertyRelative("preferredLane"));
+        positionAdjust += 20f;
+
+        EditorGUI.PropertyField(new Rect(position.x, position.y + positionAdjust, position.width, 16),
+            property.FindPropertyRelative("badLane"));
+        positionAdjust += 20f;
+
+        EditorGUI.PropertyField(new Rect(position.x, position.y + positionAdjust, position.width, 16),
+            property.FindPropertyRelative("element"));
         positionAdjust += 20f;
 
         SerializedProperty field = property.FindPropertyRelative("type");
@@ -98,7 +108,7 @@ public class AttackDrawerUIE : PropertyDrawer {
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
-        return base.GetPropertyHeight(property, label) + 100;
+        return base.GetPropertyHeight(property, label) + 130;
     }
 }
 #endif

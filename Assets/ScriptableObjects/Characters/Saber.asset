@@ -27,19 +27,25 @@ MonoBehaviour:
     type: 0
     attackName: Excalibur
     preferredLane: 0
+    badLane: 0
+    element: 0
     mPCost: 8
     basePower: 50
     comboCharacter: {fileID: 0}
   spells:
   - type: 1
-    attackName: Wind Slash
+    attackName: Wind Strike
     preferredLane: 0
+    badLane: 2
+    element: 1
     mPCost: 8
     basePower: 70
     comboCharacter: {fileID: 0}
   - type: 1
     attackName: Excalibur
     preferredLane: 2
+    badLane: 0
+    element: 1
     mPCost: 16
     basePower: 90
     comboCharacter: {fileID: 0}
