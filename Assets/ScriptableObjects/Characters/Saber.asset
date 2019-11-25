@@ -16,7 +16,8 @@ MonoBehaviour:
   gender: 1
   role: King
   weapon: Sword
-  maximumHealth: 35
+  maximumHealth: 37
+  maximumMP: 40
   attack: 55
   defense: 30
   resistance: 40
@@ -30,16 +31,16 @@ MonoBehaviour:
     basePower: 50
     comboCharacter: {fileID: 0}
   spells:
-  - type: 0
-    attackName: 
+  - type: 1
+    attackName: Wind Slash
     preferredLane: 0
-    mPCost: 0
-    basePower: 0
+    mPCost: 8
+    basePower: 70
     comboCharacter: {fileID: 0}
-  - type: 0
-    attackName: 
-    preferredLane: 0
-    mPCost: 0
-    basePower: 0
+  - type: 1
+    attackName: Excalibur
+    preferredLane: 2
+    mPCost: 16
+    basePower: 90
     comboCharacter: {fileID: 0}
   combos: []

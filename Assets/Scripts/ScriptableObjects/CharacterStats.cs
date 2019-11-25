@@ -15,6 +15,7 @@ public class CharacterStats : ScriptableObject {
 
     [Header("Base Stats")]
     public int maximumHealth;
+    public int maximumMP;
     public int attack;
     public int defense;
     public int resistance;
