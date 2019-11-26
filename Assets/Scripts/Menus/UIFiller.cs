@@ -31,6 +31,8 @@ public class UIFiller : MonoBehaviour {
 
     public void FillWithStats() {
         for (int i = 0; i < party.characters.Count; i++) {
+            if (i >= slots.Count) break;
+
             CharacterSlot slot = slots[i];
             CharacterBase character = party.characters[i];
 
