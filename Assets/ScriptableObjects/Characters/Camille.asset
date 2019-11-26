@@ -10,43 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35193cdc262737245ad55697aedf3e63, type: 3}
-  m_Name: Astrella
+  m_Name: Camille
   m_EditorClassIdentifier: 
-  characterName: Astrella
-  gender: 1
-  role: Witch
-  weapon: Charms
-  maximumHealth: 40
-  maximumMP: 50
-  attack: 50
+  characterName: Camille
+  gender: 2
+  role: Fairy
+  weapon: Fairy Dust
+  maximumHealth: 55
+  maximumMP: 45
+  attack: 55
   defense: 40
   resistance: 45
-  skill: 50
-  speed: 40
+  skill: 30
+  speed: 45
   normalAttack:
     type: 0
     attackName: 
     preferredLane: 1
-    badLane: 0
+    badLane: 2
     element: 1
     mPCost: 0
-    basePower: 50
+    basePower: 45
     comboCharacter: {fileID: 0}
   spells:
   - type: 1
-    attackName: Burst
+    attackName: Dust Storm
     preferredLane: 1
     badLane: 0
     element: 1
-    mPCost: 10
-    basePower: 65
+    mPCost: 7
+    basePower: 60
     comboCharacter: {fileID: 0}
   - type: 1
-    attackName: Charm From Hell
-    preferredLane: 0
-    badLane: 2
+    attackName: Sparkling Blast
+    preferredLane: 2
+    badLane: 0
     element: 1
-    mPCost: 18
-    basePower: 80
+    mPCost: 15
+    basePower: 75
     comboCharacter: {fileID: 0}
   combos: []

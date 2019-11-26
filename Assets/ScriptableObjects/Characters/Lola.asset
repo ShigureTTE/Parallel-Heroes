@@ -10,43 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35193cdc262737245ad55697aedf3e63, type: 3}
-  m_Name: Astrella
+  m_Name: Lola
   m_EditorClassIdentifier: 
-  characterName: Astrella
+  characterName: Lola
   gender: 1
-  role: Witch
-  weapon: Charms
-  maximumHealth: 40
-  maximumMP: 50
+  role: Succubus
+  weapon: Dagger
+  maximumHealth: 35
+  maximumMP: 60
   attack: 50
-  defense: 40
-  resistance: 45
-  skill: 50
-  speed: 40
+  defense: 35
+  resistance: 50
+  skill: 35
+  speed: 50
   normalAttack:
     type: 0
     attackName: 
-    preferredLane: 1
-    badLane: 0
-    element: 1
+    preferredLane: 0
+    badLane: 2
+    element: 0
     mPCost: 0
     basePower: 50
     comboCharacter: {fileID: 0}
   spells:
   - type: 1
-    attackName: Burst
+    attackName: Foul Play
     preferredLane: 1
     badLane: 0
-    element: 1
+    element: 0
     mPCost: 10
-    basePower: 65
+    basePower: 70
     comboCharacter: {fileID: 0}
   - type: 1
-    attackName: Charm From Hell
-    preferredLane: 0
-    badLane: 2
+    attackName: Heart Ripper
+    preferredLane: 2
+    badLane: 1
     element: 1
-    mPCost: 18
-    basePower: 80
+    mPCost: 21
+    basePower: 85
     comboCharacter: {fileID: 0}
   combos: []
