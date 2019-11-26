@@ -10,40 +10,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35193cdc262737245ad55697aedf3e63, type: 3}
-  m_Name: Astrella
+  m_Name: Slime
   m_EditorClassIdentifier: 
-  characterName: Astrella
-  gender: 1
-  role: Witch
-  weapon: Charms
-  maximumHealth: 50
-  maximumMP: 70
-  attack: 60
-  defense: 50
-  resistance: 55
-  skill: 60
-  speed: 45
+  characterName: Slime
+  gender: 2
+  role: Monster
+  weapon: Goo
+  maximumHealth: 35
+  maximumMP: 40
+  attack: 40
+  defense: 45
+  resistance: 45
+  skill: 35
+  speed: 40
   normalAttack:
     type: 0
     attackName: 
-    preferredLane: 1
-    element: 1
+    preferredLane: 0
+    element: 0
     mPCost: 0
-    basePower: 50
+    basePower: 45
     comboCharacter: {fileID: 0}
   spells:
   - type: 1
-    attackName: Burst
+    attackName: Slime Ball
     preferredLane: 1
-    element: 1
-    mPCost: 10
+    element: 0
+    mPCost: 7
     basePower: 65
     comboCharacter: {fileID: 0}
   - type: 1
-    attackName: Charm From Hell
-    preferredLane: 0
+    attackName: Goo Cannon
+    preferredLane: 2
     element: 1
-    mPCost: 18
-    basePower: 80
+    mPCost: 12
+    basePower: 70
     comboCharacter: {fileID: 0}
   combos: []

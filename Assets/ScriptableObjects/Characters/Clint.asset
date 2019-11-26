@@ -16,18 +16,17 @@ MonoBehaviour:
   gender: 0
   role: Cowboy
   weapon: Revolver
-  maximumHealth: 50
-  maximumMP: 35
-  attack: 55
-  defense: 50
-  resistance: 35
-  skill: 35
-  speed: 60
+  maximumHealth: 60
+  maximumMP: 45
+  attack: 65
+  defense: 55
+  resistance: 45
+  skill: 45
+  speed: 70
   normalAttack:
     type: 0
     attackName: 
     preferredLane: 1
-    badLane: 0
     element: 0
     mPCost: 0
     basePower: 50
@@ -36,7 +35,6 @@ MonoBehaviour:
   - type: 1
     attackName: Long Shot
     preferredLane: 2
-    badLane: 0
     element: 0
     mPCost: 8
     basePower: 65
@@ -44,7 +42,6 @@ MonoBehaviour:
   - type: 1
     attackName: In Your Face
     preferredLane: 0
-    badLane: 2
     element: 0
     mPCost: 12
     basePower: 70

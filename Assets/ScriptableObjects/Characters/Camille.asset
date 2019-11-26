@@ -16,18 +16,17 @@ MonoBehaviour:
   gender: 2
   role: Fairy
   weapon: Fairy Dust
-  maximumHealth: 55
-  maximumMP: 45
-  attack: 55
-  defense: 40
-  resistance: 45
-  skill: 30
-  speed: 45
+  maximumHealth: 65
+  maximumMP: 55
+  attack: 65
+  defense: 50
+  resistance: 55
+  skill: 40
+  speed: 55
   normalAttack:
     type: 0
     attackName: 
     preferredLane: 1
-    badLane: 2
     element: 1
     mPCost: 0
     basePower: 45
@@ -36,7 +35,6 @@ MonoBehaviour:
   - type: 1
     attackName: Dust Storm
     preferredLane: 1
-    badLane: 0
     element: 1
     mPCost: 7
     basePower: 60
@@ -44,7 +42,6 @@ MonoBehaviour:
   - type: 1
     attackName: Sparkling Blast
     preferredLane: 2
-    badLane: 0
     element: 1
     mPCost: 15
     basePower: 75
