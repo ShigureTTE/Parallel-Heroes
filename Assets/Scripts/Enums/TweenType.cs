@@ -2,5 +2,6 @@
     Position,
     Rotation,
     Scale,
-    CanvasAlpha
+    CanvasAlpha,
+    BarFill
 }
