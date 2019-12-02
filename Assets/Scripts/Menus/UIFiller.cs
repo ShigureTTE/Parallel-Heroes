@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Linq;
+using System;
 
 public class UIFiller : MonoBehaviour {
 
@@ -40,7 +41,6 @@ public class UIFiller : MonoBehaviour {
     public void FillAll() {
         FillCurrentTurn();
         FillWithStats();
-        FillEnemies();
     }
 
     public void SetInteractableLanes() {
@@ -52,13 +52,15 @@ public class UIFiller : MonoBehaviour {
     public void FillEnemies() {
         foreach (var item in enemySlots) {
             item.GetComponent<Button>().interactable = false;
+            item.text = "";
         }
 
-        for (int i = 0; i < enemyParty.characters.Count; i++) {
+        List<CharacterBase> targets = Calculator.GetAvailableTargets(battleSystem.CurrentTurn.Lane, enemyParty.characters);
+        for (int i = 0; i < targets.Count; i++) {
             if (i >= enemySlots.Count) break;
 
             TextMeshProUGUI tmp = enemySlots[i];
-            CharacterBase character = enemyParty.characters[i];
+            CharacterBase character = targets[i];
 
             tmp.text = character.stats.characterName;
             tmp.GetComponent<Button>().interactable = true;
