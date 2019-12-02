@@ -26,7 +26,7 @@ MonoBehaviour:
   normalAttack:
     type: 0
     attackName: 
-    preferredLane: 0
+    preferredLane: 1
     element: 0
     mPCost: 0
     basePower: 45
@@ -34,14 +34,14 @@ MonoBehaviour:
   spells:
   - type: 1
     attackName: Slime Ball
-    preferredLane: 1
+    preferredLane: 2
     element: 0
     mPCost: 7
     basePower: 65
     comboCharacter: {fileID: 0}
   - type: 1
     attackName: Goo Cannon
-    preferredLane: 2
+    preferredLane: 4
     element: 1
     mPCost: 12
     basePower: 70

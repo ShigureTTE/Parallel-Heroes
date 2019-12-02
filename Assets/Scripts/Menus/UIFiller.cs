@@ -37,6 +37,7 @@ public class UIFiller : MonoBehaviour {
 
     private readonly string hpText = " HP";
     private readonly string mpText = " MP";
+    private readonly string letters = "ABCDEFGHIJK";
 
     public void FillAll() {
         FillCurrentTurn();
@@ -62,7 +63,7 @@ public class UIFiller : MonoBehaviour {
             TextMeshProUGUI tmp = enemySlots[i];
             CharacterBase character = targets[i];
 
-            tmp.text = character.stats.characterName;
+            tmp.text = character.gameObject.name;
             tmp.GetComponent<Button>().interactable = true;
         }
     }

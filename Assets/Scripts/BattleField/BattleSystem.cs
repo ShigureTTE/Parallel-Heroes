@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
+using DG.Tweening;
 
 public class BattleSystem : MonoBehaviour {
 
@@ -11,6 +13,12 @@ public class BattleSystem : MonoBehaviour {
 
     [Header("UI")]
     [SerializeField] private UIFiller filler;
+
+    [Header("Enemy Arrow")]
+    [SerializeField] private Transform arrow;
+    [SerializeField] private Light arrowLight;
+    [SerializeField] private float offset;
+    [SerializeField] private float lightIntensity;
 
     [HideInInspector] public List<CharacterBase> player = new List<CharacterBase>();
     [HideInInspector] public List<CharacterBase> enemy = new List<CharacterBase>();
@@ -51,6 +59,24 @@ public class BattleSystem : MonoBehaviour {
         else enemy.Add(character);
 
         laneMover.SetCharacterToLane(character, character.Lane, character.Faction == Faction.Player ? player : enemy);
+    }
+
+    public void ShowArrow(TextMeshProUGUI textObject) {
+        string text = textObject.text;
+
+        GameObject go = null;
+        go = enemyParty.characters.Single(x => x.gameObject.name == text).gameObject;
+
+        Bounds spriteBounds = go.GetComponentInChildren<SpriteRenderer>().bounds;
+        arrow.transform.position = new Vector3(go.transform.position.x, go.transform.position.y + spriteBounds.size.y / 2 + offset, go.transform.position.z);
+
+        arrow.GetComponent<Tweener>().PlayTween();
+        arrowLight.DOIntensity(lightIntensity, .25f);
+    }
+
+    public void HideArrow() {
+        arrow.GetComponent<Tweener>().PlayTweenReversed();
+        arrowLight.DOIntensity(0, .25f);
     }
 
     private void RefreshLists() {
