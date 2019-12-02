@@ -16,9 +16,13 @@ public class Party : MonoBehaviour {
     public int Level { get; private set; }
     private int experiencePoints = 0;
 
-    private void Awake() {
-        characters = GetComponentsInChildren<CharacterBase>().ToList();
+    private void Awake() {       
         Level = 5; //TODO: remove hard coded level setter
+    }
+
+    public void ResetCharacters() {
+        characters = new List<CharacterBase>();
+        characters = GetComponentsInChildren<CharacterBase>().ToList();
     }
 
     public void GainExperience(int amount) {
@@ -29,5 +33,9 @@ public class Party : MonoBehaviour {
             experiencePoints = leftovers;
             Level++;
         }
+    }
+
+    public void ForceLevel(BattleFormation battleFormation) {
+        Level = battleFormation.level;
     }
 }

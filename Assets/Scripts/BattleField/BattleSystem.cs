@@ -25,16 +25,22 @@ public class BattleSystem : MonoBehaviour {
 
     private MoveCharacterToLane laneMover;
     private List<CharacterBase> turnOrder;
+    private EnemySpawner enemySpawner;
 
     public CharacterBase CurrentTurn { get; private set; }
 
     private void Start() {
         laneMover = GetComponent<MoveCharacterToLane>();
+        enemySpawner = GetComponent<EnemySpawner>();
+        enemySpawner.SpawnNewFormation();
         NewBattle();
     }
 
     public void NewBattle() {
         List<CharacterBase> characters = new List<CharacterBase>();
+        playerParty.ResetCharacters();
+        enemyParty.ResetCharacters();
+
         characters.AddRange(playerParty.characters);
         characters.AddRange(enemyParty.characters);
 

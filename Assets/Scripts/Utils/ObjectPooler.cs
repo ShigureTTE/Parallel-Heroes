@@ -8,7 +8,7 @@ public class ObjectPooler : MonoBehaviourSingleton<ObjectPooler> {
     public Dictionary<string, Queue<GameObject>> poolDictionary;
     public List<ObjectPool> pools;
 
-    void Start() {
+    void Awake() {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach (ObjectPool pool in pools) {
