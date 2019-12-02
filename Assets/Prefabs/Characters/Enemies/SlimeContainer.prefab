@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faction: 1
   currentLane: 1
-  stats: {fileID: 11400000, guid: 2bb984539ae21fb4c81b045271da4bf7, type: 2}
+  stats: {fileID: 11400000, guid: 761e10e6ea62fec48b9fe35eff19af5c, type: 2}
 --- !u!1 &8310084895171059804
 GameObject:
   m_ObjectHideFlags: 0

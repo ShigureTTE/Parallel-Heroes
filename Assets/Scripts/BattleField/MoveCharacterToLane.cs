@@ -17,30 +17,10 @@ public class MoveCharacterToLane : MonoBehaviour {
     [SerializeField] private float moveDuration;
     [SerializeField] private Ease easeType;
 
-    public List<CharacterBase> Player { get; private set; }
-    public List<CharacterBase> Enemy { get; private set; }
-
-    private void Awake() {
-        RefreshLists();
-    }
-
-    public void RegisterCharacterToBattle(CharacterBase character) {
-        if (character.Faction == Faction.Player) Player.Add(character);
-        else Enemy.Add(character);
-
-        SetCharacterToLane(character, character.Lane);
-    }
-
-    private void RefreshLists() {
-        Player = new List<CharacterBase>();
-        Enemy = new List<CharacterBase>();
-    }
-
-    public void SetCharacterToLane(CharacterBase activeCharacter, Lane targetLane) {
+    public void SetCharacterToLane(CharacterBase activeCharacter, Lane targetLane, List<CharacterBase> factionList) {
         Lane oldLane = activeCharacter.Lane;
         activeCharacter.Lane = targetLane;
 
-        List<CharacterBase> factionList = activeCharacter.Faction == Faction.Player ? Player : Enemy;
         List<CharacterBase> charactersToMove = new List<CharacterBase>();
         foreach (CharacterBase characterBase in factionList) {
             if (characterBase.Lane == targetLane || characterBase.Lane == oldLane) {

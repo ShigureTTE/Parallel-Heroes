@@ -5,24 +5,20 @@ using UnityEngine;
 
 public class Party : MonoBehaviour {
 
-    [SerializeField] private MoveCharacterToLane battlefield;
-    [HideInInspector] public List<CharacterBase> characters;
+    [SerializeField] private BattleSystem battlefield;
+
+    [SerializeField] private Faction faction;
+    [SerializeField] private int expNeededForLevel = 100;
 
     public CharacterBase currentTurn;
+    [HideInInspector] public List<CharacterBase> characters;
 
-    public int expNeededForLevel = 100;
     public int Level { get; private set; }
     private int experiencePoints = 0;
 
     private void Awake() {
         characters = GetComponentsInChildren<CharacterBase>().ToList();
-        Level = 5;
-
-        foreach (var character in characters) {
-            battlefield.RegisterCharacterToBattle(character); //remove this
-            character.SetHealth(Calculator.GetStat(character.stats.maximumHealth, Level, true));
-            character.SetMP(Calculator.GetStat(character.stats.maximumMP, Level, true));
-        }
+        Level = 5; //TODO: remove hard coded level setter
     }
 
     public void GainExperience(int amount) {

@@ -15,7 +15,7 @@ public class Tweener : MonoBehaviour {
     public void PlayTween() {
         if (IsPlaying) return;
 
-        DOTween.KillAll(true);
+        //DOTween.KillAll(false);
         IsPlaying = true;
         foreach (TweenObject to in tweenObjects) {
             Transform toTransform = to.objectToTween.transform;

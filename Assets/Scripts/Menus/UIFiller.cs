@@ -4,11 +4,16 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Linq;
 
 public class UIFiller : MonoBehaviour {
 
     [Header("Party")]
-    [SerializeField] private Party party;
+    [SerializeField] private Party playerParty;
+    [SerializeField] private Party enemyParty;
+
+    [Header("Battle System")]
+    [SerializeField] private BattleSystem battleSystem;
 
     [Header("UI Elements: Actions")]
     [SerializeField] private TextMeshProUGUI characterName;
@@ -19,22 +24,56 @@ public class UIFiller : MonoBehaviour {
     [Header("UI Elements: Health / MP")]
     [SerializeField] private List<CharacterSlot> slots;
 
+    [Header("UI Elements: Health / MP")]
+    [SerializeField] private List<TextMeshProUGUI> enemySlots = new List<TextMeshProUGUI>();
+
+    [Header("UI Elements: Lane Buttons")]
+    [SerializeField] private Button closeRange;
+    [SerializeField] private Button midRange;
+    [SerializeField] private Button longRange;
+
     private CharacterStats stats;
 
     private readonly string hpText = " HP";
     private readonly string mpText = " MP";
+    private readonly string abcd = "ABCDEFG";
 
-    void Start() {
+    public void FillAll() {
         FillCurrentTurn();
         FillWithStats();
+        FillEnemies();
+    }
+
+    public void SetInteractableLanes() {
+        List<CharacterBase> targets = Calculator.GetAvailableTargets(battleSystem.CurrentTurn, enemyParty.characters);
+
+        if (!targets.Any(x => x.Lane == Lane.Close)) closeRange.interactable = false;
+        if (!targets.Any(x => x.Lane == Lane.Mid)) midRange.interactable = false;
+        if (!targets.Any(x => x.Lane == Lane.Long)) longRange.interactable = false;
+    }
+
+    public void FillEnemies() {
+        foreach (var item in enemySlots) {
+            item.GetComponent<Button>().interactable = false;
+        }
+
+        for (int i = 0; i < enemyParty.characters.Count; i++) {
+            if (i >= enemySlots.Count) break;
+
+            TextMeshProUGUI tmp = enemySlots[i];
+            CharacterBase character = enemyParty.characters[i];
+
+            tmp.text = character.stats.characterName + " " + abcd[i];
+            tmp.GetComponent<Button>().interactable = true;
+        }
     }
 
     public void FillWithStats() {
-        for (int i = 0; i < party.characters.Count; i++) {
+        for (int i = 0; i < playerParty.characters.Count; i++) {
             if (i >= slots.Count) break;
 
             CharacterSlot slot = slots[i];
-            CharacterBase character = party.characters[i];
+            CharacterBase character = playerParty.characters[i];
 
             slot.AssignedCharacter = character;
             slot.characterName.text = character.stats.characterName;
@@ -45,20 +84,20 @@ public class UIFiller : MonoBehaviour {
 
     public void UpdateHealth(CharacterSlot slot) {
         Image image = slot.healthImage;
-        float fill = (float)slot.AssignedCharacter.CurrentHealth / (float)Calculator.GetStat(slot.AssignedCharacter.stats.maximumHealth, party.Level, true);
+        float fill = (float)slot.AssignedCharacter.CurrentHealth / (float)Calculator.GetStat(slot.AssignedCharacter.stats.maximumHealth, playerParty.Level, true);
         slot.healthText.text = slot.AssignedCharacter.CurrentHealth.ToString() + hpText;
         image.DOFillAmount(fill, 0.75f);
     }
 
     public void UpdateMana(CharacterSlot slot) {
         Image image = slot.manaImage;
-        float fill = (float)slot.AssignedCharacter.CurrentMP / (float)Calculator.GetStat(slot.AssignedCharacter.stats.maximumMP, party.Level, true);
+        float fill = (float)slot.AssignedCharacter.CurrentMP / (float)Calculator.GetStat(slot.AssignedCharacter.stats.maximumMP, playerParty.Level, true);
         slot.manaText.text = slot.AssignedCharacter.CurrentMP.ToString() + mpText;
         image.DOFillAmount(fill, 0.75f);
     }
 
     public void FillCurrentTurn() {
-        if (party != null) stats = party.currentTurn.stats;
+        if (battleSystem != null) stats = battleSystem.CurrentTurn.stats;
 
         characterName.text = stats.characterName;
         firstSpell.text = stats.spells[0].attackName;

@@ -29,4 +29,32 @@ public class Calculator : MonoBehaviour {
 
         return damage;
     }
+
+    public static List<CharacterBase> GetAvailableTargets(CharacterBase currentTurn, List<CharacterBase> possibleTargets) {
+        List<CharacterBase> targets = new List<CharacterBase>();
+        Lane lanes;
+
+        switch (currentTurn.Lane) {
+            case Lane.Close:
+                lanes = Lane.Close | Lane.Mid | Lane.Long;
+                break;
+            case Lane.Mid:
+                lanes = Lane.Close | Lane.Mid;
+                break;
+            case Lane.Long:
+                lanes = Lane.Close;
+                break;
+            default:
+                lanes = Lane.Close;
+                break;
+        }
+
+        foreach (CharacterBase characterBase in possibleTargets) {
+            if ((characterBase.Lane & lanes) != 0) {
+                targets.Add(characterBase);
+            }
+        }
+
+        return targets;
+    }
 }

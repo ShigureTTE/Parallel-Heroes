@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class ChooseLaneButton : MonoBehaviour {
 
-    [SerializeField] private Party party;
     [SerializeField] private MoveCharacterToLane battleField;
 
     private Lane lane;
+    private BattleSystem battleSystem;
+
+    private void Awake() {
+        battleSystem = battleField.GetComponent<BattleSystem>();
+    }
 
     public void SetNewLane(string newLane) {
-        CharacterBase currentChar = party.currentTurn;
+        CharacterBase currentChar = battleSystem.CurrentTurn;
         Enum.TryParse(newLane, out lane);
+        List<CharacterBase> factionList = currentChar.Faction == Faction.Player ? battleSystem.player : battleSystem.enemy;
 
-        battleField.SetCharacterToLane(currentChar, lane);
+        battleField.SetCharacterToLane(currentChar, lane, factionList);
     }
 }
