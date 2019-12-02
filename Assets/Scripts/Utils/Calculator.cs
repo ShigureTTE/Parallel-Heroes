@@ -30,11 +30,11 @@ public class Calculator : MonoBehaviour {
         return damage;
     }
 
-    public static List<CharacterBase> GetAvailableTargets(CharacterBase currentTurn, List<CharacterBase> possibleTargets) {
+    public static List<CharacterBase> GetAvailableTargets(Lane currentLane, List<CharacterBase> possibleTargets) {
         List<CharacterBase> targets = new List<CharacterBase>();
         Lane lanes;
 
-        switch (currentTurn.Lane) {
+        switch (currentLane) {
             case Lane.Close:
                 lanes = Lane.Close | Lane.Mid | Lane.Long;
                 break;

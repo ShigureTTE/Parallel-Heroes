@@ -36,7 +36,6 @@ public class UIFiller : MonoBehaviour {
 
     private readonly string hpText = " HP";
     private readonly string mpText = " MP";
-    private readonly string abcd = "ABCDEFG";
 
     public void FillAll() {
         FillCurrentTurn();
@@ -45,11 +44,9 @@ public class UIFiller : MonoBehaviour {
     }
 
     public void SetInteractableLanes() {
-        List<CharacterBase> targets = Calculator.GetAvailableTargets(battleSystem.CurrentTurn, enemyParty.characters);
-
-        if (!targets.Any(x => x.Lane == Lane.Close)) closeRange.interactable = false;
-        if (!targets.Any(x => x.Lane == Lane.Mid)) midRange.interactable = false;
-        if (!targets.Any(x => x.Lane == Lane.Long)) longRange.interactable = false;
+        if (Calculator.GetAvailableTargets(Lane.Close, enemyParty.characters).Count == 0) closeRange.interactable = false;
+        if (Calculator.GetAvailableTargets(Lane.Mid, enemyParty.characters).Count == 0) midRange.interactable = false;
+        if (Calculator.GetAvailableTargets(Lane.Long, enemyParty.characters).Count == 0) longRange.interactable = false;
     }
 
     public void FillEnemies() {
@@ -63,7 +60,7 @@ public class UIFiller : MonoBehaviour {
             TextMeshProUGUI tmp = enemySlots[i];
             CharacterBase character = enemyParty.characters[i];
 
-            tmp.text = character.stats.characterName + " " + abcd[i];
+            tmp.text = character.stats.characterName;
             tmp.GetComponent<Button>().interactable = true;
         }
     }
