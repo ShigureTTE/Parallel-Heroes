@@ -1,5 +1,6 @@
 ﻿public enum AttackType {
     Normal,
     Spell,
-    Combo
+    Combo,
+    Block
 }

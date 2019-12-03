@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UINavigator : MonoBehaviour {
 
     [SerializeField] private EventSystem eventSystem;
+    [SerializeField] private GameObject attackButton;
 
     private CanvasGroup[] registeredBackMenu = new CanvasGroup[4];
     private Button[] registeredButton = new Button[4];
@@ -19,6 +20,12 @@ public class UINavigator : MonoBehaviour {
     private void ReductLayer() {
         layer--;
         if (layer < 0) layer = 0;
+    }
+
+    public void ResetMenus() {
+        registeredBackMenu = new CanvasGroup[4];
+        registeredButton = new Button[4];
+        layer = 0;
     }
 
     public void RegisterBackMenu(CanvasGroup menu) {

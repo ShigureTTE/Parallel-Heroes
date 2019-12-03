@@ -10,7 +10,7 @@ public class Party : MonoBehaviour {
     [SerializeField] private Faction faction;
     [SerializeField] private int expNeededForLevel = 100;
 
-    public CharacterBase currentTurn;
+    public CharacterBase CurrentTurn { get { return battlefield.CurrentTurn; } }
     [HideInInspector] public List<CharacterBase> characters;
 
     public int Level { get; private set; }
@@ -23,6 +23,9 @@ public class Party : MonoBehaviour {
     public void ResetCharacters() {
         characters = new List<CharacterBase>();
         characters = GetComponentsInChildren<CharacterBase>().ToList();
+        foreach (CharacterBase character in characters) {
+            character.Party = this;
+        }
     }
 
     public void GainExperience(int amount) {

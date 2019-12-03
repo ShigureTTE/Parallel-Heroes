@@ -11,7 +11,7 @@ public class Calculator : MonoBehaviour {
     }
 
     public static int GetDamage(Party attackerParty, CharacterBase defender, Attack attack, int defenderLevel) {
-        CharacterStats stats = attackerParty.currentTurn.stats;
+        CharacterStats stats = attackerParty.CurrentTurn.stats;
         int attackStat = GetStat(stats.attack, attackerParty.Level);
         int skillStat = GetStat(stats.skill, attackerParty.Level);
         int defenseStat = attack.element == Element.Normal ? GetStat(defender.stats.defense, defenderLevel) : GetStat(defender.stats.resistance, defenderLevel);
@@ -20,10 +20,10 @@ public class Calculator : MonoBehaviour {
         float damageFloat = (levelSkillBonus * ((float)attackStat / (float)defenseStat) * (float)attack.basePower) / 40f;
         //TODO: WeaponModifier
         float randomModifier = 1f * Random.Range(0.9f, 1f);
-        float laneModifier = attackerParty.currentTurn.Lane == attack.preferredLane ? 1.1f : 0.9f;
+        float prefLaneModifier = attackerParty.CurrentTurn.Lane == attack.preferredLane ? 1.1f : 0.9f;
         float criticalModifier = Random.Range(0, 50) == 0 ? 1.5f : 1f;
 
-        damageFloat = damageFloat * randomModifier * laneModifier * criticalModifier;
+        damageFloat = damageFloat * randomModifier * prefLaneModifier * criticalModifier;
 
         int damage = Mathf.RoundToInt(damageFloat);
 

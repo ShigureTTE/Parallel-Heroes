@@ -22,8 +22,9 @@ public class UIFiller : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI secondSpell;
     [SerializeField] private TextMeshProUGUI spellCost;
 
-    [Header("UI Elements: Health / MP")]
+    [Header("UI Elements: Health / MP / Level")]
     [SerializeField] private List<CharacterSlot> slots;
+    [SerializeField] private TextMeshProUGUI level;
 
     [Header("UI Elements: Health / MP")]
     [SerializeField] private List<TextMeshProUGUI> enemySlots = new List<TextMeshProUGUI>();
@@ -80,6 +81,8 @@ public class UIFiller : MonoBehaviour {
             UpdateHealth(slot);
             UpdateMana(slot);
         }
+
+        level.text = playerParty.Level.ToString();
     }
 
     public void UpdateHealth(CharacterSlot slot) {

@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 using DG.Tweening;
+using System;
 
 public class BattleSystem : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class BattleSystem : MonoBehaviour {
 
     [Header("UI")]
     [SerializeField] private UIFiller filler;
+    [SerializeField] private InformationBox infoBox;
 
     [Header("Enemy Arrow")]
     [SerializeField] private Transform arrow;
@@ -26,12 +28,19 @@ public class BattleSystem : MonoBehaviour {
     private MoveCharacterToLane laneMover;
     private List<CharacterBase> turnOrder;
     private EnemySpawner enemySpawner;
+    private PerformAction performAction;
+
+    private GameObject selectedEnemy;
+
+    private AttackType chosenAttack;
+    private int spellIndex;
 
     public CharacterBase CurrentTurn { get; private set; }
 
     private void Start() {
         laneMover = GetComponent<MoveCharacterToLane>();
         enemySpawner = GetComponent<EnemySpawner>();
+        performAction = GetComponent<PerformAction>();
         enemySpawner.SpawnNewFormation();
         NewBattle();
     }
@@ -56,6 +65,7 @@ public class BattleSystem : MonoBehaviour {
         turnOrder = new List<CharacterBase>();
         turnOrder = characters.OrderByDescending(x => Calculator.GetStat(x.stats.speed, x.Faction == Faction.Player ? playerParty.Level : enemyParty.Level)).ToList();
         CurrentTurn = turnOrder[0];
+        infoBox.TurnText(CurrentTurn);
 
         filler.FillAll();
     }
@@ -70,11 +80,10 @@ public class BattleSystem : MonoBehaviour {
     public void ShowArrow(TextMeshProUGUI textObject) {
         string text = textObject.text;
 
-        GameObject go = null;
-        go = enemyParty.characters.Single(x => x.gameObject.name == text).gameObject;
+        selectedEnemy = enemyParty.characters.Single(x => x.gameObject.name == text).gameObject;
 
-        Bounds spriteBounds = go.GetComponentInChildren<SpriteRenderer>().bounds;
-        arrow.transform.position = new Vector3(go.transform.position.x, go.transform.position.y + spriteBounds.size.y / 2 + offset, go.transform.position.z);
+        Bounds spriteBounds = selectedEnemy.GetComponentInChildren<SpriteRenderer>().bounds;
+        arrow.transform.position = new Vector3(selectedEnemy.transform.position.x, selectedEnemy.transform.position.y + spriteBounds.size.y / 2 + offset, selectedEnemy.transform.position.z);
 
         arrow.GetComponent<Tweener>().PlayTween();
         arrowLight.DOIntensity(lightIntensity, .25f);
@@ -83,6 +92,32 @@ public class BattleSystem : MonoBehaviour {
     public void HideArrow() {
         arrow.GetComponent<Tweener>().PlayTweenReversed();
         arrowLight.DOIntensity(0, .25f);
+    }
+
+    public void SetChosenAttackType(string attackType) {
+        Enum.TryParse(attackType, out chosenAttack);
+    }
+
+    public void SetSpellIndex(int index) {
+        spellIndex = index;
+    }
+
+    public void CompleteTurn() {
+        switch (chosenAttack) {
+            case AttackType.Normal:
+                performAction.NormalAttack(CurrentTurn, selectedEnemy.GetComponent<CharacterBase>());
+                break;
+            case AttackType.Spell:
+                performAction.SpellAttack(CurrentTurn, selectedEnemy.GetComponent<CharacterBase>(), spellIndex);
+                break;
+            case AttackType.Combo:
+                break;
+            case AttackType.Block:
+                performAction.Block(CurrentTurn);
+                break;
+        }
+
+        GetComponent<LaneHighlighter>().NoHighlight();
     }
 
     private void RefreshLists() {

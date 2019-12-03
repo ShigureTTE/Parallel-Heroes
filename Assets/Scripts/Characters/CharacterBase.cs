@@ -9,6 +9,8 @@ public class CharacterBase : MonoBehaviour {
     public Lane Lane { get { return currentLane; } set { currentLane = value; } }
     public CharacterStats stats;
 
+    public Party Party { get; set; }
+
     /// <summary>
     /// Already gone trough Calculator
     /// </summary>
