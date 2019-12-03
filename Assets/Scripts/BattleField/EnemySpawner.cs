@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private readonly string letters = "ABCDEFGHIJK";
 
-    private void Start() {
+    private void Awake() {
         pooler = ObjectPooler.Instance;
     }
 
