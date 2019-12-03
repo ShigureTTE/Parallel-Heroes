@@ -160,8 +160,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 0
-  currentLane: 4
+  currentLane: 2
   stats: {fileID: 11400000, guid: 2bb984539ae21fb4c81b045271da4bf7, type: 2}
+  rangeSprite: {fileID: 8764081108769564863}
 --- !u!1001 &8494294297411802586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -234,6 +235,12 @@ PrefabInstance:
 --- !u!4 &8764081108769564862 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 883144220027698532, guid: 8a48aa1f5d964c042b8b6268e4865855,
+    type: 3}
+  m_PrefabInstance: {fileID: 8494294297411802586}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8764081108769564863 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 883144220027698533, guid: 8a48aa1f5d964c042b8b6268e4865855,
     type: 3}
   m_PrefabInstance: {fileID: 8494294297411802586}
   m_PrefabAsset: {fileID: 0}

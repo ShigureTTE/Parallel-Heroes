@@ -581,6 +581,8 @@ MonoBehaviour:
   longRange: {fileID: 1555785653}
   normalLaneColor: {r: 0.28129348, g: 0.3584906, b: 0.24857603, a: 0}
   preferredLaneColor: {r: 0.28129348, g: 0.3584906, b: 0.24857603, a: 0.19607843}
+  fadeTimer: 0.3
+  easeType: 13
   meleeSprite: {fileID: -8630376537338148293, guid: 1c7db1bd83b887044a2b53b7d4546096,
     type: 3}
   rangedSprite: {fileID: 748166147388434, guid: 1c7db1bd83b887044a2b53b7d4546096,
@@ -17593,11 +17595,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7089812039725090507, guid: 3769d1505cdfc364fbf69cc822db5eea,
-        type: 3}
-      propertyPath: currentLane
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3769d1505cdfc364fbf69cc822db5eea, type: 3}
 --- !u!1001 &5334716024602998883
@@ -17667,11 +17664,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2071489221236342357, guid: 9da137481e403f54fa30b68a952dc894,
-        type: 3}
-      propertyPath: currentLane
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9da137481e403f54fa30b68a952dc894, type: 3}
 --- !u!1001 &8764081108526928066
@@ -17681,11 +17673,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1310018490}
     m_Modifications:
-    - target: {fileID: 3393351100622009882, guid: 0879c9515cd21a644a6e464d73fbae9e,
-        type: 3}
-      propertyPath: currentLane
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 439091066401280281, guid: 0879c9515cd21a644a6e464d73fbae9e,
         type: 3}
       propertyPath: m_Name

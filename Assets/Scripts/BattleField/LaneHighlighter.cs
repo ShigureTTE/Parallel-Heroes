@@ -11,6 +11,8 @@ public class LaneHighlighter : MonoBehaviour {
     [SerializeField] private SpriteRenderer longRange;
     [SerializeField] private Color normalLaneColor;
     [SerializeField] private Color preferredLaneColor;
+    [SerializeField] private float fadeTimer;
+    [SerializeField] private Ease easeType;
 
     [Header("Range Type Sprites")]
     [SerializeField] private Sprite meleeSprite;
@@ -24,13 +26,13 @@ public class LaneHighlighter : MonoBehaviour {
     }
 
     public void NoHighlight() {
-        closeRange.DOColor(normalLaneColor, 0.5f);
-        midRange.DOColor(normalLaneColor, 0.5f);
-        longRange.DOColor(normalLaneColor, 0.5f);
+        closeRange.DOColor(normalLaneColor, fadeTimer).SetEase(easeType);
+        midRange.DOColor(normalLaneColor, fadeTimer).SetEase(easeType);
+        longRange.DOColor(normalLaneColor, fadeTimer).SetEase(easeType);
     }
 
     public void NoRangeType() {
-        battleSystem.CurrentTurn.RangeTypeTweener.PlayTweenReversed();
+        battleSystem.CurrentTurn.RangeSprite.transform.DOScaleX(0, fadeTimer).SetEase(easeType);
     }
 
     public void AttackHighlight() {
@@ -50,13 +52,13 @@ public class LaneHighlighter : MonoBehaviour {
 
         switch (attack.preferredLane) {
             case Lane.Close:
-                closeRange.DOColor(preferredLaneColor, 0.5f);
+                closeRange.DOColor(preferredLaneColor, fadeTimer).SetEase(easeType);
                 break;
             case Lane.Mid:
-                midRange.DOColor(preferredLaneColor, 0.5f);
+                midRange.DOColor(preferredLaneColor, fadeTimer).SetEase(easeType);
                 break;
             case Lane.Long:
-                longRange.DOColor(preferredLaneColor, 0.5f);
+                longRange.DOColor(preferredLaneColor, fadeTimer).SetEase(easeType);
                 break;
         }
 
@@ -65,6 +67,6 @@ public class LaneHighlighter : MonoBehaviour {
 
     private void ShowAttackType() {
         battleSystem.CurrentTurn.RangeSprite.sprite = attack.rangeType == RangeType.Melee ? meleeSprite : rangedSprite;
-        battleSystem.CurrentTurn.RangeTypeTweener.PlayTween();
+        battleSystem.CurrentTurn.RangeSprite.transform.DOScaleX(1, fadeTimer).SetEase(easeType);
     }
 }

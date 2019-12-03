@@ -163,6 +163,7 @@ MonoBehaviour:
   faction: 0
   currentLane: 4
   stats: {fileID: 11400000, guid: ccd655f7d403a0a43aadd29b0745436e, type: 2}
+  rangeSprite: {fileID: 7841646563166855605}
 --- !u!1001 &6958816778768719056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -235,6 +236,12 @@ PrefabInstance:
 --- !u!4 &7841646563166855604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 883144220027698532, guid: 8a48aa1f5d964c042b8b6268e4865855,
+    type: 3}
+  m_PrefabInstance: {fileID: 6958816778768719056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &7841646563166855605 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 883144220027698533, guid: 8a48aa1f5d964c042b8b6268e4865855,
     type: 3}
   m_PrefabInstance: {fileID: 6958816778768719056}
   m_PrefabAsset: {fileID: 0}
