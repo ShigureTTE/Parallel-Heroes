@@ -28,6 +28,7 @@ MonoBehaviour:
     attackName: 
     preferredLane: 4
     element: 1
+    rangeType: 1
     mPCost: 0
     basePower: 50
     comboCharacter: {fileID: 0}
@@ -36,6 +37,7 @@ MonoBehaviour:
     attackName: Burst
     preferredLane: 2
     element: 1
+    rangeType: 1
     mPCost: 10
     basePower: 65
     comboCharacter: {fileID: 0}
@@ -43,6 +45,7 @@ MonoBehaviour:
     attackName: Charm From Hell
     preferredLane: 1
     element: 1
+    rangeType: 0
     mPCost: 18
     basePower: 80
     comboCharacter: {fileID: 0}

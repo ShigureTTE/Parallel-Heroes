@@ -10,6 +10,9 @@ public class CharacterBase : MonoBehaviour {
     public CharacterStats stats;
 
     public Party Party { get; set; }
+    public bool IsBlocking { get; set; }
+    public Tweener RangeTypeTweener { get; private set; }
+    public SpriteRenderer RangeSprite { get { return RangeTypeTweener.GetComponent<SpriteRenderer>(); } }
 
     /// <summary>
     /// Already gone trough Calculator
@@ -21,7 +24,7 @@ public class CharacterBase : MonoBehaviour {
     public int CurrentMP { get; private set; }
 
     private void Awake() {
-
+        RangeTypeTweener = GetComponentInChildren<Tweener>();
     }
 
     public void SetHealth(int health) {

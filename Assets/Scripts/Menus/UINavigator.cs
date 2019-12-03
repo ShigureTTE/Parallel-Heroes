@@ -23,6 +23,13 @@ public class UINavigator : MonoBehaviour {
     }
 
     public void ResetMenus() {
+        foreach (Button button in registeredButton) {
+            if (button == null) continue;
+            if (button.GetComponent<EventTrigger>() == null) continue;
+
+            button.GetComponent<EventTrigger>().enabled = true;
+        }
+
         registeredBackMenu = new CanvasGroup[4];
         registeredButton = new Button[4];
         layer = 0;

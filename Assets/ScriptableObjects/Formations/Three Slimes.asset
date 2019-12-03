@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 4
   enemies:
   - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
-    lane: 4
+    lane: 1
   - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
     lane: 2
   - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}

@@ -28,6 +28,7 @@ MonoBehaviour:
     attackName: 
     preferredLane: 2
     element: 0
+    rangeType: 0
     mPCost: 0
     basePower: 50
     comboCharacter: {fileID: 0}
@@ -36,6 +37,7 @@ MonoBehaviour:
     attackName: Foul Play
     preferredLane: 2
     element: 0
+    rangeType: 1
     mPCost: 10
     basePower: 70
     comboCharacter: {fileID: 0}
@@ -43,6 +45,7 @@ MonoBehaviour:
     attackName: Heart Ripper
     preferredLane: 1
     element: 1
+    rangeType: 0
     mPCost: 21
     basePower: 85
     comboCharacter: {fileID: 0}

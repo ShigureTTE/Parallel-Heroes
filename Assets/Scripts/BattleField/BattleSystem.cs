@@ -15,6 +15,7 @@ public class BattleSystem : MonoBehaviour {
     [Header("UI")]
     [SerializeField] private UIFiller filler;
     [SerializeField] private InformationBox infoBox;
+    [SerializeField] private Tweener characterMenu;
 
     [Header("Enemy Arrow")]
     [SerializeField] private Transform arrow;
@@ -36,6 +37,7 @@ public class BattleSystem : MonoBehaviour {
     private int spellIndex;
 
     public CharacterBase CurrentTurn { get; private set; }
+    private int turnIndex;
 
     private void Start() {
         laneMover = GetComponent<MoveCharacterToLane>();
@@ -65,9 +67,26 @@ public class BattleSystem : MonoBehaviour {
         turnOrder = new List<CharacterBase>();
         turnOrder = characters.OrderByDescending(x => Calculator.GetStat(x.stats.speed, x.Faction == Faction.Player ? playerParty.Level : enemyParty.Level)).ToList();
         CurrentTurn = turnOrder[0];
+        turnIndex = 0;
         infoBox.TurnText(CurrentTurn);
 
         filler.FillAll();
+    }
+
+    public void NextTurn() {
+        if (turnIndex + 1 >= turnOrder.Count) turnIndex = 0;
+        else turnIndex++;
+
+        while (turnOrder[turnIndex].Faction == Faction.Enemy) { //REMOVE THIS WHILE LOOP WHEN ENEMY AI HAS BEEN IMPLEMENTED.
+            if (turnIndex + 1 >= turnOrder.Count) turnIndex = 0;
+            else turnIndex++;
+        }
+
+        CurrentTurn = turnOrder[turnIndex];
+        filler.FillCurrentTurn();
+        CurrentTurn.IsBlocking = false;
+        infoBox.TurnText(CurrentTurn);
+        characterMenu.PlayTween();
     }
 
     public void AddCharacter(CharacterBase character) {
@@ -118,6 +137,7 @@ public class BattleSystem : MonoBehaviour {
         }
 
         GetComponent<LaneHighlighter>().NoHighlight();
+        GetComponent<LaneHighlighter>().NoRangeType();
     }
 
     private void RefreshLists() {

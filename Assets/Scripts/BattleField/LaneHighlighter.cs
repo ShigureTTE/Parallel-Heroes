@@ -12,6 +12,10 @@ public class LaneHighlighter : MonoBehaviour {
     [SerializeField] private Color normalLaneColor;
     [SerializeField] private Color preferredLaneColor;
 
+    [Header("Range Type Sprites")]
+    [SerializeField] private Sprite meleeSprite;
+    [SerializeField] private Sprite rangedSprite;
+
     private BattleSystem battleSystem;
     private Attack attack;
 
@@ -23,6 +27,10 @@ public class LaneHighlighter : MonoBehaviour {
         closeRange.DOColor(normalLaneColor, 0.5f);
         midRange.DOColor(normalLaneColor, 0.5f);
         longRange.DOColor(normalLaneColor, 0.5f);
+    }
+
+    public void NoRangeType() {
+        battleSystem.CurrentTurn.RangeTypeTweener.PlayTweenReversed();
     }
 
     public void AttackHighlight() {
@@ -51,5 +59,12 @@ public class LaneHighlighter : MonoBehaviour {
                 longRange.DOColor(preferredLaneColor, 0.5f);
                 break;
         }
+
+        ShowAttackType();
+    }
+
+    private void ShowAttackType() {
+        battleSystem.CurrentTurn.RangeSprite.sprite = attack.rangeType == RangeType.Melee ? meleeSprite : rangedSprite;
+        battleSystem.CurrentTurn.RangeTypeTweener.PlayTween();
     }
 }

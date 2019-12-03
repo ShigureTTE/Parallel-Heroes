@@ -22,6 +22,7 @@ public class Calculator : MonoBehaviour {
         float randomModifier = 1f * Random.Range(0.9f, 1f);
         float prefLaneModifier = attackerParty.CurrentTurn.Lane == attack.preferredLane ? 1.1f : 0.9f;
         float criticalModifier = Random.Range(0, 50) == 0 ? 1.5f : 1f;
+        float blockingModifier = defender.IsBlocking ? 0.5f : 1f;
 
         damageFloat = damageFloat * randomModifier * prefLaneModifier * criticalModifier;
 

@@ -28,6 +28,7 @@ MonoBehaviour:
     attackName: 
     preferredLane: 2
     element: 0
+    rangeType: 1
     mPCost: 0
     basePower: 50
     comboCharacter: {fileID: 0}
@@ -36,6 +37,7 @@ MonoBehaviour:
     attackName: Long Shot
     preferredLane: 4
     element: 0
+    rangeType: 1
     mPCost: 8
     basePower: 65
     comboCharacter: {fileID: 0}
@@ -43,6 +45,7 @@ MonoBehaviour:
     attackName: In Your Face
     preferredLane: 1
     element: 0
+    rangeType: 0
     mPCost: 12
     basePower: 70
     comboCharacter: {fileID: 0}

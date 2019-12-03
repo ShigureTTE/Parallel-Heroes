@@ -17,11 +17,13 @@ public class PerformAction : MonoBehaviour {
     [SerializeField] private InformationBox infoBox;
 
     [Header("Action Settings")]
-    [SerializeField] private float littlePause;
+    [SerializeField] private float attackPause;
+    [SerializeField] private float blockPause;
     [SerializeField] private float attackTweenTime;
     [SerializeField] private float returnDelay;
     [SerializeField] private Ease easeType;
     [SerializeField] private GameObject hitEffect;
+    [SerializeField] private GameObject blockEffect;
 
     private CharacterBase main;
     private CharacterBase other;
@@ -38,7 +40,7 @@ public class PerformAction : MonoBehaviour {
         other = defender;
         attack = main.stats.normalAttack;
 
-        StartCoroutine(NormalAttackCoroutine());
+        StartCoroutine(attack.rangeType == RangeType.Melee ? MeleeAttackCoroutine() : RangedAttackCoroutine());
     }
 
     public void SpellAttack(CharacterBase attacker, CharacterBase defender, int spellIndex) {
@@ -47,17 +49,19 @@ public class PerformAction : MonoBehaviour {
         other = defender;
         attack = main.stats.spells[spellIndex];
 
-        StartCoroutine(NormalAttackCoroutine());
+        StartCoroutine(attack.rangeType == RangeType.Melee ? MeleeAttackCoroutine() : RangedAttackCoroutine());
     }
 
     public void Block(CharacterBase blocker) {
         RevertAllTweens();
         main = blocker;
+
+        StartCoroutine(BlockingCoroutine());
     }
 
-    public IEnumerator NormalAttackCoroutine() {
+    public IEnumerator MeleeAttackCoroutine() {
         infoBox.AttackText(main, other);
-        yield return new WaitForSecondsRealtime(littlePause);
+        yield return new WaitForSecondsRealtime(attackPause);
         
         Vector3 oldPosition = main.transform.position;
         Vector3 targetPosition = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z + 0.05f);
@@ -65,7 +69,7 @@ public class PerformAction : MonoBehaviour {
         Tween tween = main.transform.DOMove(targetPosition, attackTweenTime).SetEase(easeType);
         yield return tween.WaitForCompletion();
 
-        Instantiate(hitEffect, other.transform.position, Quaternion.identity, other.transform);
+        Instantiate(hitEffect, other.transform.position, hitEffect.transform.rotation, other.transform);
         int damage = Calculator.GetDamage(main.Party, other, attack, other.Party.Level);
         other.SubstractHealth(damage);
         infoBox.DamageText(main, other, damage);
@@ -73,6 +77,36 @@ public class PerformAction : MonoBehaviour {
 
         tween = main.transform.DOMove(oldPosition, attackTweenTime).SetEase(easeType);
         yield return tween.WaitForCompletion();
+        battleSystem.NextTurn();
+    }
+
+    public IEnumerator RangedAttackCoroutine() {
+        infoBox.AttackText(main, other);
+        yield return new WaitForSecondsRealtime(attackPause);
+
+        Vector3 oldPosition = main.transform.position;
+        Vector3 targetPosition = new Vector3(transform.position.x, other.transform.position.y, transform.position.z);
+
+        Tween tween = main.transform.DOMove(targetPosition, attackTweenTime).SetEase(easeType);
+        yield return tween.WaitForCompletion();
+
+        Instantiate(hitEffect, other.transform.position, hitEffect.transform.rotation, other.transform);
+        int damage = Calculator.GetDamage(main.Party, other, attack, other.Party.Level);
+        other.SubstractHealth(damage);
+        infoBox.DamageText(main, other, damage);
+        yield return new WaitForSecondsRealtime(returnDelay);
+
+        tween = main.transform.DOMove(oldPosition, attackTweenTime).SetEase(easeType);
+        yield return tween.WaitForCompletion();
+        battleSystem.NextTurn();
+    }
+
+    public IEnumerator BlockingCoroutine() {
+        infoBox.BlockText(main);
+        main.IsBlocking = true;
+        Instantiate(blockEffect, main.transform.position, blockEffect.transform.rotation, main.transform);
+        yield return new WaitForSecondsRealtime(blockPause);
+        battleSystem.NextTurn();
     }
 
 

@@ -22,6 +22,29 @@ public class InformationBox : MonoBehaviour {
             IBConstants.commaS +
             IBConstants.turn +
             IBConstants.exclamation;
+
+        StartCoroutine(NewText(text));
+    }
+
+    public void BlockText(CharacterBase blocker) {
+        string gender = "";
+        switch (blocker.stats.gender) {
+            case Gender.Male:
+                gender = IBConstants.himself;
+                break;
+            case Gender.Female:
+                gender = IBConstants.herself;
+                break;
+            case Gender.NonBinary:
+                gender = IBConstants.themselves;
+                break;
+        }
+
+        string text = blocker.stats.characterName +
+            IBConstants.braces +
+            gender +
+            IBConstants.exclamation;
+
         StartCoroutine(NewText(text));
     }
 
@@ -29,6 +52,7 @@ public class InformationBox : MonoBehaviour {
         string text = attacker.stats.characterName +
             IBConstants.attacks + defender.stats.characterName +
             IBConstants.exclamation;
+
         StartCoroutine(NewText(text));
     }
 
@@ -38,6 +62,7 @@ public class InformationBox : MonoBehaviour {
             damage.ToString() +
             IBConstants.damage +
             IBConstants.exclamation;
+
         StartCoroutine(NewText(text));
     }
 
@@ -62,4 +87,8 @@ public class IBConstants {
     public static readonly string attacks = " attacks ";
     public static readonly string missed = " missed";
     public static readonly string exclamation = "!";
+    public static readonly string braces = " braces ";
+    public static readonly string himself = "himself";
+    public static readonly string herself = "herself";
+    public static readonly string themselves = "themselves";
 }

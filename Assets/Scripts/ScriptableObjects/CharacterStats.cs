@@ -34,6 +34,7 @@ public class Attack {
     public string attackName;
     public Lane preferredLane;
     public Element element;
+    public RangeType rangeType;
     public int mPCost;
     public int basePower;
     public CharacterStats comboCharacter;
@@ -66,6 +67,10 @@ public class AttackDrawerUIE : PropertyDrawer {
 
         EditorGUI.PropertyField(new Rect(position.x, position.y + positionAdjust, position.width, 16),
             property.FindPropertyRelative("element"));
+        positionAdjust += 20f;
+
+        EditorGUI.PropertyField(new Rect(position.x, position.y + positionAdjust, position.width, 16),
+            property.FindPropertyRelative("rangeType"));
         positionAdjust += 20f;
 
         SerializedProperty field = property.FindPropertyRelative("type");
