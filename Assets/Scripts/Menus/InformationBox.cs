@@ -11,7 +11,7 @@ public class InformationBox : MonoBehaviour {
 
     private Tweener alphaTweener;
 
-    private void Start() {
+    private void Awake() {
         alphaTweener = infoBox.GetComponent<Tweener>();
     }
 
