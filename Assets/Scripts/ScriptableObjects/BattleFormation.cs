@@ -5,8 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Formation", menuName = "Battle/New Formation")]
 public class BattleFormation : ScriptableObject {
 
-    [Header("Party Settings")]
+    [Header("Party / AI Settings")]
     public int level;
+
+    [Header("Enemies")]
     public List<EnemyFormation> enemies;
 }
 

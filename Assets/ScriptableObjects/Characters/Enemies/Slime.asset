@@ -23,6 +23,10 @@ MonoBehaviour:
   resistance: 45
   skill: 35
   speed: 40
+  wantsToLive: 0
+  hatesSelfDamage: 0
+  likesPreferredLane: 0
+  goesForKill: 0
   normalAttack:
     type: 0
     attackName: 
@@ -38,7 +42,7 @@ MonoBehaviour:
     preferredLane: 2
     element: 0
     rangeType: 0
-    mPCost: 7
+    mPCost: 6
     basePower: 65
     comboCharacter: {fileID: 0}
   - type: 1

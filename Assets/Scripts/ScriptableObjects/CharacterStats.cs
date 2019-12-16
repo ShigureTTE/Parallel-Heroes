@@ -22,6 +22,12 @@ public class CharacterStats : ScriptableObject {
     public int skill;
     public int speed;
 
+    [Header("AI Settings")]
+    public bool wantsToLive;
+    public bool hatesSelfDamage;
+    public bool likesPreferredLane;
+    public bool goesForKill;
+
     [Header("Attacks")]
     public Attack normalAttack;
     public Attack[] spells = new Attack[2];

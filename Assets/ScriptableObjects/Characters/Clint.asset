@@ -23,6 +23,10 @@ MonoBehaviour:
   resistance: 45
   skill: 45
   speed: 70
+  wantsToLive: 0
+  hatesSelfDamage: 0
+  likesPreferredLane: 0
+  goesForKill: 0
   normalAttack:
     type: 0
     attackName: 

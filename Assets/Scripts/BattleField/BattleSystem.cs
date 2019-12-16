@@ -75,18 +75,24 @@ public class BattleSystem : MonoBehaviour {
     public void NextTurn() {
         AdvanceTurnIndex();
 
-        while (turnOrder[turnIndex].Faction == Faction.Enemy) { //REMOVE THIS WHILE LOOP WHEN ENEMY AI HAS BEEN IMPLEMENTED.
-            AdvanceTurnIndex();
-        }
-
         while (turnOrder[turnIndex].IsDead) {
             AdvanceTurnIndex();
         }
 
         SetCurrentTurnCharacter();
 
-        filler.FillCurrentTurn();
-        characterMenu.PlayTween();
+        if (CurrentTurn.Faction == Faction.Enemy) {
+            DecideEnemyAction();
+            return;
+        }
+        else {
+            filler.FillCurrentTurn();
+            characterMenu.PlayTween();
+        }
+    }
+
+    private void DecideEnemyAction() {
+        AIAction action = EnemyAI.GetAIAction(CurrentTurn, enemyParty, playerParty);
     }
 
     private void AdvanceTurnIndex() {
@@ -99,7 +105,7 @@ public class BattleSystem : MonoBehaviour {
         infoBox.TurnText(CurrentTurn);
         CurrentTurn.IsBlocking = false;
 
-        CurrentTurn.SelectedEffect.Play();       
+        CurrentTurn.SelectedEffect.Play();
     }
 
     public void AddCharacter(CharacterBase character) {
