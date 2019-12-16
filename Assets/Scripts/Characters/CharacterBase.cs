@@ -14,6 +14,8 @@ public class CharacterBase : MonoBehaviour {
 
     [SerializeField] private SpriteRenderer rangeSprite;
     public SpriteRenderer RangeSprite { get { return rangeSprite; } }
+    [SerializeField] private ParticleSystem selectedEffect;
+    public ParticleSystem SelectedEffect { get { return selectedEffect; } }
 
     /// <summary>
     /// Already gone trough Calculator

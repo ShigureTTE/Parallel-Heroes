@@ -50,6 +50,7 @@ MonoBehaviour:
   currentLane: 4
   stats: {fileID: 11400000, guid: 1c917784c8cfd0a4d87b4b34c7c1596f, type: 2}
   rangeSprite: {fileID: 4040658134791812248}
+  selectedEffect: {fileID: 7585229203648473030}
 --- !u!1 &895957821890477360
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +262,7 @@ PrefabInstance:
     - target: {fileID: 1397353185528738750, guid: 5d27361cf1c3ad04b87a78d02986a523,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3680807553497130450, guid: 5d27361cf1c3ad04b87a78d02986a523,
         type: 3}
@@ -328,11 +329,23 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.10000001
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1280409101448010636, guid: 5d27361cf1c3ad04b87a78d02986a523,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5691172113237141270, guid: 5d27361cf1c3ad04b87a78d02986a523, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5d27361cf1c3ad04b87a78d02986a523, type: 3}
 --- !u!4 &5445998161864415640 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3680807553497130450, guid: 5d27361cf1c3ad04b87a78d02986a523,
+    type: 3}
+  m_PrefabInstance: {fileID: 8683160596023000138}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7585229203648473030 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1280409101448010636, guid: 5d27361cf1c3ad04b87a78d02986a523,
     type: 3}
   m_PrefabInstance: {fileID: 8683160596023000138}
   m_PrefabAsset: {fileID: 0}

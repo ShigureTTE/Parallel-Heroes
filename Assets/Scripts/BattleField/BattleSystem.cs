@@ -66,9 +66,8 @@ public class BattleSystem : MonoBehaviour {
 
         turnOrder = new List<CharacterBase>();
         turnOrder = characters.OrderByDescending(x => Calculator.GetStat(x.stats.speed, x.Faction == Faction.Player ? playerParty.Level : enemyParty.Level)).ToList();
-        CurrentTurn = turnOrder[0];
         turnIndex = 0;
-        infoBox.TurnText(CurrentTurn);
+        SetCurrentTurnCharacter();
 
         filler.FillAll();
     }
@@ -82,11 +81,18 @@ public class BattleSystem : MonoBehaviour {
             else turnIndex++;
         }
 
-        CurrentTurn = turnOrder[turnIndex];
+        SetCurrentTurnCharacter();
+
         filler.FillCurrentTurn();
-        CurrentTurn.IsBlocking = false;
-        infoBox.TurnText(CurrentTurn);
         characterMenu.PlayTween();
+    }
+
+    private void SetCurrentTurnCharacter() {
+        CurrentTurn = turnOrder[turnIndex];
+        infoBox.TurnText(CurrentTurn);
+        CurrentTurn.IsBlocking = false;
+
+        CurrentTurn.SelectedEffect.Play();       
     }
 
     public void AddCharacter(CharacterBase character) {
@@ -122,6 +128,8 @@ public class BattleSystem : MonoBehaviour {
     }
 
     public void CompleteTurn() {
+        CurrentTurn.SelectedEffect.Stop();
+
         switch (chosenAttack) {
             case AttackType.Normal:
                 performAction.NormalAttack(CurrentTurn, selectedEnemy.GetComponent<CharacterBase>());
