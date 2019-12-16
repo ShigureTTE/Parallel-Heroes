@@ -18,7 +18,7 @@ MonoBehaviour:
   weapon: Goo
   maximumHealth: 35
   maximumMP: 40
-  attack: 4000
+  attack: 40
   defense: 45
   resistance: 45
   skill: 35
