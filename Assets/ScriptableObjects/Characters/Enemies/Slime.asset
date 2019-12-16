@@ -24,9 +24,12 @@ MonoBehaviour:
   skill: 35
   speed: 40
   wantsToLive: 0
-  hatesSelfDamage: 0
+  hatesSelfDamage: 1
   likesPreferredLane: 0
   goesForKill: 0
+  hider: 1
+  likesToBlock: 0
+  spellUser: 0
   normalAttack:
     type: 0
     attackName: 

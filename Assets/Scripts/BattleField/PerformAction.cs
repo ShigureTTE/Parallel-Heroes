@@ -99,7 +99,7 @@ public class PerformAction : MonoBehaviour {
 
     public IEnumerator CounterAttackCoroutine() {
         List<CharacterBase> counterAttackers = Calculator.GetCounterAttackers(other);
-        if (counterAttackers == null) yield break;
+        if (counterAttackers.Count == 0) yield break;
         bool hasDied = false;
 
         yield return new WaitForSecondsRealtime(returnDelay);

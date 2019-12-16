@@ -64,11 +64,11 @@ public class Calculator : MonoBehaviour {
         return targets;
     }
 
-    public static List<CharacterBase> GetCounterAttackers(CharacterBase defender) {
-        if (defender.Lane == Lane.Close) return null;
-
+    public static List<CharacterBase> GetCounterAttackers(CharacterBase defender) {     
         List<CharacterBase> counterAttackers = new List<CharacterBase>();
         Lane lanes;
+
+        if (defender.Lane == Lane.Close) return counterAttackers;
 
         switch (defender.Lane) {
             case Lane.Mid:
@@ -90,7 +90,7 @@ public class Calculator : MonoBehaviour {
             }
         }
 
-        if (counterAttackers.Count == 0) return null;
         return counterAttackers;
     }
 }
+

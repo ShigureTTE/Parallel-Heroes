@@ -35,6 +35,7 @@ public class BattleSystem : MonoBehaviour {
 
     private AttackType chosenAttack;
     private int spellIndex;
+    private AIAction action;
 
     public CharacterBase CurrentTurn { get; private set; }
     private int turnIndex;
@@ -82,7 +83,8 @@ public class BattleSystem : MonoBehaviour {
         SetCurrentTurnCharacter();
 
         if (CurrentTurn.Faction == Faction.Enemy) {
-            DecideEnemyAction();
+            action = EnemyAI.GetAIAction(CurrentTurn, enemyParty, playerParty);
+            StartCoroutine(DecideEnemyAction());
             return;
         }
         else {
@@ -91,8 +93,14 @@ public class BattleSystem : MonoBehaviour {
         }
     }
 
-    private void DecideEnemyAction() {
-        AIAction action = EnemyAI.GetAIAction(CurrentTurn, enemyParty, playerParty);
+    private IEnumerator DecideEnemyAction() {
+        chosenAttack = action.attackType;
+        selectedEnemy = action.target.gameObject;
+        laneMover.SetCharacterToLane(CurrentTurn, action.lane, enemy);
+        yield return new WaitForSecondsRealtime(1f);
+        spellIndex = Array.IndexOf(CurrentTurn.stats.spells, action.attack);
+
+        CompleteTurn();
     }
 
     private void AdvanceTurnIndex() {

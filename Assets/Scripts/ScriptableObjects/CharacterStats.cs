@@ -27,6 +27,9 @@ public class CharacterStats : ScriptableObject {
     public bool hatesSelfDamage;
     public bool likesPreferredLane;
     public bool goesForKill;
+    public bool hider;
+    public bool likesToBlock;
+    public bool spellUser;
 
     [Header("Attacks")]
     public Attack normalAttack;

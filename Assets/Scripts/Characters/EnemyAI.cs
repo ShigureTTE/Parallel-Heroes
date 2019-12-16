@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class EnemyAI {
 
@@ -6,6 +8,7 @@ public class EnemyAI {
 
     public static AIAction GetAIAction(CharacterBase currentTurn, Party enemyParty, Party playerParty) {
         CharacterStats stats = currentTurn.stats;
+        List<CharacterBase> characterList = new List<CharacterBase>();
 
         action = new AIAction();
 
@@ -23,35 +26,133 @@ public class EnemyAI {
                 if (PredictDieFromAttack(currentTurn)) {
                     //Discard current action, it is not safe.
                     action = new AIAction();
-                }                              
+                }
             }
             //I hate  self damage, so I'll discard my action if I'll get hurt in any way.
             if (action.target != null && stats.hatesSelfDamage) {
-                if (Calculator.GetCounterAttackers(action.target).Count > 0) {
+                characterList = Calculator.GetCounterAttackers(action.target);
+                if (characterList.Count > 0) {
                     action = new AIAction();
                 }
             }
         }
 
-        //Have I found a target at already?
-        if (action.target != null) {
-            FindLane(currentTurn, playerParty);
-        }
+        //I wasn't able to find anything, so let's try again.
+        if (action.target == null) {
+            action.target = playerParty.characters[Random.Range(0, playerParty.characters.Count - 1)];
+            while (action.target.IsDead) {
+                action.target = playerParty.characters[IncrementNumber(playerParty, playerParty.characters.IndexOf(action.target))];
+            }
 
-        return null;
-    }
+            if (stats.wantsToLive) {
+                while (PredictDieFromAttack(currentTurn)) {
+                    action.target = playerParty.characters[IncrementNumber(playerParty, playerParty.characters.IndexOf(action.target))];
+                }
+            }
 
-    private static void FindLane(CharacterBase currentTurn, Party playerParty) {
-        CharacterStats stats = currentTurn.stats;
-
-        //Do I like to use my preferred lane?
-        if (stats.likesPreferredLane) {
-            if (Calculator.GetAvailableTargets(action.attack.preferredLane, playerParty.characters).Contains(action.target)) {
-                //I can attack my preferred target from my preferred lane
-                action.lane = action.attack.preferredLane;
+            if (stats.hatesSelfDamage) {
+                characterList = Calculator.GetCounterAttackers(action.target);
+                while (characterList.Count != 0) {
+                    action.target = playerParty.characters[IncrementNumber(playerParty, playerParty.characters.IndexOf(action.target))];
+                    characterList = Calculator.GetCounterAttackers(action.target);
+                }
             }
         }
-        //No lane found just yet. HIER GEBLEVEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        //Target has been acquired. Just need an attack to use.
+        if (action.attack == null) {
+            if (availableSpells.Count > 0 && Random.Range(0,100) >= (stats.spellUser ? 10 : 70)) {
+                action.attack = availableSpells[Random.Range(0, availableSpells.Count - 1)];
+                action.attackType = AttackType.Spell;
+            }
+            else {
+                action.attack = stats.normalAttack;
+                action.attackType = AttackType.Normal;                
+            }
+        }
+
+        if (Random.Range(0, 100) >= (stats.likesToBlock ? 5 : 70)) {
+            action.attack = stats.normalAttack;
+            action.attackType = AttackType.Block;
+        }
+
+        //I should have a target now, time to find a lane.
+        if (action.target != null) {
+            FindLane(currentTurn, playerParty, enemyParty);
+        }
+
+        return action;
+    }
+
+    private static int IncrementNumber(Party playerParty, int index) {
+        if (index + 1 >= playerParty.characters.Count) index = 0;
+        else index++;
+
+        return index;
+    }
+
+    private static void FindLane(CharacterBase currentTurn, Party playerParty, Party enemyParty) {
+        CharacterStats stats = currentTurn.stats;
+        List<CharacterBase> characterList = new List<CharacterBase>();
+
+        //I prefer to hide behind my friends.
+        if (stats.hider && stats.likesPreferredLane && action.attackType != AttackType.Block) {
+            characterList = Calculator.GetAvailableTargets(action.attack.preferredLane, playerParty.characters);
+            if (characterList.Contains(action.target) &&
+                !enemyParty.characters.Any(x => x.Lane.Equals(action.attack.preferredLane))) {
+                action.lane = action.attack.preferredLane;
+                return;
+            }
+        } //Do I like to use my preferred lane?
+        if (stats.likesPreferredLane) {
+            characterList = Calculator.GetAvailableTargets(action.attack.preferredLane, playerParty.characters);
+            if (characterList.Contains(action.target)) {
+                //I can attack my preferred target from my preferred lane
+                action.lane = action.attack.preferredLane;
+                return;
+            }
+            //I can't hit the target from my preferred lane, so let's try to find someplace else.
+        }
+
+        if (stats.hider) {
+            characterList = Calculator.GetAvailableTargets(Lane.Close, playerParty.characters);
+            if (characterList.Contains(action.target) &&
+                !enemyParty.characters.Any(x => x.Lane.Equals(Lane.Close))) {
+                action.lane = Lane.Close;
+                return;
+            }
+            characterList = Calculator.GetAvailableTargets(Lane.Mid, playerParty.characters);
+            if (characterList.Contains(action.target) &&
+                !enemyParty.characters.Any(x => x.Lane.Equals(Lane.Mid))) {
+                action.lane = Lane.Mid;
+                return;
+            }
+            characterList = Calculator.GetAvailableTargets(Lane.Long, playerParty.characters);
+            if (characterList.Contains(action.target) &&
+                !enemyParty.characters.Any(x => x.Lane.Equals(Lane.Long))) {
+                action.lane = Lane.Long;
+                return;
+            }
+        }
+        else {
+            characterList = Calculator.GetAvailableTargets(Lane.Long, playerParty.characters);
+            if (characterList.Contains(action.target)) {
+                action.lane = Lane.Long;
+                return;
+            }
+            characterList = Calculator.GetAvailableTargets(Lane.Mid, playerParty.characters);
+            if (characterList.Contains(action.target)) {
+                action.lane = Lane.Mid;
+                return;
+            }
+            characterList = Calculator.GetAvailableTargets(Lane.Close, playerParty.characters);
+            if (characterList.Contains(action.target)) {
+                action.lane = Lane.Close;
+                return;
+            }
+        }
+
+        action.lane = Lane.Close;
     }
 
     private static bool PredictDieFromAttack(CharacterBase currentTurn) {
@@ -69,6 +170,8 @@ public class EnemyAI {
         CharacterStats stats = currentTurn.stats;
 
         foreach (CharacterBase character in playerParty.characters) {
+            if (character.IsDead) continue;
+
             int health = character.CurrentHealth;
 
             if (Calculator.GetDamage(currentTurn, character, stats.normalAttack) >= health) {
