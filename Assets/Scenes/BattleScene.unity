@@ -3667,7 +3667,7 @@ MonoBehaviour:
   - characterName: {fileID: 1170227217}
     healthImage: {fileID: 514187292}
     healthText: {fileID: 1481699350}
-    manaImage: {fileID: 1608240499}
+    manaImage: {fileID: 178956494}
     manaText: {fileID: 2121032912}
   level: {fileID: 1866391574}
   enemySlots:

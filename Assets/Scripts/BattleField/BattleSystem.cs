@@ -139,10 +139,12 @@ public class BattleSystem : MonoBehaviour {
 
         switch (chosenAttack) {
             case AttackType.Normal:
-                performAction.NormalAttack(CurrentTurn, selectedEnemy.GetComponent<CharacterBase>());
+                performAction.NormalAttack(CurrentTurn, selectedEnemy.GetComponent<CharacterBase>(), CurrentTurn.stats.normalAttack);
                 break;
             case AttackType.Spell:
-                performAction.SpellAttack(CurrentTurn, selectedEnemy.GetComponent<CharacterBase>(), spellIndex);
+                performAction.SpellAttack(CurrentTurn, selectedEnemy.GetComponent<CharacterBase>(), CurrentTurn.stats.spells[spellIndex]);
+                CurrentTurn.SubtractMP(CurrentTurn.stats.spells[spellIndex].mPCost);
+                filler.FillWithStats();
                 break;
             case AttackType.Combo:
                 break;

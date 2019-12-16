@@ -72,6 +72,7 @@ public class UIFiller : MonoBehaviour {
     public void FillWithStats() {
         for (int i = 0; i < playerParty.characters.Count; i++) {
             if (i >= slots.Count) break;
+            if (playerParty.characters[i].IsDead) continue;
 
             CharacterSlot slot = slots[i];
             CharacterBase character = playerParty.characters[i];

@@ -36,21 +36,21 @@ public class PerformAction : MonoBehaviour {
         battleSystem = GetComponent<BattleSystem>();
     }
 
-    public void NormalAttack(CharacterBase attacker, CharacterBase defender) {
+    public void NormalAttack(CharacterBase attacker, CharacterBase defender, Attack attack) {
         RevertAllTweens();
         main = attacker;
         other = defender;
-        attack = main.stats.normalAttack;
+        this.attack = attack;
 
         StartCoroutine(attack.rangeType == RangeType.Melee ? AttackCoroutine(new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z + 0.05f))
             : AttackCoroutine(new Vector3(transform.position.x, other.transform.position.y, transform.position.z)));
     }
 
-    public void SpellAttack(CharacterBase attacker, CharacterBase defender, int spellIndex) {
+    public void SpellAttack(CharacterBase attacker, CharacterBase defender, Attack attack) {
         RevertAllTweens();
         main = attacker;
         other = defender;
-        attack = main.stats.spells[spellIndex];
+        this.attack = attack;
 
         StartCoroutine(attack.rangeType == RangeType.Melee ? AttackCoroutine(new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z + 0.05f))
             : AttackCoroutine(new Vector3(transform.position.x, other.transform.position.y, transform.position.z)));
