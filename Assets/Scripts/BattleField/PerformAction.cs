@@ -40,7 +40,8 @@ public class PerformAction : MonoBehaviour {
         other = defender;
         attack = main.stats.normalAttack;
 
-        StartCoroutine(attack.rangeType == RangeType.Melee ? MeleeAttackCoroutine() : RangedAttackCoroutine());
+        StartCoroutine(attack.rangeType == RangeType.Melee ? AttackCoroutine(new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z + 0.05f))
+            : AttackCoroutine(new Vector3(transform.position.x, other.transform.position.y, transform.position.z)));
     }
 
     public void SpellAttack(CharacterBase attacker, CharacterBase defender, int spellIndex) {
@@ -49,7 +50,8 @@ public class PerformAction : MonoBehaviour {
         other = defender;
         attack = main.stats.spells[spellIndex];
 
-        StartCoroutine(attack.rangeType == RangeType.Melee ? MeleeAttackCoroutine() : RangedAttackCoroutine());
+        StartCoroutine(attack.rangeType == RangeType.Melee ? AttackCoroutine(new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z + 0.05f))
+            : AttackCoroutine(new Vector3(transform.position.x, other.transform.position.y, transform.position.z)));
     }
 
     public void Block(CharacterBase blocker) {
@@ -59,33 +61,11 @@ public class PerformAction : MonoBehaviour {
         StartCoroutine(BlockingCoroutine());
     }
 
-    public IEnumerator MeleeAttackCoroutine() {
+    public IEnumerator AttackCoroutine(Vector3 targetPosition) {
         infoBox.AttackText(main, other);
         yield return new WaitForSecondsRealtime(attackPause);
         
         Vector3 oldPosition = main.transform.position;
-        Vector3 targetPosition = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z + 0.05f);
-
-        Tween tween = main.transform.DOMove(targetPosition, attackTweenTime).SetEase(easeType);
-        yield return tween.WaitForCompletion();
-
-        Instantiate(hitEffect, other.transform.position, hitEffect.transform.rotation, other.transform);
-        int damage = Calculator.GetDamage(main.Party, other, attack, other.Party.Level);
-        other.SubstractHealth(damage);
-        infoBox.DamageText(main, other, damage);
-        yield return new WaitForSecondsRealtime(returnDelay);
-
-        tween = main.transform.DOMove(oldPosition, attackTweenTime).SetEase(easeType);
-        yield return tween.WaitForCompletion();
-        battleSystem.NextTurn();
-    }
-
-    public IEnumerator RangedAttackCoroutine() {
-        infoBox.AttackText(main, other);
-        yield return new WaitForSecondsRealtime(attackPause);
-
-        Vector3 oldPosition = main.transform.position;
-        Vector3 targetPosition = new Vector3(transform.position.x, other.transform.position.y, transform.position.z);
 
         Tween tween = main.transform.DOMove(targetPosition, attackTweenTime).SetEase(easeType);
         yield return tween.WaitForCompletion();
