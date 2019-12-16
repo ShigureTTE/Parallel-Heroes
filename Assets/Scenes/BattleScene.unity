@@ -625,6 +625,7 @@ MonoBehaviour:
   laneBlockMenu: {fileID: 1236159764}
   targetMenu: {fileID: 1865368256}
   navigator: {fileID: 525177494}
+  filler: {fileID: 0}
   infoBox: {fileID: 525177497}
   attackPause: 0.3
   blockPause: 1.5
@@ -6290,6 +6291,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2642876071825285878, guid: 72b43c5a72e9acb4684080ea1b31b7cb,
+        type: 3}
+      propertyPath: currentLane
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72b43c5a72e9acb4684080ea1b31b7cb, type: 3}
 --- !u!1001 &906679312
@@ -10089,6 +10095,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610407523816958155, guid: 3993232220c7505448a086a82c0bad48,
+        type: 3}
+      propertyPath: currentLane
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3993232220c7505448a086a82c0bad48, type: 3}
@@ -15251,6 +15262,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948100858151145899, guid: 5406fde8cf4b50748a9632c22c553571,
+        type: 3}
+      propertyPath: currentLane
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5406fde8cf4b50748a9632c22c553571, type: 3}

@@ -72,6 +72,15 @@ public class InformationBox : MonoBehaviour {
         StartCoroutine(NewText(text));
     }
 
+    public void CounterAttackText(CharacterBase attacker, CharacterBase defender) {
+        string text = attacker.stats.name +
+            IBConstants.counter +
+            defender.stats.name +
+            IBConstants.exclamation;
+
+        StartCoroutine(NewText(text));
+    }
+
     private IEnumerator NewText(string text) {
         alphaTweener.PlayTweenReversed();
 
@@ -98,4 +107,5 @@ public class IBConstants {
     public static readonly string herself = "herself";
     public static readonly string themselves = "themselves";
     public static readonly string defeated = " was defeated!";
+    public static readonly string counter = " counters ";
 }

@@ -144,7 +144,7 @@ public class BattleSystem : MonoBehaviour {
             case AttackType.Spell:
                 performAction.SpellAttack(CurrentTurn, selectedEnemy.GetComponent<CharacterBase>(), CurrentTurn.stats.spells[spellIndex]);
                 CurrentTurn.SubtractMP(CurrentTurn.stats.spells[spellIndex].mPCost);
-                filler.FillWithStats();
+                UpdateStats();
                 break;
             case AttackType.Combo:
                 break;
@@ -155,6 +155,10 @@ public class BattleSystem : MonoBehaviour {
 
         GetComponent<LaneHighlighter>().NoHighlight();
         GetComponent<LaneHighlighter>().NoRangeType();
+    }
+
+    public void UpdateStats() {
+        filler.FillWithStats();
     }
 
     private void RefreshLists() {

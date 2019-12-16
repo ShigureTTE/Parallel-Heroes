@@ -10,21 +10,24 @@ public class Calculator : MonoBehaviour {
         return statPoints;
     }
 
-    public static int GetDamage(Party attackerParty, CharacterBase defender, Attack attack, int defenderLevel) {
-        CharacterStats stats = attackerParty.CurrentTurn.stats;
-        int attackStat = GetStat(stats.attack, attackerParty.Level);
-        int skillStat = GetStat(stats.skill, attackerParty.Level);
-        int defenseStat = attack.element == Element.Normal ? GetStat(defender.stats.defense, defenderLevel) : GetStat(defender.stats.resistance, defenderLevel);
+    public static int GetDamage(CharacterBase attacker, CharacterBase defender, Attack attack, bool counterAttack = false) {
+        CharacterStats stats = attacker.stats;
+        int attackStat = GetStat(stats.attack, attacker.Party.Level);
+        int skillStat = GetStat(stats.skill, attacker.Party.Level);
+        int defenseStat = attack.element == Element.Normal ? GetStat(defender.stats.defense, defender.Party.Level) : GetStat(defender.stats.resistance, defender.Party.Level);
 
-        float levelSkillBonus = (((float)attackerParty.Level + (float)skillStat) / 4f) + 1f;
+        float levelSkillBonus = (((float)attacker.Party.Level + (float)skillStat) / 4f) + 1f;
         float damageFloat = (levelSkillBonus * ((float)attackStat / (float)defenseStat) * (float)attack.basePower) / 40f;
         //TODO: WeaponModifier
         float randomModifier = 1f * Random.Range(0.9f, 1f);
-        float prefLaneModifier = attackerParty.CurrentTurn.Lane == attack.preferredLane ? 1.1f : 0.9f;
+        float prefLaneModifier = attacker.Lane == attack.preferredLane ? 1.1f : 0.9f;
         float criticalModifier = Random.Range(0, 50) == 0 ? 1.5f : 1f;
         float blockingModifier = defender.IsBlocking ? 0.5f : 1f;
 
         damageFloat = damageFloat * randomModifier * prefLaneModifier * criticalModifier;
+
+        damageFloat *= blockingModifier;
+        if (counterAttack) damageFloat *= 0.5f;
 
         int damage = Mathf.RoundToInt(damageFloat);
 
@@ -59,5 +62,35 @@ public class Calculator : MonoBehaviour {
         }
 
         return targets;
+    }
+
+    public static List<CharacterBase> GetCounterAttackers(CharacterBase defender) {
+        if (defender.Lane == Lane.Close) return null;
+
+        List<CharacterBase> counterAttackers = new List<CharacterBase>();
+        Lane lanes;
+
+        switch (defender.Lane) {
+            case Lane.Mid:
+                lanes = Lane.Close;
+                break;
+            case Lane.Long:
+                lanes = Lane.Close | Lane.Mid;
+                break;
+            default:
+                lanes = Lane.Close;
+                break;
+        }
+
+        foreach (CharacterBase characterBase in defender.Party.characters) {
+            if (characterBase.IsDead) continue;
+
+            if ((characterBase.Lane & lanes) != 0) {
+                counterAttackers.Add(characterBase);
+            }
+        }
+
+        if (counterAttackers.Count == 0) return null;
+        return counterAttackers;
     }
 }

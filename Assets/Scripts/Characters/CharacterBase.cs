@@ -42,6 +42,7 @@ public class CharacterBase : MonoBehaviour {
     /// <returns>Returns if the character is alive or not.</returns>
     public bool SubtractHealth(int damage) {
         CurrentHealth -= damage;
+        if (CurrentHealth <= 0) CurrentHealth = 0;
 
         return CurrentHealth <= 0;
     }
