@@ -24,6 +24,8 @@ public class MoveCharacterToLane : MonoBehaviour {
         List<CharacterBase> charactersToMove = new List<CharacterBase>();
         foreach (CharacterBase characterBase in factionList) {
             if (characterBase.Lane == targetLane || characterBase.Lane == oldLane) {
+                if (characterBase.IsDead) continue;
+
                 charactersToMove.Add(characterBase);
             }
         }

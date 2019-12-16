@@ -15,6 +15,12 @@ public class InformationBox : MonoBehaviour {
         alphaTweener = infoBox.GetComponent<Tweener>();
     }
 
+    public void DefeatedText(CharacterBase dead) {
+        string text = dead.stats.name + IBConstants.defeated;
+
+        StartCoroutine(NewText(text));
+    }
+
     public void TurnText(CharacterBase current) {
         string text = IBConstants.its +
             IBConstants.commaS +
@@ -91,4 +97,5 @@ public class IBConstants {
     public static readonly string himself = "himself";
     public static readonly string herself = "herself";
     public static readonly string themselves = "themselves";
+    public static readonly string defeated = " was defeated!";
 }

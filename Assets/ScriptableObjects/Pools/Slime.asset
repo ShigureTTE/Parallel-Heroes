@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Slime
   m_EditorClassIdentifier: 
   tag: slime
-  prefab: {fileID: 8310084894946764164, guid: 3ed906c25f018db4683f8e26af76ea3e, type: 3}
+  prefab: {fileID: 1917119462954272161, guid: 693f387c15966ff46b800899dcb7b34e, type: 3}
   size: 5

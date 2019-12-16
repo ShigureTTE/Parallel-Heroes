@@ -21,9 +21,11 @@ public class PerformAction : MonoBehaviour {
     [SerializeField] private float blockPause;
     [SerializeField] private float attackTweenTime;
     [SerializeField] private float returnDelay;
+    [SerializeField] private float deadTweenTime;
     [SerializeField] private Ease easeType;
     [SerializeField] private GameObject hitEffect;
     [SerializeField] private GameObject blockEffect;
+    [SerializeField] private GameObject deadEffect;
 
     private CharacterBase main;
     private CharacterBase other;
@@ -72,13 +74,27 @@ public class PerformAction : MonoBehaviour {
 
         Instantiate(hitEffect, other.transform.position, hitEffect.transform.rotation, other.transform);
         int damage = Calculator.GetDamage(main.Party, other, attack, other.Party.Level);
-        other.SubstractHealth(damage);
+        bool hasDied = other.SubtractHealth(damage);
         infoBox.DamageText(main, other, damage);
         yield return new WaitForSecondsRealtime(returnDelay);
 
         tween = main.transform.DOMove(oldPosition, attackTweenTime).SetEase(easeType);
         yield return tween.WaitForCompletion();
+
+        if (hasDied) {
+            yield return StartCoroutine(KillCharacterCoroutine());
+        }
+
         battleSystem.NextTurn();
+    }
+
+    public IEnumerator KillCharacterCoroutine() {
+        infoBox.DefeatedText(other);
+        Instantiate(deadEffect, other.transform.position, deadEffect.transform.rotation, other.transform);
+        other.IsDead = true;
+        Tween tween = other.transform.DOScale(Vector3.zero, deadTweenTime).SetEase(Ease.InBack);
+        yield return tween.WaitForCompletion();
+        yield return new WaitForSecondsRealtime(blockPause);
     }
 
     public IEnumerator BlockingCoroutine() {

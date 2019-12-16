@@ -51,6 +51,8 @@ public class Calculator : MonoBehaviour {
         }
 
         foreach (CharacterBase characterBase in possibleTargets) {
+            if (characterBase.IsDead) continue;
+
             if ((characterBase.Lane & lanes) != 0) {
                 targets.Add(characterBase);
             }

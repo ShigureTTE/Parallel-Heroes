@@ -11,6 +11,7 @@ public class CharacterBase : MonoBehaviour {
 
     public Party Party { get; set; }
     public bool IsBlocking { get; set; }
+    public bool IsDead { get; set; }
 
     [SerializeField] private SpriteRenderer rangeSprite;
     public SpriteRenderer RangeSprite { get { return rangeSprite; } }
@@ -34,11 +35,18 @@ public class CharacterBase : MonoBehaviour {
         CurrentMP = mana;
     }
 
-    public void SubstractHealth(int damage) {
+    /// <summary>
+    /// Subtracts health from this character.
+    /// </summary>
+    /// <param name="damage">The amount of health to subtract.</param>
+    /// <returns>Returns if the character is alive or not.</returns>
+    public bool SubtractHealth(int damage) {
         CurrentHealth -= damage;
+
+        return CurrentHealth <= 0;
     }
 
-    public void SubstractMP(int manaCost) {
+    public void SubtractMP(int manaCost) {
         CurrentMP -= manaCost;
     }
 }
