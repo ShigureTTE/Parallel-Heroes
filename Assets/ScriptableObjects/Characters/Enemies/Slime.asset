@@ -22,12 +22,13 @@ MonoBehaviour:
   defense: 45
   resistance: 45
   skill: 35
-  speed: 40
+  speed: 50
   wantsToLive: 0
   hatesSelfDamage: 1
+  hatesBlockers: 1
   likesPreferredLane: 0
-  goesForKill: 0
-  hider: 1
+  goesForKill: 1
+  hider: 0
   likesToBlock: 0
   spellUser: 0
   normalAttack:

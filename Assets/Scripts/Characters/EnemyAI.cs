@@ -40,28 +40,31 @@ public class EnemyAI {
         //I wasn't able to find anything, so let's try again.
         if (action.target == null) {
             action.target = playerParty.characters[Random.Range(0, playerParty.characters.Count - 1)];
-            while (action.target.IsDead) {
-                action.target = playerParty.characters[IncrementNumber(playerParty, playerParty.characters.IndexOf(action.target))];
-            }
 
             if (stats.wantsToLive) {
-                while (PredictDieFromAttack(currentTurn)) {
+                while (PredictDieFromAttack(currentTurn) || action.target.IsDead) {
                     action.target = playerParty.characters[IncrementNumber(playerParty, playerParty.characters.IndexOf(action.target))];
                 }
             }
 
             if (stats.hatesSelfDamage) {
                 characterList = Calculator.GetCounterAttackers(action.target);
-                while (characterList.Count != 0) {
+                while (characterList.Count != 0 || action.target.IsDead) {
                     action.target = playerParty.characters[IncrementNumber(playerParty, playerParty.characters.IndexOf(action.target))];
                     characterList = Calculator.GetCounterAttackers(action.target);
+                }
+            }
+
+            if (stats.hatesBlockers && !stats.hatesSelfDamage) {
+                while (action.target.IsBlocking || action.target.IsDead) {
+                    action.target = playerParty.characters[IncrementNumber(playerParty, playerParty.characters.IndexOf(action.target))];
                 }
             }
         }
 
         //Target has been acquired. Just need an attack to use.
         if (action.attack == null) {
-            if (availableSpells.Count > 0 && Random.Range(0,100) >= (stats.spellUser ? 10 : 70)) {
+            if (availableSpells.Count > 0 && Random.Range(0,100) >= (stats.spellUser ? 15 : 70)) {
                 action.attack = availableSpells[Random.Range(0, availableSpells.Count - 1)];
                 action.attackType = AttackType.Spell;
             }
@@ -99,7 +102,7 @@ public class EnemyAI {
         if (stats.hider && stats.likesPreferredLane && action.attackType != AttackType.Block) {
             characterList = Calculator.GetAvailableTargets(action.attack.preferredLane, playerParty.characters);
             if (characterList.Contains(action.target) &&
-                !enemyParty.characters.Any(x => x.Lane.Equals(action.attack.preferredLane))) {
+                !enemyParty.characters.Any(x => x.Lane.Equals(action.attack.preferredLane) && x.IsDead == false)) {
                 action.lane = action.attack.preferredLane;
                 return;
             }
@@ -117,19 +120,19 @@ public class EnemyAI {
         if (stats.hider) {
             characterList = Calculator.GetAvailableTargets(Lane.Close, playerParty.characters);
             if (characterList.Contains(action.target) &&
-                !enemyParty.characters.Any(x => x.Lane.Equals(Lane.Close))) {
+                !enemyParty.characters.Any(x => x.Lane.Equals(Lane.Close) && x.IsDead == false)) {
                 action.lane = Lane.Close;
                 return;
             }
             characterList = Calculator.GetAvailableTargets(Lane.Mid, playerParty.characters);
             if (characterList.Contains(action.target) &&
-                !enemyParty.characters.Any(x => x.Lane.Equals(Lane.Mid))) {
+                !enemyParty.characters.Any(x => x.Lane.Equals(Lane.Mid) && x.IsDead == false)) {
                 action.lane = Lane.Mid;
                 return;
             }
             characterList = Calculator.GetAvailableTargets(Lane.Long, playerParty.characters);
             if (characterList.Contains(action.target) &&
-                !enemyParty.characters.Any(x => x.Lane.Equals(Lane.Long))) {
+                !enemyParty.characters.Any(x => x.Lane.Equals(Lane.Long) && x.IsDead == false)) {
                 action.lane = Lane.Long;
                 return;
             }

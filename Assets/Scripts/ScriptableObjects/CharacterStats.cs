@@ -25,6 +25,7 @@ public class CharacterStats : ScriptableObject {
     [Header("AI Settings")]
     public bool wantsToLive;
     public bool hatesSelfDamage;
+    public bool hatesBlockers;
     public bool likesPreferredLane;
     public bool goesForKill;
     public bool hider;

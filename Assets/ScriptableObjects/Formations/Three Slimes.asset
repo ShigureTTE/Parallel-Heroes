@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c04b6969ed6f148a33f071a7cea84d, type: 3}
   m_Name: Three Slimes
   m_EditorClassIdentifier: 
-  level: 4
+  level: 5
   enemies:
   - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
     lane: 1
   - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
     lane: 2
   - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
-    lane: 4
+    lane: 2
