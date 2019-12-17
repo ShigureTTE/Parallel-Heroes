@@ -108,7 +108,7 @@ public class PerformAction : MonoBehaviour {
             yield return new WaitForSecondsRealtime(attackPause);
 
             Vector3 oldPosition = character.transform.position;
-            Tween tween = character.transform.DOMove(main.transform.position, attackTweenTime).SetEase(easeType);
+            Tween tween = character.transform.DOMove(new Vector3(main.transform.position.x, main.transform.position.y, main.transform.position.z + 0.05f), attackTweenTime).SetEase(easeType);
             yield return tween.WaitForCompletion();
 
             Instantiate(hitEffect, main.transform.position, hitEffect.transform.rotation, main.transform);
