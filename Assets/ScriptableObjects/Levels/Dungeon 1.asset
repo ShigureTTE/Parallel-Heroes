@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d275cef40f24eab42856bcdf93c2bbf6, type: 3}
+  m_Name: Dungeon 1
+  m_EditorClassIdentifier: 
+  groundPrefab: {fileID: 3432266268866991568, guid: d2e79d5fc23bea94aa6c2b6f6461f82a,
+    type: 3}
+  groundOffset: 7
+  foreground:
+  - prefabs:
+    - {fileID: 6242505214091829215, guid: d7e022fd87978464f9049e4b9dbbc321, type: 3}
+    - {fileID: 5070842392446625478, guid: 621d6aa9a4b51734bab97b6842caeaab, type: 3}
+    - {fileID: 861805546074410346, guid: 70b543d01d0bb4a4aabc80aa1fc743d4, type: 3}
+    - {fileID: 1695832315270084145, guid: 568a137ba48c1144a93996db352b65c7, type: 3}
+    - {fileID: 9060039691939444517, guid: d091ff1befd4f0b48a30d6ed4e2b5e94, type: 3}
+    - {fileID: 2884506420153380034, guid: dcd9861ef1baf30418ebda746f735b4f, type: 3}
+    - {fileID: 5654605934193769684, guid: 6641e2dbc4c418a439e28603686d7b02, type: 3}
+    - {fileID: 3607628420696508194, guid: 24eba5e08557c4242b457ff786202a86, type: 3}
+    origin: {x: 0, y: 0, z: 0}
+    offset: 0.325
+    amountPositive: 11
+    amountNegative: 10
+    scaleWithPositive: 0
+  antiVoid:
+  - prefabs:
+    - {fileID: 1411994790204690656, guid: 8ade260c13c2fe348a3fe3d7858c1128, type: 3}
+    origin: {x: 0, y: 0, z: 0}
+    offset: 1.4
+    amountPositive: 2
+    amountNegative: 2
+    scaleWithPositive: 0
+  - prefabs:
+    - {fileID: 7902322336893404225, guid: 53c7ff337634d0f4ca3c397c92b55f07, type: 3}
+    origin: {x: 0.7, y: 0.375, z: -0.285}
+    offset: 1.4
+    amountPositive: 2
+    amountNegative: 2
+    scaleWithPositive: 0
+  background:
+  - prefabs:
+    - {fileID: 1278523958667213275, guid: ed2b7d5ac25aef649af6100c0d6db554, type: 3}
+    origin: {x: 20, y: 0, z: 0}
+    offset: 7
+    amountPositive: 1
+    amountNegative: 0
+    scaleWithPositive: 1

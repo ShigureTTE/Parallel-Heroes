@@ -5,6 +5,9 @@ using DG.Tweening;
 using UnityEngine.Events;
 using System;
 using UnityEngine.InputSystem.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class Tweener : MonoBehaviour {
 
@@ -108,4 +111,22 @@ public class TweenObject {
     
 }
 
+#if UNITY_EDITOR
+[CustomEditor(typeof(Tweener))]
+public class NPCGeneratorEditor : Editor {
+    public override void OnInspectorGUI() {
+        DrawDefaultInspector();
 
+        Tweener script = (Tweener)target;
+
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        if (GUILayout.Button("Play Tween")) {
+            script.PlayTween();
+        }
+        EditorGUILayout.Space(10);
+        if (GUILayout.Button("Play Tween Reversed")) {
+            script.PlayTweenReversed();
+        }
+    }
+}
+#endif

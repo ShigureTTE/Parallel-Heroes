@@ -19,12 +19,12 @@ public class TriggerReporter : MonoBehaviour {
     private LayerMask hitLayers;
 
     [Serializable]
-    public class OnTriggerEnter : UnityEvent<Collider2D> { }
-    public OnTriggerEnter onTriggerEnterEvent;
+    public class TriggerEnter : UnityEvent<Collider> { }
+    public TriggerEnter onTriggerEnterEvent;
 
     [Serializable]
-    public class OnTriggerExit : UnityEvent<Collider2D> { }
-    public OnTriggerExit onTriggerExitEvent;
+    public class TriggerExit : UnityEvent<Collider> { }
+    public TriggerExit onTriggerExitEvent;
 
     private void OnEnable() {
         if (!resetOnDisableObject) return;
@@ -32,7 +32,7 @@ public class TriggerReporter : MonoBehaviour {
         hasTriggered = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter(Collider other) {
         if (hitLayers != (hitLayers | (1 << other.gameObject.layer)))
         {
             return;
@@ -53,7 +53,7 @@ public class TriggerReporter : MonoBehaviour {
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
+    private void OnTriggerExit(Collider other) {
         if (hitLayers != (hitLayers | (1 << other.gameObject.layer)))
         {
             return;
