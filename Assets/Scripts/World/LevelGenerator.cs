@@ -3,16 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class LevelGenerator : MonoBehaviour {
+public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
 
     [SerializeField] private GameObject emptyPrefab;
     [SerializeField] private GeneratedLevelSet setObject;
     [SerializeField] private int maximumSetsSpawned;
+    [SerializeField] private int generateNewOnIndex;
 
     private List<LevelSet> generatedSets = new List<LevelSet>();
 
     private void Awake() {
         for (int i = 0; i < maximumSetsSpawned; i++) {
+            Generate();
+        }
+    }
+
+    public void TriggerCalled(LevelSet set) {
+        int setIndex = generatedSets.IndexOf(set);
+        Debug.Log("Index: " + setIndex);
+
+        if (setIndex == generateNewOnIndex) {
+            LevelSet indexZero = generatedSets[0];
+            generatedSets.RemoveAt(0);
+            Destroy(indexZero.gameObject);
+
             Generate();
         }
     }
