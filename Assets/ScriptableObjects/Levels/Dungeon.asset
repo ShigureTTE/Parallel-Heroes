@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d275cef40f24eab42856bcdf93c2bbf6, type: 3}
   m_Name: Dungeon
   m_EditorClassIdentifier: 
-  groundPrefab: {fileID: 3432266268866991568, guid: d2e79d5fc23bea94aa6c2b6f6461f82a,
+  groundPrefab: {fileID: 525568818657688926, guid: bc2288c794573ab49a1c2fc73bcacfd2,
     type: 3}
   groundOffset: 7
   foreground:

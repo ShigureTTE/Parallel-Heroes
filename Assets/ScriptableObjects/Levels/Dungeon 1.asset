@@ -48,7 +48,7 @@ MonoBehaviour:
   background:
   - prefabs:
     - {fileID: 1278523958667213275, guid: ed2b7d5ac25aef649af6100c0d6db554, type: 3}
-    origin: {x: 20, y: 0, z: 0}
+    origin: {x: 10, y: 0, z: 0}
     offset: 7
     amountPositive: 1
     amountNegative: 0
