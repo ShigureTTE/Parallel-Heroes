@@ -20,7 +20,6 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
 
     public void TriggerCalled(LevelSet set) {
         int setIndex = generatedSets.IndexOf(set);
-        Debug.Log("Index: " + setIndex);
 
         if (setIndex == generateNewOnIndex) {
             LevelSet indexZero = generatedSets[0];
