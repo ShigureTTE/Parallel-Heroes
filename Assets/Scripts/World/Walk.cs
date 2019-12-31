@@ -14,16 +14,22 @@ public class Walk : MonoBehaviour {
 
     [Header("Walking Settings")]
     [SerializeField] private float walkSpeed;
+    [SerializeField] private Transform cameraContainer;
     [SerializeField] private float smoothing;
+    [SerializeField] private float characterJumpHeight;
+
+    private bool walking = false;
 
     void Start() {
         if (Game.Instance.State == GameState.Walk) {
             party.transform.position = partyPosition;
-            StartCoroutine(StartWalking());
+            StartCoroutine(SetToExplorePosition());
         }
     }
 
-    private IEnumerator StartWalking() {
+    private IEnumerator SetToExplorePosition() {
+        yield return new WaitForSecondsRealtime(2f);
+
         List<Tween> characterTweens = new List<Tween>();
 
         for (int i = 0; i < party.characters.Count; i++) {
@@ -34,7 +40,25 @@ public class Walk : MonoBehaviour {
 
         yield return characterTweens[0].WaitForCompletion();
 
-        yield return null;
+        int iterator = 0;
+        Transform leader = party.characters[0].transform;
+        while (iterator < 15) {
+            Tween jump = leader.DOLocalMove(new Vector3(leader.position.x, characterJumpHeight, leader.position.z), 0.2f).SetEase(Ease.InOutSine);
+            yield return jump.WaitForCompletion();
+            jump.SmoothRewind();
+            yield return jump.WaitForRewind();
+            iterator++;
+        }
+
+        Tween cameraTween = cameraContainer.DOMove(new Vector3(cameraContainer.position.x + smoothing, cameraContainer.position.y, cameraContainer.position.z), .5f).SetEase(Ease.InOutSine);
+        walking = true;
+        yield return cameraTween.WaitForCompletion();
+    }
+
+    private void Update() {
+        if (walking) {
+            transform.position += Vector3.left * walkSpeed * Time.deltaTime;
+        }
     }
 
 }

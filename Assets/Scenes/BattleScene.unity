@@ -982,7 +982,7 @@ GameObject:
   - component: {fileID: 143019486}
   - component: {fileID: 143019485}
   m_Layer: 5
-  m_Name: Attack
+  m_Name: Explore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2498,6 +2498,12 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 9.21
   m_ShadowAngle: 0
+--- !u!4 &279850692 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 383656062628921395, guid: c7b848b63e61b6d4c84568f8f20b232f,
+    type: 3}
+  m_PrefabInstance: {fileID: 383656063037524548}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &283809156
 GameObject:
   m_ObjectHideFlags: 0
@@ -3451,7 +3457,7 @@ GameObject:
   - component: {fileID: 510892834}
   - component: {fileID: 510892833}
   m_Layer: 5
-  m_Name: Combo
+  m_Name: Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4936,6 +4942,39 @@ MonoBehaviour:
     durationReverse: 0.25
     startPosition: {x: 0, y: 1, z: 1}
     endPosition: {x: 1, y: 1, z: 1}
+    onCompleteTweenEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    onCompleteTweenReverseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!1 &634569299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4564747021644058568, guid: 3993232220c7505448a086a82c0bad48,
+    type: 3}
+  m_PrefabInstance: {fileID: 1310682692}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &634569301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634569299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10617f0792040a74897ff5adc07876db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenObjects:
+  - objectToTween: {fileID: 634569299}
+    type: 0
+    easeSetting: 4
+    easeSettingReverse: 4
+    duration: 0
+    durationReverse: 0
+    startPosition: {x: 0, y: 0, z: 0}
+    endPosition: {x: 0, y: 0, z: 0}
     onCompleteTweenEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -11271,7 +11310,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496623426}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 007c8903c422aa84bbefae76527b2db9, type: 3}
   m_Name: 
@@ -11281,8 +11320,10 @@ MonoBehaviour:
   characterSpacing: -0.25
   tweenDuration: 0.5
   tweenEase: 16
-  walkSpeed: 0
-  smoothing: 0
+  walkSpeed: 1.25
+  cameraContainer: {fileID: 279850692}
+  smoothing: -0.2
+  characterJumpHeight: 0.05
 --- !u!1 &1507974426
 GameObject:
   m_ObjectHideFlags: 0
@@ -16870,7 +16911,7 @@ GameObject:
   - component: {fileID: 2124333438}
   - component: {fileID: 2124333437}
   m_Layer: 5
-  m_Name: Spell
+  m_Name: Characters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17399,6 +17440,34 @@ PrefabInstance:
     - target: {fileID: 430623352, guid: c7b848b63e61b6d4c84568f8f20b232f, type: 3}
       propertyPath: tweenObjects.Array.data[0].easeSettingReverse
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835618854, guid: c7b848b63e61b6d4c84568f8f20b232f, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 6.94e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835618854, guid: c7b848b63e61b6d4c84568f8f20b232f, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835618854, guid: c7b848b63e61b6d4c84568f8f20b232f, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905728103, guid: c7b848b63e61b6d4c84568f8f20b232f, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 6.94e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905728103, guid: c7b848b63e61b6d4c84568f8f20b232f, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: -7.86224
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905728103, guid: c7b848b63e61b6d4c84568f8f20b232f, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 6.94e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905728103, guid: c7b848b63e61b6d4c84568f8f20b232f, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7b848b63e61b6d4c84568f8f20b232f, type: 3}
