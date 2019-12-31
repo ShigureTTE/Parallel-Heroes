@@ -18,12 +18,17 @@ public class Walk : MonoBehaviour {
     [SerializeField] private float smoothing;
     [SerializeField] private float smoothTime;
 
-    [Header("Animation Settings")]
+    [Header("Jump Animation Settings")]
     [SerializeField] private int jumpAmount;
     [SerializeField] private float characterJumpHeight;
     [SerializeField] private Ease jumpEase;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private float waitAfterJump;
+
+    [Header("Rotate Animation Settings")]
+    [SerializeField] private Ease rotateEase;
+    [SerializeField] private float rotateSpeed;
+    [SerializeField] private float waitAfterRotate;
 
     private bool walking = false;
     private const string characterWalk = "CharacterWalk";
@@ -51,18 +56,29 @@ public class Walk : MonoBehaviour {
         StartCoroutine(StartWalkingCoroutine());
     }
 
-    private IEnumerator StartWalkingCoroutine() {
-        int iterator = 0;
+    private IEnumerator StartWalkingCoroutine() {       
         Transform leader = party.characters[0].transform;
+
+        Tween rotate = leader.DOScaleX(-1, rotateSpeed).SetEase(rotateEase);
+        yield return rotate.WaitForCompletion();
+
+        yield return new WaitForSecondsRealtime(waitAfterRotate);
+
+        int iterator = 0;
         while (iterator < jumpAmount) {
-            Tween jump = leader.DOLocalMove(new Vector3(leader.localPosition.x, characterJumpHeight, leader.localPosition.z), jumpSpeed).SetEase(jumpEase);
+            Tween jump = leader.DOLocalMoveY(characterJumpHeight, jumpSpeed).SetEase(jumpEase);
             yield return jump.WaitForCompletion();
-            jump = jump = leader.DOLocalMove(new Vector3(leader.localPosition.x, 0, leader.localPosition.z), jumpSpeed).SetEase(jumpEase);
+            jump = jump = leader.DOLocalMoveY(0, jumpSpeed).SetEase(jumpEase);
             yield return jump.WaitForCompletion();
             iterator++;
         }
 
         yield return new WaitForSecondsRealtime(waitAfterJump);
+
+        rotate = leader.DOScaleX(1, rotateSpeed).SetEase(rotateEase);
+        yield return rotate.WaitForCompletion();
+
+        yield return new WaitForSecondsRealtime(waitAfterRotate);
 
         Tween cameraTween = cameraContainer.DOMove(new Vector3(cameraContainer.position.x + smoothing, cameraContainer.position.y, cameraContainer.position.z), smoothTime).SetEase(Ease.Linear);
         walking = true;
