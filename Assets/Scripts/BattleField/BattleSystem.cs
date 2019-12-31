@@ -6,7 +6,7 @@ using TMPro;
 using DG.Tweening;
 using System;
 
-public class BattleSystem : MonoBehaviour {
+public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
 
     [Header("Parties")]
     [SerializeField] private Party playerParty;
@@ -44,25 +44,44 @@ public class BattleSystem : MonoBehaviour {
         laneMover = GetComponent<MoveCharacterToLane>();
         enemySpawner = GetComponent<EnemySpawner>();
         performAction = GetComponent<PerformAction>();
-        enemySpawner.SpawnNewFormation();
-        NewBattle();
+
+        SetupParties();
+        filler.FillWithStats();
+        //enemySpawner.SpawnNewFormation();
+        //NewBattle();
     }
 
-    public void NewBattle() {
+    private void SetupParties() {
         List<CharacterBase> characters = new List<CharacterBase>();
         playerParty.ResetCharacters();
         enemyParty.ResetCharacters();
 
-        characters.AddRange(playerParty.characters);
-        characters.AddRange(enemyParty.characters);
+        characters = GetCharacterList();
 
         foreach (CharacterBase character in characters) {
-            AddCharacter(character);
-
             int level = character.Faction == Faction.Player ? playerParty.Level : enemyParty.Level;
 
             character.SetHealth(Calculator.GetStat(character.stats.maximumHealth, level, true));
             character.SetMP(Calculator.GetStat(character.stats.maximumMP, level, true));
+        }
+    }
+
+    private List<CharacterBase> GetCharacterList() {
+        List<CharacterBase> characters = new List<CharacterBase>();
+
+        characters.AddRange(playerParty.characters);
+        characters.AddRange(enemyParty.characters);
+
+        return characters;
+    }
+
+    public void NewBattle() {
+        SetupParties();
+
+        List<CharacterBase> characters = GetCharacterList();
+
+        foreach (CharacterBase character in characters) {
+            AddCharacterToBattle(character);
         }
 
         turnOrder = new List<CharacterBase>();
@@ -116,10 +135,11 @@ public class BattleSystem : MonoBehaviour {
         CurrentTurn.SelectedEffect.Play();
     }
 
-    public void AddCharacter(CharacterBase character) {
+    public void AddCharacterToBattle(CharacterBase character) {
         if (character.Faction == Faction.Player) player.Add(character);
         else enemy.Add(character);
 
+        if (Game.Instance.State == GameState.Battle)
         laneMover.SetCharacterToLane(character, character.Lane, character.Faction == Faction.Player ? player : enemy);
     }
 

@@ -11,7 +11,7 @@ public class ChooseLaneButton : MonoBehaviour {
     private BattleSystem battleSystem;
 
     private void Awake() {
-        battleSystem = battleField.GetComponent<BattleSystem>();
+        battleSystem = BattleSystem.Instance;
     }
 
     public void SetNewLane(string newLane) {

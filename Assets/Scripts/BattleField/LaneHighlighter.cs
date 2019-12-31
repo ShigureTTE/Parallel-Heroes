@@ -22,7 +22,7 @@ public class LaneHighlighter : MonoBehaviour {
     private Attack attack;
 
     private void Start() {
-        battleSystem = GetComponent<BattleSystem>();
+        battleSystem = BattleSystem.Instance;
     }
 
     public void NoHighlight() {

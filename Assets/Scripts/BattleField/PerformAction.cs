@@ -35,7 +35,7 @@ public class PerformAction : MonoBehaviour {
     private List<CharacterBase> deadCharactersThisTurn;
 
     private void Start() {
-        battleSystem = GetComponent<BattleSystem>();
+        battleSystem = BattleSystem.Instance;
     }
 
     public void NormalAttack(CharacterBase attacker, CharacterBase defender, Attack attack) {

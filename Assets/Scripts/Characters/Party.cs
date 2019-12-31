@@ -18,6 +18,7 @@ public class Party : MonoBehaviour {
 
     private void Awake() {       
         Level = 5; //TODO: remove hard coded level setter
+        ResetCharacters();
     }
 
     public void ResetCharacters() {
