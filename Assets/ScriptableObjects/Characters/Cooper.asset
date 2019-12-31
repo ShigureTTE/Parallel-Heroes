@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35193cdc262737245ad55697aedf3e63, type: 3}
+  m_Name: Cooper
+  m_EditorClassIdentifier: 
+  characterName: Cooper
+  gender: 0
+  role: American
+  weapon: Shotgun
+  maximumHealth: 80
+  maximumMP: 40
+  attack: 70
+  defense: 55
+  resistance: 35
+  skill: 50
+  speed: 58
+  wantsToLive: 0
+  hatesSelfDamage: 0
+  hatesBlockers: 0
+  likesPreferredLane: 0
+  goesForKill: 0
+  hider: 0
+  likesToBlock: 0
+  spellUser: 0
+  normalAttack:
+    type: 0
+    attackName: 
+    preferredLane: 1
+    element: 0
+    rangeType: 1
+    mPCost: 0
+    basePower: 55
+    comboCharacter: {fileID: 0}
+  spells:
+  - type: 1
+    attackName: Freedom Strike
+    preferredLane: 2
+    element: 0
+    rangeType: 0
+    mPCost: 8
+    basePower: 60
+    comboCharacter: {fileID: 0}
+  - type: 1
+    attackName: Bald Eagle Shotgun
+    preferredLane: 2
+    element: 0
+    rangeType: 1
+    mPCost: 16
+    basePower: 75
+    comboCharacter: {fileID: 0}
+  combos: []
