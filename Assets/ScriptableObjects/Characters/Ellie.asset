@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35193cdc262737245ad55697aedf3e63, type: 3}
+  m_Name: Ellie
+  m_EditorClassIdentifier: 
+  characterName: Ellie
+  gender: 1
+  role: Baker
+  weapon: Flour
+  maximumHealth: 65
+  maximumMP: 60
+  attack: 55
+  defense: 60
+  resistance: 60
+  skill: 35
+  speed: 50
+  wantsToLive: 0
+  hatesSelfDamage: 0
+  hatesBlockers: 0
+  likesPreferredLane: 0
+  goesForKill: 0
+  hider: 0
+  likesToBlock: 0
+  spellUser: 0
+  normalAttack:
+    type: 0
+    attackName: 
+    preferredLane: 2
+    element: 0
+    rangeType: 1
+    mPCost: 0
+    basePower: 48
+    comboCharacter: {fileID: 0}
+  spells:
+  - type: 1
+    attackName: Flour Bomb
+    preferredLane: 2
+    element: 0
+    rangeType: 1
+    mPCost: 8
+    basePower: 60
+    comboCharacter: {fileID: 0}
+  - type: 1
+    attackName: Cake Surprise
+    preferredLane: 1
+    element: 0
+    rangeType: 0
+    mPCost: 15
+    basePower: 75
+    comboCharacter: {fileID: 0}
+  combos: []
