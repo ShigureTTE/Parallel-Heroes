@@ -1416,7 +1416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
   m_Name: Grain
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -1449,8 +1449,8 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   mode:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 0
   intensity:
     overrideState: 1
     value: 1
@@ -1470,7 +1470,7 @@ MonoBehaviour:
     overrideState: 0
     value: -12
   thicknessModifier:
-    overrideState: 1
+    overrideState: 0
     value: 1
   directLightingStrength:
     overrideState: 0
