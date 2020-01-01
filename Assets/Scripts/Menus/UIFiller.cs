@@ -136,7 +136,13 @@ public class UIFiller : MonoBehaviour {
         }
 
         playerParty.characters[id].SelectedEffect.Play();
-        statScreen.Fill(playerParty.characters[id].stats);
+        statScreen.Fill(playerParty.characters[id], playerParty.Level);
+    }
+
+    public void ClearSelected() {
+        foreach (CharacterBase characterBase in playerParty.characters) {
+            characterBase.SelectedEffect.Stop();
+        }
     }
 }
 
