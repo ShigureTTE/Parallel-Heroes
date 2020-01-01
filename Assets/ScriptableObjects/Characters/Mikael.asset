@@ -17,8 +17,11 @@ MonoBehaviour:
   role: Bard
   weapon: Lute
   description: '"A true bard never goes anywhere without a lute!" ~ Mikael of Grilea.
-    So far, Mikael has only forgotten his lute at home once. He can usually be found
-    performing for the King of Grilea.'
+
+
+    So
+    far, Mikael has only left his lute at home once. He can usually be found performing
+    for the King of Grilea.'
   maximumHealth: 50
   maximumMP: 65
   attack: 50
