@@ -16,6 +16,9 @@ MonoBehaviour:
   gender: 2
   role: Wind Sage
   weapon: Wind
+  description: Aero fled from the war to the mountains when they were young. There
+    they trained to become the most powerful wind sage the realm had ever seen. Eventually,
+    it was Aero who brought back peace to the realm.
   maximumHealth: 60
   maximumMP: 60
   attack: 70

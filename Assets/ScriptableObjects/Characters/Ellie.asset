@@ -16,6 +16,9 @@ MonoBehaviour:
   gender: 1
   role: Baker
   weapon: Flour
+  description: Where do you go for the best bread and cakes? That's right, Ellie's
+    bakery. She has developed a special technique to combine traditional baking with
+    the use of magic.
   maximumHealth: 65
   maximumMP: 60
   attack: 55

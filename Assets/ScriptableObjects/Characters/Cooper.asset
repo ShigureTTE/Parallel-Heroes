@@ -16,6 +16,8 @@ MonoBehaviour:
   gender: 0
   role: American
   weapon: Shotgun
+  description: Nobody knows exactly why Cooper was summoned. He's just kind of here.
+    Cooper refuses to take off his sunglasses, he claims it makes him stronger.
   maximumHealth: 80
   maximumMP: 40
   attack: 70

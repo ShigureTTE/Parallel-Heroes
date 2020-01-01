@@ -16,6 +16,8 @@ MonoBehaviour:
   gender: 0
   role: Cowboy
   weapon: Revolver
+  description: Clint "Long Shot" Weststone is feared by many for his incredible aim.
+    It is probably for this skill alone that he was summoned to this world.
   maximumHealth: 60
   maximumMP: 35
   attack: 65
@@ -25,8 +27,12 @@ MonoBehaviour:
   speed: 70
   wantsToLive: 0
   hatesSelfDamage: 0
+  hatesBlockers: 0
   likesPreferredLane: 0
   goesForKill: 0
+  hider: 0
+  likesToBlock: 0
+  spellUser: 0
   normalAttack:
     type: 0
     attackName: 

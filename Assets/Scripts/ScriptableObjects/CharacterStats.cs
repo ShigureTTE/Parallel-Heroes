@@ -12,6 +12,7 @@ public class CharacterStats : ScriptableObject {
     public Gender gender;
     public string role;
     public string weapon;
+    [TextArea] public string description;
 
     [Header("Base Stats")]
     public int maximumHealth;

@@ -16,6 +16,7 @@ MonoBehaviour:
   gender: 2
   role: Monster
   weapon: Goo
+  description: A simple monster. These little critters can be found almost anywhere.
   maximumHealth: 35
   maximumMP: 40
   attack: 40

@@ -16,6 +16,8 @@ MonoBehaviour:
   gender: 1
   role: Succubus
   weapon: Dagger
+  description: Lola is Astrella's childhood friend. She studied at the same academy,
+    but got kicked out. Thanks to Astrella's guidance, she became a well-known mercenary.
   maximumHealth: 45
   maximumMP: 70
   attack: 60
@@ -23,6 +25,14 @@ MonoBehaviour:
   resistance: 60
   skill: 45
   speed: 60
+  wantsToLive: 0
+  hatesSelfDamage: 0
+  hatesBlockers: 0
+  likesPreferredLane: 0
+  goesForKill: 0
+  hider: 0
+  likesToBlock: 0
+  spellUser: 0
   normalAttack:
     type: 0
     attackName: 

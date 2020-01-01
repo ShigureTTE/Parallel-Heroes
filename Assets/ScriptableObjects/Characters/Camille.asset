@@ -16,6 +16,8 @@ MonoBehaviour:
   gender: 2
   role: Fairy
   weapon: Fairy Dust
+  description: Camille is the chief of the fairies living in the Blossom Woods. They
+    may seem cute and innocent at first, but they're a master at warfare.
   maximumHealth: 65
   maximumMP: 55
   attack: 65
@@ -23,6 +25,14 @@ MonoBehaviour:
   resistance: 55
   skill: 40
   speed: 55
+  wantsToLive: 0
+  hatesSelfDamage: 0
+  hatesBlockers: 0
+  likesPreferredLane: 0
+  goesForKill: 0
+  hider: 0
+  likesToBlock: 0
+  spellUser: 0
   normalAttack:
     type: 0
     attackName: 

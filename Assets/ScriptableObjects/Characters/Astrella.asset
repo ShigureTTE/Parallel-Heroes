@@ -16,6 +16,8 @@ MonoBehaviour:
   gender: 1
   role: Witch
   weapon: Charms
+  description: Astrella graduated top of her class at Difra, the High Academy of
+    Magic. She is considered to be one of the strongest witches in her realm.
   maximumHealth: 50
   maximumMP: 70
   attack: 60
@@ -23,6 +25,14 @@ MonoBehaviour:
   resistance: 55
   skill: 60
   speed: 45
+  wantsToLive: 0
+  hatesSelfDamage: 0
+  hatesBlockers: 0
+  likesPreferredLane: 0
+  goesForKill: 0
+  hider: 0
+  likesToBlock: 0
+  spellUser: 0
   normalAttack:
     type: 0
     attackName: 
