@@ -34,6 +34,10 @@ public class UIFiller : MonoBehaviour {
     [SerializeField] private Button midRange;
     [SerializeField] private Button longRange;
 
+    [Header("UI Elements: Party Menu")]
+    [SerializeField] private List<TextMeshProUGUI> partySlots;
+    [SerializeField] private StatScreenFiller statScreen;
+
     private CharacterStats stats;
 
     private readonly string hpText = " HP";
@@ -111,6 +115,28 @@ public class UIFiller : MonoBehaviour {
 
     public void UpdateSpellCost(int index) {
         spellCost.text = stats.spells[index].mPCost.ToString();
+    }
+
+    public void FillPartyMenu() {
+        for (int i = 0; i < partySlots.Count; i++) {
+            if (i > playerParty.characters.Count - 1) {
+                partySlots[i].text = "-";
+                partySlots[i].GetComponent<Button>().interactable = false;
+                continue;
+            }
+
+            partySlots[i].text = playerParty.characters[i].stats.characterName;
+            partySlots[i].GetComponent<Button>().interactable = true;
+        }
+    }
+
+    public void FillStatMenu(int id) {       
+        foreach (CharacterBase character in playerParty.characters) {
+            character.SelectedEffect.Stop();
+        }
+
+        playerParty.characters[id].SelectedEffect.Play();
+        statScreen.Fill(playerParty.characters[id].stats);
     }
 }
 
