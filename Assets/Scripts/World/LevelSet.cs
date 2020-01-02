@@ -9,11 +9,17 @@ public class LevelSet : MonoBehaviour {
 
     private LevelGenerator generator;
 
+    public LevelType Type { get; set; }
+
     private void OnEnable() {
         generator = LevelGenerator.Instance;
     }
 
-    public void TriggerEnter(Collider col) {
-        generator.TriggerCalled(this);
+    public void GenerateTriggerEnter(Collider col) {
+        generator.GenerateTrigger(this);
+    }
+
+    public void SetEnter(Collider col) {
+        generator.OnSetEnter(this);
     }
 }

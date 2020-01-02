@@ -19707,7 +19707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emptyPrefab: {fileID: 340423705080749325, guid: 69ce5bdb970b59f479720e611b75e584,
     type: 3}
-  setObject: {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
+  areaObject: {fileID: 11400000, guid: a119966dff5ed2b45802f850e0994d7b, type: 2}
   maximumSetsSpawned: 4
   generateNewOnIndex: 2
 --- !u!114 &1496623429

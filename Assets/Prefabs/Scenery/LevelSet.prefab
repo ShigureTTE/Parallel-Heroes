@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2055044552}
   - component: {fileID: 2055044551}
   m_Layer: 0
-  m_Name: Trigger
+  m_Name: GenerateTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2615581795627300171}
-        m_MethodName: TriggerEnter
+        m_MethodName: GenerateTriggerEnter
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -112,6 +112,8 @@ Transform:
   - {fileID: 6290148622162239349}
   - {fileID: 8729810270437581654}
   - {fileID: 2055044550}
+  - {fileID: 4332313062106536880}
+  - {fileID: 8853847602678452594}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -220,3 +222,158 @@ Transform:
   m_Father: {fileID: 1561122909159393173}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6540643025698896962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8853847602678452594}
+  - component: {fileID: 6332397104050511375}
+  - component: {fileID: 1730480428558854395}
+  m_Layer: 0
+  m_Name: EnteredSet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8853847602678452594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6540643025698896962}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.85, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1561122909159393173}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6332397104050511375
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6540643025698896962}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 2.1636147, z: 4.7399917}
+  m_Center: {x: 0, y: 0.5818074, z: -0.0221951}
+--- !u!114 &1730480428558854395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6540643025698896962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6116dc585e0a206409259fe3dec88b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onlyTriggerOnce: 0
+  disableAfter: 0
+  resetOnDisableObject: 0
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  onTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2615581795627300171}
+        m_MethodName: SetEnter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTriggerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1001 &2542724310219550371
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1561122909159393173}
+    m_Modifications:
+    - target: {fileID: 525568818657688926, guid: bc2288c794573ab49a1c2fc73bcacfd2,
+        type: 3}
+      propertyPath: m_Name
+      value: DarkRedGroundV2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258244665696843027, guid: bc2288c794573ab49a1c2fc73bcacfd2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258244665696843027, guid: bc2288c794573ab49a1c2fc73bcacfd2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258244665696843027, guid: bc2288c794573ab49a1c2fc73bcacfd2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258244665696843027, guid: bc2288c794573ab49a1c2fc73bcacfd2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258244665696843027, guid: bc2288c794573ab49a1c2fc73bcacfd2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258244665696843027, guid: bc2288c794573ab49a1c2fc73bcacfd2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258244665696843027, guid: bc2288c794573ab49a1c2fc73bcacfd2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258244665696843027, guid: bc2288c794573ab49a1c2fc73bcacfd2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258244665696843027, guid: bc2288c794573ab49a1c2fc73bcacfd2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258244665696843027, guid: bc2288c794573ab49a1c2fc73bcacfd2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258244665696843027, guid: bc2288c794573ab49a1c2fc73bcacfd2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bc2288c794573ab49a1c2fc73bcacfd2, type: 3}
+--- !u!4 &4332313062106536880 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2258244665696843027, guid: bc2288c794573ab49a1c2fc73bcacfd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2542724310219550371}
+  m_PrefabAsset: {fileID: 0}

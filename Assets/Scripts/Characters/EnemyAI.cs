@@ -39,7 +39,7 @@ public class EnemyAI {
 
         //I wasn't able to find anything, so let's try again.
         if (action.target == null) {
-            action.target = playerParty.characters[Random.Range(0, playerParty.characters.Count - 1)];
+            action.target = playerParty.characters[Random.Range(0, playerParty.characters.Count)];
 
             if (stats.wantsToLive) {
                 while (PredictDieFromAttack(currentTurn) || action.target.IsDead) {
@@ -64,8 +64,8 @@ public class EnemyAI {
 
         //Target has been acquired. Just need an attack to use.
         if (action.attack == null) {
-            if (availableSpells.Count > 0 && Random.Range(0,100) >= (stats.spellUser ? 15 : 70)) {
-                action.attack = availableSpells[Random.Range(0, availableSpells.Count - 1)];
+            if (availableSpells.Count > 0 && Random.Range(0, 101) >= (stats.spellUser ? 15 : 70)) {
+                action.attack = availableSpells[Random.Range(0, availableSpells.Count)];
                 action.attackType = AttackType.Spell;
             }
             else {
@@ -74,7 +74,7 @@ public class EnemyAI {
             }
         }
 
-        if (Random.Range(0, 100) >= (stats.likesToBlock ? 5 : 70)) {
+        if (Random.Range(0, 101) >= (stats.likesToBlock ? 5 : 70)) {
             action.attack = stats.normalAttack;
             action.attackType = AttackType.Block;
         }
