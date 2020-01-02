@@ -81,6 +81,13 @@ public class InformationBox : MonoBehaviour {
         StartCoroutine(NewText(text));
     }
 
+    public void EnemyEnterText(CharacterBase enemy) {
+        string text = enemy.gameObject.name +
+            IBConstants.appeared;
+
+        StartCoroutine(NewText(text));
+    }
+
     private IEnumerator NewText(string text) {
         alphaTweener.PlayTweenReversed();
 
@@ -108,4 +115,5 @@ public class IBConstants {
     public static readonly string themselves = "themselves";
     public static readonly string defeated = " was defeated!";
     public static readonly string counter = " counters ";
+    public static readonly string appeared = " appeared!";
 }

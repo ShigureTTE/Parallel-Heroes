@@ -27,6 +27,10 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
     [Header("Field Graphics")]
     [SerializeField] private GameObject lines;
 
+    [Header("Start Battle Settings")]
+    [SerializeField] private float enemySpawnOffset;
+    [SerializeField] private float waitBetweenEnter;
+
     [HideInInspector] public List<CharacterBase> player = new List<CharacterBase>();
     [HideInInspector] public List<CharacterBase> enemy = new List<CharacterBase>();
 
@@ -49,18 +53,25 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
         enemySpawner = GetComponent<EnemySpawner>();
         performAction = GetComponent<PerformAction>();
 
-        SetupParties();
+        SetupPartyPlayer();
         filler.FillWithStats();
     }
 
-    private void SetupParties() {
-        List<CharacterBase> characters = new List<CharacterBase>();
+    private void SetupPartyPlayer() {
         playerParty.ResetCharacters();
+
+        foreach (CharacterBase character in playerParty.characters) {
+            int level = character.Faction == Faction.Player ? playerParty.Level : enemyParty.Level;
+
+            character.SetHealth(Calculator.GetStat(character.stats.maximumHealth, level, true));
+            character.SetMP(Calculator.GetStat(character.stats.maximumMP, level, true));
+        }
+    }
+
+    private void SetupPartyEnemy() {
         enemyParty.ResetCharacters();
 
-        characters = GetCharacterList();
-
-        foreach (CharacterBase character in characters) {
+        foreach (CharacterBase character in enemyParty.characters) {
             int level = character.Faction == Faction.Player ? playerParty.Level : enemyParty.Level;
 
             character.SetHealth(Calculator.GetStat(character.stats.maximumHealth, level, true));
@@ -78,19 +89,35 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
     }
 
     public void NewBattle() {
+        player = new List<CharacterBase>();
+        enemy = new List<CharacterBase>();
+        CurrentTurn = null;
+
+        StartCoroutine(StartBattleCoroutine());
+    }
+
+    private IEnumerator StartBattleCoroutine() {
         Game.Instance.CameraContainer.GetComponent<Tweener>().PlayTween();
-        characterMenu.PlayTween();
-        healthMenu.PlayTween();
         ShowHideLines(true);
+        healthMenu.PlayTween();
 
-        enemySpawner.SpawnNewFormation();
-        SetupParties();
-
-        List<CharacterBase> characters = GetCharacterList();
-
-        foreach (CharacterBase character in characters) {
+        foreach (CharacterBase character in playerParty.characters) {
             AddCharacterToBattle(character);
         }
+
+        enemySpawner.SpawnNewFormation(Vector3.right * enemySpawnOffset);
+        SetupPartyEnemy();
+        yield return new WaitForSecondsRealtime(waitBetweenEnter / 2);
+
+        foreach (CharacterBase character in enemyParty.characters) {
+            AddCharacterToBattle(character);
+            infoBox.EnemyEnterText(character);
+            yield return new WaitForSecondsRealtime(waitBetweenEnter);
+        }    
+
+        characterMenu.PlayTween();      
+
+        List<CharacterBase> characters = GetCharacterList();
 
         turnOrder = new List<CharacterBase>();
         turnOrder = characters.OrderByDescending(x => Calculator.GetStat(x.stats.speed, x.Faction == Faction.Player ? playerParty.Level : enemyParty.Level)).ToList();
@@ -98,6 +125,7 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
         SetCurrentTurnCharacter();
 
         filler.FillAll();
+        yield return null;
     }
 
     private void ShowHideLines(bool show) {

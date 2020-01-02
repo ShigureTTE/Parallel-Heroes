@@ -15,11 +15,11 @@ public class EnemySpawner : MonoBehaviour {
         pooler = ObjectPooler.Instance;
     }
 
-    public void SpawnNewFormation() {
+    public void SpawnNewFormation(Vector3 spawnLocation = new Vector3()) {
         enemyParty.ForceLevel(formation);
 
         for (int i = 0; i < formation.enemies.Count; i++) {
-            GameObject go = pooler.SpawnFromPool(formation.enemies[i].enemy.tag, enemyParty.transform, Vector3.zero, Quaternion.identity);
+            GameObject go = pooler.SpawnFromPool(formation.enemies[i].enemy.tag, enemyParty.transform, spawnLocation, Quaternion.identity);
             go.GetComponent<CharacterBase>().Lane = formation.enemies[i].lane;
             go.name = formation.enemies[i].enemy.prefab.GetComponent<CharacterBase>().stats.characterName + " " + letters[i];
         }

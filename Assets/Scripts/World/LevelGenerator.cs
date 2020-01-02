@@ -31,10 +31,13 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
         encounters = new int[maxEncounters];
 
         for (int i = 0; i < maxEncounters; i++) {
-            int encounter = Random.Range(1, maxSets);
+            int encounter = Random.Range(2, maxSets);
 
             while (encounters.Contains(encounter)) {
                 encounter++;
+                if (encounter > maxSets) {
+                    encounter = 0;
+                }
             }
 
             encounters[i] = encounter;
@@ -54,34 +57,10 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
     }
 
     public void OnSetEnter(LevelSet set) {
-        switch (set.Type) {
-            case LevelType.Normal:
-                break;
-            case LevelType.Battle:
-                Game.Instance.BattleEncounter();
-                break;
-            case LevelType.Exit:
-                break;
-            case LevelType.BranchingPath:
-                break;
-            case LevelType.SafeZone:
-                break;
-            case LevelType.TreasureChest:
-                break;
-            case LevelType.Mimic:
-                break;
-            case LevelType.MagicFountain:
-                break;
-            case LevelType.StorageRoom:
-                break;
-            case LevelType.Shop:
-                break;
-            case LevelType.Character:
-                break;
-            case LevelType.Trap:
-                break;
-            default:
-                break;
+        Game.Instance.CurrentLevelSet = set;
+
+        if (set.Type != LevelType.Normal) {
+            Game.Instance.SetEncounter();
         }
     }
 
