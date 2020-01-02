@@ -31,7 +31,8 @@ public class Walk : MonoBehaviour {
     [SerializeField] private float waitAfterRotate;
 
     private bool walking = false;
-    private const string characterWalk = "CharacterWalk";
+    private const string characterWalkKey = "CharacterWalk";
+    private const string characterIdleKey = "Idle";
 
     void Start() {
         if (Game.Instance.State == GameState.Walk) {
@@ -85,7 +86,17 @@ public class Walk : MonoBehaviour {
 
         foreach (CharacterBase character in party.characters) {
             Animator anim = character.GetComponentInChildren<Animator>();
-            anim.Play(characterWalk);
+            anim.Play(characterWalkKey);
+            yield return new WaitForSecondsRealtime(0.05f);
+        }
+    }
+
+    private IEnumerator StopWalkingCoroutine() {
+        Tween cameraTween = cameraContainer.DOMove(new Vector3(cameraContainer.position.x - smoothing, cameraContainer.position.y, cameraContainer.position.z), smoothTime).SetEase(Ease.Linear);
+
+        foreach (CharacterBase character in party.characters) {
+            Animator anim = character.GetComponentInChildren<Animator>();
+            anim.Play(character.stats.characterName + characterIdleKey);
             yield return new WaitForSecondsRealtime(0.05f);
         }
     }
@@ -93,6 +104,11 @@ public class Walk : MonoBehaviour {
     private void Update() {
         if (walking) {
             transform.position += Vector3.left * walkSpeed * Time.deltaTime;
+        }
+
+        if (Game.Instance.State != GameState.Walk && walking) {
+            walking = false;
+            StartCoroutine(StopWalkingCoroutine());
         }
     }
 

@@ -16,12 +16,16 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
     [SerializeField] private UIFiller filler;
     [SerializeField] private InformationBox infoBox;
     [SerializeField] private Tweener characterMenu;
+    [SerializeField] private Tweener healthMenu;
 
     [Header("Enemy Arrow")]
     [SerializeField] private Transform arrow;
     [SerializeField] private Light arrowLight;
     [SerializeField] private float offset;
     [SerializeField] private float lightIntensity;
+
+    [Header("Field Graphics")]
+    [SerializeField] private GameObject lines;
 
     [HideInInspector] public List<CharacterBase> player = new List<CharacterBase>();
     [HideInInspector] public List<CharacterBase> enemy = new List<CharacterBase>();
@@ -47,8 +51,6 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
 
         SetupParties();
         filler.FillWithStats();
-        //enemySpawner.SpawnNewFormation();
-        //NewBattle();
     }
 
     private void SetupParties() {
@@ -76,6 +78,12 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
     }
 
     public void NewBattle() {
+        Game.Instance.CameraContainer.GetComponent<Tweener>().PlayTween();
+        characterMenu.PlayTween();
+        healthMenu.PlayTween();
+        ShowHideLines(true);
+
+        enemySpawner.SpawnNewFormation();
         SetupParties();
 
         List<CharacterBase> characters = GetCharacterList();
@@ -90,6 +98,12 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
         SetCurrentTurnCharacter();
 
         filler.FillAll();
+    }
+
+    private void ShowHideLines(bool show) {
+        foreach (SpriteRenderer sprite in lines.GetComponentsInChildren<SpriteRenderer>()) {
+            sprite.DOColor(new Color(sprite.color.r, sprite.color.g, sprite.color.b, show ? 1f : 0f), 0.5f);
+        }
     }
 
     public void NextTurn() {

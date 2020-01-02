@@ -10,9 +10,11 @@ namespace NYRA {
 		public static readonly string MainCamera = "MainCamera";
 		public static readonly string Player = "Player";
 		public static readonly string GameController = "GameController";
+		public static readonly string CameraContainer = "CameraContainer";
 	}
 
 	public static class Scene {
+		public static readonly string BattleScene = "BattleScene";
 		public static readonly string SampleScene = "SampleScene";
 	}
 
@@ -29,6 +31,8 @@ namespace NYRA {
 		public static readonly LayerMask UIMask = 1 << 5;
 		public static readonly string PostPro = "PostPro";
 		public static readonly LayerMask PostProMask = 1 << 8;
+		public static readonly string Camera = "Camera";
+		public static readonly LayerMask CameraMask = 1 << 9;
 	}
 
 	public static class SortingLayer {

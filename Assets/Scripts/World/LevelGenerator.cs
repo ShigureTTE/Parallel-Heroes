@@ -54,7 +54,35 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
     }
 
     public void OnSetEnter(LevelSet set) {
-        Debug.Log(set.Type);
+        switch (set.Type) {
+            case LevelType.Normal:
+                break;
+            case LevelType.Battle:
+                Game.Instance.BattleEncounter();
+                break;
+            case LevelType.Exit:
+                break;
+            case LevelType.BranchingPath:
+                break;
+            case LevelType.SafeZone:
+                break;
+            case LevelType.TreasureChest:
+                break;
+            case LevelType.Mimic:
+                break;
+            case LevelType.MagicFountain:
+                break;
+            case LevelType.StorageRoom:
+                break;
+            case LevelType.Shop:
+                break;
+            case LevelType.Character:
+                break;
+            case LevelType.Trap:
+                break;
+            default:
+                break;
+        }
     }
 
     private void Generate() {
