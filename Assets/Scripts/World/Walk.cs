@@ -116,6 +116,8 @@ public class Walk : MonoBehaviour {
         foreach (CharacterBase character in party.characters) {
             Animator anim = character.GetComponentInChildren<Animator>();
             anim.Play(character.stats.characterName + characterIdleKey);
+            yield return null;
+            anim.GetComponent<RandomAnimationFrame>().RandomFrame();
             yield return new WaitForSecondsRealtime(0.05f);
         }
 
