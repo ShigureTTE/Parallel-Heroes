@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66fa63ba5ad800b43bc03035480c5b81, type: 3}
   m_Name: FirstDungeon
   m_EditorClassIdentifier: 
-  minimumSets: 4
-  maximumSets: 4
+  minimumSets: 8
+  maximumSets: 12
   minimumEncounters: 3
-  maximumEncounters: 3
+  maximumEncounters: 4
   normalLevel: {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
   battle: {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
   exit: {fileID: 0}
