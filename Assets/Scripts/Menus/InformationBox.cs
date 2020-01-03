@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class InformationBox : MonoBehaviour {
 
@@ -108,6 +109,10 @@ public class InformationBox : MonoBehaviour {
         StartCoroutine(NewText(text));
     }
 
+    public void ClearText() {
+        StartCoroutine(NewText(""));
+    }
+
     private IEnumerator NewText(string text) {
         alphaTweener.PlayTweenReversed();
 
@@ -117,7 +122,7 @@ public class InformationBox : MonoBehaviour {
 
         infoBox.text = text;
         alphaTweener.PlayTween();
-    }
+    }    
 }
 
 public class IBConstants {

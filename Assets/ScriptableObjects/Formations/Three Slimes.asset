@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c04b6969ed6f148a33f071a7cea84d, type: 3}
   m_Name: Three Slimes
   m_EditorClassIdentifier: 
-  level: 5
+  level: 4
   minCoins: 3
   maxCoins: 7
   experience: 10

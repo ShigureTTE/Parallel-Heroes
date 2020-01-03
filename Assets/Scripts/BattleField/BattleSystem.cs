@@ -108,6 +108,7 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
 
     private IEnumerator StartBattleCoroutine() {
         Game.Instance.CameraContainer.GetComponent<Tweener>().PlayTween();
+        infoBox.ClearText();
         ShowHideLines(true);
         healthMenu.PlayTween();
 
