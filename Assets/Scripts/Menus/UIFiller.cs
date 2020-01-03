@@ -83,6 +83,7 @@ public class UIFiller : MonoBehaviour {
         for (int i = 0; i < slots.Count; i++) {
             if (i >= playerParty.characters.Count) {
                 slots[i].slotGroup.alpha = 0;
+                slots[i].AssignedCharacter = null;
                 continue;
             }
 
@@ -170,26 +171,33 @@ public class UIFiller : MonoBehaviour {
             Tween slotAlpha = slot.slotGroup.DOFade(0, fadeSpeed);
             int slotIndex = slots.IndexOf(slot);
 
-            List<Transform> slotsBelow = new List<Transform>();
+            List<CharacterSlot> slotsBelow = new List<CharacterSlot>();
             for (int i = slotIndex + 1; i < slots.Count; i++) {
-                slotsBelow.Add(slots[i].slotGroup.transform);
+                slotsBelow.Add(slots[i]);
             }
 
             Tween moveUp = null;
-            foreach (Transform transform in slotsBelow) {
-                moveUp = transform.DOLocalMoveY(transform.localPosition.y + moveAmount, moveSpeed).SetEase(moveEase);
+            foreach (CharacterSlot characterSlot in slotsBelow) {
+                moveUp = characterSlot.slotGroup.transform.DOLocalMoveY(transform.localPosition.y + moveAmount, moveSpeed).SetEase(moveEase);
             }
 
-            yield return moveUp.WaitForCompletion();           
-
-            foreach (RectTransform transform in slotsBelow) {
-                transform.anchoredPosition = new Vector2(transform.anchoredPosition.x, transform.anchoredPosition.y - moveAmount);
+            if (moveUp != null) {
+                yield return moveUp.WaitForCompletion();
+            }
+            else {
+                yield return slotAlpha.WaitForCompletion();
+            }
+                    
+            foreach (CharacterSlot characterSlot in slotsBelow) {
+                RectTransform rt = (RectTransform)characterSlot.slotGroup.transform;
+                rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, rt.anchoredPosition.y - moveAmount);
             }
 
             FillWithStats(true);
-            slot.slotGroup.alpha = 1;
-            
-            
+            if (slotsBelow.Any(x => x.AssignedCharacter != null)) {
+                slot.slotGroup.alpha = 1;
+            }
+                               
         }
     }
 }

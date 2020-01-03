@@ -27,7 +27,7 @@ MonoBehaviour:
   wantsToLive: 0
   hatesSelfDamage: 0
   hatesBlockers: 1
-  likesPreferredLane: 1
+  likesPreferredLane: 0
   goesForKill: 1
   hider: 0
   likesToBlock: 0

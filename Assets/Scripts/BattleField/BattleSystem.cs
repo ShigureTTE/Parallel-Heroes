@@ -132,7 +132,7 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
         turnIndex = 0;
         NextTurn(true);
 
-        filler.FillAll();
+        filler.FillCurrentTurn();
         yield return null;
     }
 
