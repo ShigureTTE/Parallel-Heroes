@@ -88,6 +88,26 @@ public class InformationBox : MonoBehaviour {
         StartCoroutine(NewText(text));
     }
 
+    public void GainGoldText(int amount) {
+        string text = IBConstants.gained +
+            amount.ToString() +
+            IBConstants.gold;
+
+        StartCoroutine(NewText(text));
+    }
+
+    public void GainExperienceText(int amount) {
+        string text = IBConstants.gained +
+            amount.ToString() +
+            IBConstants.experience;
+
+        StartCoroutine(NewText(text));
+    }
+
+    public void DebugText(string text) {
+        StartCoroutine(NewText(text));
+    }
+
     private IEnumerator NewText(string text) {
         alphaTweener.PlayTweenReversed();
 
@@ -116,4 +136,7 @@ public class IBConstants {
     public static readonly string defeated = " was defeated!";
     public static readonly string counter = " counters ";
     public static readonly string appeared = " appeared!";
+    public static readonly string gained = "Gained ";
+    public static readonly string gold = " gold!";
+    public static readonly string experience = " experience!";
 }

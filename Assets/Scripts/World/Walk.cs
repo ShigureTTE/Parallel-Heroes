@@ -11,6 +11,7 @@ public class Walk : MonoBehaviour {
     [SerializeField] private float characterSpacing;
     [SerializeField] private float tweenDuration;
     [SerializeField] private Ease tweenEase;
+    [SerializeField] private Tweener exploreMenu;
 
     [Header("Walking Settings")]
     [SerializeField] private float walkSpeed;
@@ -40,17 +41,26 @@ public class Walk : MonoBehaviour {
     [SerializeField] private float waitInBetweenScale;
 
     private bool walking = false;
+    private bool readyToExplore = false;
     private const string characterWalkKey = "CharacterWalk";
     private const string characterIdleKey = "Idle";
 
     void Start() {
         if (Game.Instance.State == GameState.Walk) {
             party.transform.position = partyPosition;
-            StartCoroutine(SetToExplorePosition());
+            for (int i = 0; i < party.characters.Count; i++) {
+                float xOffset = i * characterSpacing;
+                Tween t = party.characters[i].transform.DOLocalMove(new Vector3(xOffset, 0, 0), 0);
+            }
         }
     }
 
     private IEnumerator SetToExplorePosition() {
+        readyToExplore = true;
+
+        Game.Instance.CameraContainer.GetComponent<Tweener>().PlayTweenReversed();
+        exploreMenu.PlayTween();
+
         List<Tween> characterTweens = new List<Tween>();
 
         for (int i = 0; i < party.characters.Count; i++) {
@@ -138,13 +148,18 @@ public class Walk : MonoBehaviour {
     }
 
     private void Update() {
-        if (walking) {
+        if (Game.Instance.State == GameState.Walk && walking) {
             transform.position += Vector3.left * walkSpeed * Time.deltaTime;
         }
 
         if (Game.Instance.State != GameState.Walk && walking) {
             walking = false;
+            readyToExplore = false;
             StartCoroutine(StopWalkingCoroutine());
+        }
+
+        if (Game.Instance.State == GameState.Walk && !walking && !readyToExplore) {
+            StartCoroutine(SetToExplorePosition());
         }
     }
 

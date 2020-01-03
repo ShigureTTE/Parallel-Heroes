@@ -31,6 +31,16 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
     [SerializeField] private float enemySpawnOffset;
     [SerializeField] private float waitBetweenEnter;
 
+    [Header("End Battle Settings")]
+    [SerializeField] private ObjectPool coinStack;
+    [SerializeField] private Vector3 coinOrigin;
+    [SerializeField] private float waitBetweenActions;
+    [SerializeField] private float waitBetweenText;
+    [SerializeField] private float coinFallTime;
+    [SerializeField] private float coinToPartyTime;
+    [SerializeField] private float jumpStrength;
+    [SerializeField] private Ease coinToPartyEase;
+
     [HideInInspector] public List<CharacterBase> player = new List<CharacterBase>();
     [HideInInspector] public List<CharacterBase> enemy = new List<CharacterBase>();
 
@@ -73,7 +83,7 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
 
         foreach (CharacterBase character in enemyParty.characters) {
             int level = character.Faction == Faction.Player ? playerParty.Level : enemyParty.Level;
-
+            
             character.SetHealth(Calculator.GetStat(character.stats.maximumHealth, level, true));
             character.SetMP(Calculator.GetStat(character.stats.maximumMP, level, true));
         }
@@ -135,6 +145,15 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
     }
 
     public void NextTurn() {
+        if (PlayerLost()) {
+            infoBox.DebugText("Game Over!");
+            return;
+        }
+        else if (EnemyLost()) {
+            StartCoroutine(BattleWon());
+            return;
+        }
+
         AdvanceTurnIndex();
 
         while (turnOrder[turnIndex].IsDead) {
@@ -151,6 +170,64 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
         else {
             filler.FillCurrentTurn();
             characterMenu.PlayTween();
+        }
+    }
+
+    public bool PlayerLost() {
+        foreach (CharacterBase character in player) {
+            if (character.IsDead == false) return false;
+        }
+        return true;
+    }
+
+    public bool EnemyLost() {
+        foreach (CharacterBase character in enemy) {
+            if (character.IsDead == false) return false;
+        }
+        return true;
+    }
+
+    private IEnumerator BattleWon() {
+        ClearEnemyParty();
+
+        GameObject stack = ObjectPooler.Instance.SpawnFromPool(coinStack.tag, playerParty.transform, coinOrigin, Quaternion.identity);
+        stack.transform.DOScale(Vector3.one, 0);
+
+        Tween coinFall = stack.transform.DOLocalMoveY(0, coinFallTime).SetEase(Ease.OutBounce);
+        yield return coinFall.WaitForCompletion();
+
+        yield return new WaitForSecondsRealtime(waitBetweenActions);
+
+        Transform currentLeader = null;
+
+        for (int i = 0; i < playerParty.characters.Count; i++) {
+            if (playerParty.characters[i].IsDead == false) {
+                currentLeader = playerParty.characters[i].transform;
+                break;
+            }
+        }
+
+        Tween coinToLeader = stack.transform.DOLocalJump(currentLeader.localPosition, jumpStrength, 1, coinToPartyTime).SetEase(coinToPartyEase);
+        Tween coinScale = stack.transform.DOScale(Vector3.zero, coinToPartyTime).SetEase(coinToPartyEase);
+        yield return coinToLeader.WaitForCompletion();
+
+        int coins = enemySpawner.GetCoins();
+        int experience = enemySpawner.GetExperience();
+
+        infoBox.GainGoldText(coins);
+        yield return new WaitForSecondsRealtime(waitBetweenText);
+
+        infoBox.GainExperienceText(experience);
+        yield return new WaitForSecondsRealtime(waitBetweenText);
+
+        ShowHideLines(false);
+        healthMenu.PlayTweenReversed();
+        Game.Instance.SetWalking();
+    }
+
+    private void ClearEnemyParty() {
+        foreach(CharacterBase character in enemy) {
+            ObjectPooler.Instance.Despawn(character.gameObject);
         }
     }
 

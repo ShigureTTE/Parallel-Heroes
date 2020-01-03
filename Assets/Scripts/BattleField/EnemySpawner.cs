@@ -25,4 +25,12 @@ public class EnemySpawner : MonoBehaviour {
         }
     }
 
+    public int GetCoins() {
+        return Random.Range(formation.minCoins, formation.maxCoins + 1);
+    }
+
+    public int GetExperience() {
+        return formation.experience;
+    }
+
 }

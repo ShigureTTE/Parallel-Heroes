@@ -17,6 +17,10 @@ public class Game : DontDestroySingleton<Game> {
         State = GameState.Encounter;
     }
 
+    public void SetWalking() {
+        State = GameState.Walk;
+    }
+
     public void ProcessEncounter() {
         switch (CurrentLevelSet.Type) {
             case LevelType.Battle:

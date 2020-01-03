@@ -52,6 +52,7 @@ public class ObjectPooler : MonoBehaviourSingleton<ObjectPooler> {
         yield return null;
         obj.transform.SetParent(this.transform);
         obj.SetActive(false);
+        obj.name = "Despawned";
     }
 
 }

@@ -561,6 +561,14 @@ MonoBehaviour:
   lines: {fileID: 385601589}
   enemySpawnOffset: 2
   waitBetweenEnter: 1.4
+  coinStack: {fileID: 11400000, guid: 34d05f30f830c1a4589f2dd4b56d43ee, type: 2}
+  coinOrigin: {x: 0.5, y: 1.5, z: 0.1}
+  waitBetweenActions: 0.6
+  waitBetweenText: 1.2
+  coinFallTime: 1.5
+  coinToPartyTime: 1.2
+  jumpStrength: 0.15
+  coinToPartyEase: 13
   player: []
   enemy: []
 --- !u!114 &61358417
@@ -598,7 +606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29867c4cfa6b2554aaed4d005b875dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  formation: {fileID: 11400000, guid: 3d294c34ce9680042a339ace87d621ec, type: 2}
+  formation: {fileID: 11400000, guid: e8212a6d6de91a248aacf1c4e7ab9941, type: 2}
   enemyParty: {fileID: 120493812}
 --- !u!114 &61358419
 MonoBehaviour:
@@ -1905,17 +1913,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1469787789}
-          m_MethodName: PlayTween
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 525177495}
           m_MethodName: ClearSelected
           m_Mode: 1
@@ -2323,17 +2320,6 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 1925027752}
             m_ObjectArgumentAssemblyTypeName: Tweener, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1469787789}
-          m_MethodName: PlayTween
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -9028,17 +9014,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1469787789}
-          m_MethodName: PlayTween
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 525177495}
           m_MethodName: ClearSelected
           m_Mode: 1
@@ -12546,17 +12521,6 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 1925027752}
             m_ObjectArgumentAssemblyTypeName: Tweener, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1469787789}
-          m_MethodName: PlayTween
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -19079,7 +19043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.011127, y: 158.03}
+  m_AnchoredPosition: {x: -480.42, y: 236.21}
   m_SizeDelta: {x: 273.67, y: 200.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1469787788
@@ -19801,8 +19765,9 @@ MonoBehaviour:
   party: {fileID: 1310018491}
   partyPosition: {x: 0.25, y: 0, z: 0.12}
   characterSpacing: -0.25
-  tweenDuration: 0.5
-  tweenEase: 16
+  tweenDuration: 1.25
+  tweenEase: 13
+  exploreMenu: {fileID: 1469787789}
   walkSpeed: 1.25
   cameraContainer: {fileID: 279850692}
   smoothing: -0.1
@@ -23482,7 +23447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f534879c35f1dca4c9e2264a4dc79215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  awakeWaitTime: 1.2
+  awakeWaitTime: 1.5
 --- !u!1 &1759320268
 GameObject:
   m_ObjectHideFlags: 0
@@ -25628,7 +25593,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -763, y: 244}
+  m_AnchoredPosition: {x: -763, y: 168}
   m_SizeDelta: {x: 179.18, y: 184.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1925027752
@@ -25650,8 +25615,8 @@ MonoBehaviour:
     easeSettingReverse: 28
     duration: 0.6
     durationReverse: 0.6
-    startPosition: {x: -763, y: 244, z: 0}
-    endPosition: {x: -534, y: 244, z: 0}
+    startPosition: {x: -763, y: 168, z: 0}
+    endPosition: {x: -342, y: 168, z: 0}
     onCompleteTweenEvent:
       m_PersistentCalls:
         m_Calls:
@@ -27013,6 +26978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
+  - {fileID: 11400000, guid: 34d05f30f830c1a4589f2dd4b56d43ee, type: 2}
 --- !u!4 &2041687624
 Transform:
   m_ObjectHideFlags: 0
@@ -28537,34 +28503,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1469787789}
-        m_MethodName: PlayTweenReversed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 525177494}
         m_MethodName: RegisterBackMenu
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1469787788}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 525177494}
-        m_MethodName: IncrementLayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -28606,6 +28550,17 @@ MonoBehaviour:
       - m_Target: {fileID: 525177495}
         m_MethodName: FillStatMenu
         m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 525177494}
+        m_MethodName: IncrementLayer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -29189,6 +29144,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MikaelContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 4094164122774564223, guid: 424fcf9763e8abc43b5039759c172742,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 424fcf9763e8abc43b5039759c172742, type: 3}
 --- !u!1001 &5418820657083700766
@@ -29258,6 +29218,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CooperContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 6342434456829743637, guid: 81990c79523ae21499aae804e21f84f4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81990c79523ae21499aae804e21f84f4, type: 3}
 --- !u!1001 &7802507010228598224
@@ -29326,6 +29291,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AeroContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928513342592246436, guid: 7ca586a448c590747a7d2f36f8e7d77e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ca586a448c590747a7d2f36f8e7d77e, type: 3}

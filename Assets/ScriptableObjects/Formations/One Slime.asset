@@ -10,16 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9c04b6969ed6f148a33f071a7cea84d, type: 3}
-  m_Name: Three Slimes
+  m_Name: One Slime
   m_EditorClassIdentifier: 
-  level: 5
-  minCoins: 3
-  maxCoins: 7
-  experience: 10
+  level: 1
+  minCoins: 2
+  maxCoins: 5
+  experience: 7
   enemies:
   - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
     lane: 1
-  - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
-    lane: 2
-  - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
-    lane: 2

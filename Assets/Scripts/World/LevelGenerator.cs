@@ -36,7 +36,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
             while (encounters.Contains(encounter)) {
                 encounter++;
                 if (encounter > maxSets) {
-                    encounter = 0;
+                    encounter = 1;
                 }
             }
 

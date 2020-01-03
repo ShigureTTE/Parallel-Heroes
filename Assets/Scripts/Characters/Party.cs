@@ -14,6 +14,7 @@ public class Party : MonoBehaviour {
     [HideInInspector] public List<CharacterBase> characters;
 
     public int Level { get; private set; }
+    public int Gold { get; private set; }
     private int experiencePoints = 0;
 
     private void Awake() {       
@@ -37,6 +38,10 @@ public class Party : MonoBehaviour {
             experiencePoints = leftovers;
             Level++;
         }
+    }
+
+    public void GainGold(int amount) {
+        Gold += amount;
     }
 
     public void ForceLevel(BattleFormation battleFormation) {
