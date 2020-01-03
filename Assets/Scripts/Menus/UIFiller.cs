@@ -22,6 +22,10 @@ public class UIFiller : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI secondSpell;
     [SerializeField] private TextMeshProUGUI spellCost;
 
+    [Header("UI Elements: Spell Buttons")]
+    [SerializeField] private List<Button> spells;
+    [SerializeField] private Button spellButton;
+
     [Header("UI Elements: Health / MP / Level")]
     [SerializeField] private List<CharacterSlot> slots;
     [SerializeField] private TextMeshProUGUI level;
@@ -59,6 +63,28 @@ public class UIFiller : MonoBehaviour {
         if (Calculator.GetAvailableTargets(Lane.Close, enemyParty.characters).Count == 0) closeRange.interactable = false;
         if (Calculator.GetAvailableTargets(Lane.Mid, enemyParty.characters).Count == 0) midRange.interactable = false;
         if (Calculator.GetAvailableTargets(Lane.Long, enemyParty.characters).Count == 0) longRange.interactable = false;
+    }
+
+    public void SetInteractableSpells() {
+        CharacterBase currentTurn = battleSystem.CurrentTurn;
+
+        int counter = 0;
+        for (int i = currentTurn.stats.spells.Length - 1; i >= 0; i--) {
+            if (currentTurn.stats.spells[i].mPCost <= currentTurn.CurrentMP) {
+                spells[i].interactable = true;
+            }
+            else {
+                spells[i].interactable = false;
+                counter++;
+            }
+        }
+
+        if (counter < currentTurn.stats.spells.Length) {
+            spellButton.interactable = true;
+        }
+        else {
+            spellButton.interactable = false;
+        }
     }
 
     public void FillEnemies() {

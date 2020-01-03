@@ -2240,6 +2240,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 525177495}
+          m_MethodName: SetInteractableSpells
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
     onCompleteTweenReverseEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -6772,6 +6783,10 @@ MonoBehaviour:
   firstSpell: {fileID: 1254450837}
   secondSpell: {fileID: 1796482085}
   spellCost: {fileID: 917994014}
+  spells:
+  - {fileID: 1254450840}
+  - {fileID: 1796482088}
+  spellButton: {fileID: 891620780}
   slots:
   - characterName: {fileID: 1071490903}
     healthImage: {fileID: 1523826257}
