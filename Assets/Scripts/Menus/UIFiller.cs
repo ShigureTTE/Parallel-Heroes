@@ -74,9 +74,11 @@ public class UIFiller : MonoBehaviour {
     }
 
     public void FillWithStats() {
-        for (int i = 0; i < playerParty.characters.Count; i++) {
-            if (i >= slots.Count) break;
-            if (playerParty.characters[i].IsDead) continue;
+        for (int i = 0; i < slots.Count; i++) {
+            if (i >= playerParty.characters.Count) {
+                slots[i].slotGroup.alpha = 0;
+                continue;
+            } 
 
             CharacterSlot slot = slots[i];
             CharacterBase character = playerParty.characters[i];
@@ -154,5 +156,6 @@ public class CharacterSlot {
     public TextMeshProUGUI healthText;
     public Image manaImage;
     public TextMeshProUGUI manaText;
+    public CanvasGroup slotGroup;
     public CharacterBase AssignedCharacter { get; set; }
 }

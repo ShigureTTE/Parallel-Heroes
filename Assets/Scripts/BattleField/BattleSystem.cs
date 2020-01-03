@@ -123,16 +123,14 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
             AddCharacterToBattle(character);
             infoBox.EnemyEnterText(character);
             yield return new WaitForSecondsRealtime(waitBetweenEnter);
-        }    
-
-        characterMenu.PlayTween();      
+        }     
 
         List<CharacterBase> characters = GetCharacterList();
 
         turnOrder = new List<CharacterBase>();
         turnOrder = characters.OrderByDescending(x => Calculator.GetStat(x.stats.speed, x.Faction == Faction.Player ? playerParty.Level : enemyParty.Level)).ToList();
         turnIndex = 0;
-        SetCurrentTurnCharacter();
+        NextTurn(true);
 
         filler.FillAll();
         yield return null;
@@ -144,7 +142,7 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
         }
     }
 
-    public void NextTurn() {
+    public void NextTurn(bool firstTurn = false) {
         if (PlayerLost()) {
             infoBox.DebugText("Game Over!");
             return;
@@ -154,8 +152,10 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
             return;
         }
 
-        AdvanceTurnIndex();
-
+        if (firstTurn == false) {
+            AdvanceTurnIndex();
+        }
+        
         while (turnOrder[turnIndex].IsDead) {
             AdvanceTurnIndex();
         }
