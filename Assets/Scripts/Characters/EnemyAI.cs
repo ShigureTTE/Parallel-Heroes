@@ -39,7 +39,7 @@ public class EnemyAI {
 
         //I wasn't able to find anything, so let's try again.
         if (action.target == null) {
-            action.target = playerParty.characters[Random.Range(0, playerParty.characters.Count)];
+            action.target = playerParty.characters.GetRandom();
 
             if (stats.wantsToLive) {
                 while (PredictDieFromAttack(currentTurn) || action.target.IsDead) {
@@ -65,7 +65,7 @@ public class EnemyAI {
         //Target has been acquired. Just need an attack to use.
         if (action.attack == null) {
             if (availableSpells.Count > 0 && Random.Range(0, 101) >= (stats.spellUser ? 15 : 70)) {
-                action.attack = availableSpells[Random.Range(0, availableSpells.Count)];
+                action.attack = availableSpells.GetRandom();
                 action.attackType = AttackType.Spell;
             }
             else {
@@ -117,6 +117,12 @@ public class EnemyAI {
             //I can't hit the target from my preferred lane, so let's try to find someplace else.
         }
 
+        List<Lane> allLanes = new List<Lane>();
+        allLanes.Add(Lane.Close);
+        allLanes.Add(Lane.Mid);
+        allLanes.Add(Lane.Long);
+        allLanes.Shuffle();
+
         if (stats.hider) {
             characterList = Calculator.GetAvailableTargets(Lane.Close, playerParty.characters);
             if (characterList.Contains(action.target) &&
@@ -138,19 +144,19 @@ public class EnemyAI {
             }
         }
         else {
-            characterList = Calculator.GetAvailableTargets(Lane.Long, playerParty.characters);
+            characterList = Calculator.GetAvailableTargets(allLanes[0], playerParty.characters);
             if (characterList.Contains(action.target)) {
-                action.lane = Lane.Long;
+                action.lane = allLanes[0];
                 return;
             }
-            characterList = Calculator.GetAvailableTargets(Lane.Mid, playerParty.characters);
+            characterList = Calculator.GetAvailableTargets(allLanes[0], playerParty.characters);
             if (characterList.Contains(action.target)) {
-                action.lane = Lane.Mid;
+                action.lane = allLanes[0];
                 return;
             }
-            characterList = Calculator.GetAvailableTargets(Lane.Close, playerParty.characters);
+            characterList = Calculator.GetAvailableTargets(allLanes[0], playerParty.characters);
             if (characterList.Contains(action.target)) {
-                action.lane = Lane.Close;
+                action.lane = allLanes[0];
                 return;
             }
         }
@@ -172,7 +178,11 @@ public class EnemyAI {
     private static void PredictCanKill(CharacterBase currentTurn, Party playerParty, List<Attack> availableSpells) {
         CharacterStats stats = currentTurn.stats;
 
-        foreach (CharacterBase character in playerParty.characters) {
+        List <CharacterBase> shuffledList = new List<CharacterBase>();
+        shuffledList.AddRange(playerParty.characters);
+        shuffledList.Shuffle();
+
+        foreach (CharacterBase character in shuffledList) {
             if (character.IsDead) continue;
 
             int health = character.CurrentHealth;

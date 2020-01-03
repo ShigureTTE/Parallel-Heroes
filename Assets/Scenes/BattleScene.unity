@@ -626,7 +626,7 @@ MonoBehaviour:
   laneBlockMenu: {fileID: 1236159764}
   targetMenu: {fileID: 1865368256}
   navigator: {fileID: 525177494}
-  filler: {fileID: 0}
+  filler: {fileID: 525177495}
   infoBox: {fileID: 525177497}
   attackPause: 0.3
   blockPause: 1.5
@@ -6812,6 +6812,10 @@ MonoBehaviour:
   - {fileID: 686493899}
   - {fileID: 1056455315}
   statScreen: {fileID: 525177498}
+  fadeSpeed: 0.5
+  moveSpeed: 0.5
+  moveAmount: 40.95
+  moveEase: 13
 --- !u!114 &525177496
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -130,12 +130,24 @@ public class PerformAction : MonoBehaviour {
     public IEnumerator KillCharacterCoroutine() {
         foreach (CharacterBase character in deadCharactersThisTurn) {
             infoBox.DefeatedText(character);
-            Instantiate(deadEffect, character.transform.position, deadEffect.transform.rotation, character.transform);
+            Instantiate(deadEffect, character.transform.position, deadEffect.transform.rotation, character.Party.transform);
             character.IsDead = true;
+
+            if (character.Faction == Faction.Player) {
+                Party party = character.Party;
+                party.characters.Remove(character);
+
+                StartCoroutine(filler.RemoveDeadCharacter(character));
+            }
 
             Tween tween = character.transform.DOScale(Vector3.zero, deadTweenTime).SetEase(Ease.InBack);
             yield return tween.WaitForCompletion();
             yield return new WaitForSecondsRealtime(blockPause);
+
+            if (character.Faction == Faction.Player) {
+                yield return new WaitWhile(character.SelectedEffect.IsAlive);
+                Destroy(character.gameObject);               
+            }
         }
     }
 

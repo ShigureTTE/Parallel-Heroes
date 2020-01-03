@@ -92,5 +92,6 @@ public class Calculator : MonoBehaviour {
 
         return counterAttackers;
     }
+
 }
 

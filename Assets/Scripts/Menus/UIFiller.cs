@@ -38,6 +38,12 @@ public class UIFiller : MonoBehaviour {
     [SerializeField] private List<TextMeshProUGUI> partySlots;
     [SerializeField] private StatScreenFiller statScreen;
 
+    [Header("Remove Character Settings")]
+    [SerializeField] private float fadeSpeed;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float moveAmount;
+    [SerializeField] private Ease moveEase;
+
     private CharacterStats stats;
 
     private readonly string hpText = " HP";
@@ -73,37 +79,47 @@ public class UIFiller : MonoBehaviour {
         }
     }
 
-    public void FillWithStats() {
+    public void FillWithStats(bool snap = false) {
         for (int i = 0; i < slots.Count; i++) {
             if (i >= playerParty.characters.Count) {
                 slots[i].slotGroup.alpha = 0;
                 continue;
-            } 
+            }
 
             CharacterSlot slot = slots[i];
             CharacterBase character = playerParty.characters[i];
 
             slot.AssignedCharacter = character;
             slot.characterName.text = character.stats.characterName;
-            UpdateHealth(slot);
-            UpdateMana(slot);
+            UpdateHealth(slot, snap);
+            UpdateMana(slot, snap);
         }
 
         level.text = playerParty.Level.ToString();
     }
 
-    public void UpdateHealth(CharacterSlot slot) {
+    public void UpdateHealth(CharacterSlot slot, bool snap = false) {
         Image image = slot.healthImage;
         float fill = (float)slot.AssignedCharacter.CurrentHealth / (float)Calculator.GetStat(slot.AssignedCharacter.stats.maximumHealth, playerParty.Level, true);
         slot.healthText.text = slot.AssignedCharacter.CurrentHealth.ToString() + hpText;
-        image.DOFillAmount(fill, 0.75f);
+        if (snap) {
+            image.fillAmount = fill;
+        }
+        else {
+            image.DOFillAmount(fill, 0.75f);
+        }
     }
 
-    public void UpdateMana(CharacterSlot slot) {
+    public void UpdateMana(CharacterSlot slot, bool snap = false) {
         Image image = slot.manaImage;
         float fill = (float)slot.AssignedCharacter.CurrentMP / (float)Calculator.GetStat(slot.AssignedCharacter.stats.maximumMP, playerParty.Level, true);
         slot.manaText.text = slot.AssignedCharacter.CurrentMP.ToString() + mpText;
-        image.DOFillAmount(fill, 0.75f);
+        if (snap) {
+            image.fillAmount = fill;
+        }
+        else {
+            image.DOFillAmount(fill, 0.75f);
+        }
     }
 
     public void FillCurrentTurn() {
@@ -132,7 +148,7 @@ public class UIFiller : MonoBehaviour {
         }
     }
 
-    public void FillStatMenu(int id) {       
+    public void FillStatMenu(int id) {
         foreach (CharacterBase character in playerParty.characters) {
             character.SelectedEffect.Stop();
         }
@@ -144,6 +160,36 @@ public class UIFiller : MonoBehaviour {
     public void ClearSelected() {
         foreach (CharacterBase characterBase in playerParty.characters) {
             characterBase.SelectedEffect.Stop();
+        }
+    }
+
+    public IEnumerator RemoveDeadCharacter(CharacterBase character) {
+        CharacterSlot slot = slots.Single(x => x.AssignedCharacter == character);
+
+        if (slot != null) {
+            Tween slotAlpha = slot.slotGroup.DOFade(0, fadeSpeed);
+            int slotIndex = slots.IndexOf(slot);
+
+            List<Transform> slotsBelow = new List<Transform>();
+            for (int i = slotIndex + 1; i < slots.Count; i++) {
+                slotsBelow.Add(slots[i].slotGroup.transform);
+            }
+
+            Tween moveUp = null;
+            foreach (Transform transform in slotsBelow) {
+                moveUp = transform.DOLocalMoveY(transform.localPosition.y + moveAmount, moveSpeed).SetEase(moveEase);
+            }
+
+            yield return moveUp.WaitForCompletion();           
+
+            foreach (RectTransform transform in slotsBelow) {
+                transform.anchoredPosition = new Vector2(transform.anchoredPosition.x, transform.anchoredPosition.y - moveAmount);
+            }
+
+            FillWithStats(true);
+            slot.slotGroup.alpha = 1;
+            
+            
         }
     }
 }

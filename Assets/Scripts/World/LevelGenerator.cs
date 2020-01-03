@@ -36,7 +36,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
             while (encounters.Contains(encounter)) {
                 encounter++;
                 if (encounter > maxSets) {
-                    encounter = 1;
+                    encounter = 2;
                 }
             }
 
@@ -88,7 +88,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
             else if (setObject.background.Any(x => x == layer)) parent = set.background.transform;
 
             for (int i = layer.amountNegative * -1; i <= layer.amountPositive; i++) {
-                GameObject obj = Instantiate(RandomFromList.Get(layer.prefabs), parent);
+                GameObject obj = Instantiate(layer.prefabs.GetRandom(), parent);
                 obj.transform.localPosition = new Vector3(layer.origin.x + (layer.offset * i), layer.origin.y, layer.origin.z);
             }
 
@@ -148,7 +148,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
                     levelSet = areaObject.character;
                     break;
                 case LevelType.Trap:
-                    levelSet = RandomFromList.Get(areaObject.traps);
+                    levelSet = areaObject.traps.GetRandom();
                     break;
                 default:
                     break;
