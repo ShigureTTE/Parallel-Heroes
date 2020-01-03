@@ -64,7 +64,7 @@ public class EnemyAI {
 
         //Target has been acquired. Just need an attack to use.
         if (action.attack == null) {
-            if (availableSpells.Count > 0 && Random.Range(0, 101) >= (stats.spellUser ? 15 : 70)) {
+            if (availableSpells.Count > 0 && Random.Range(0, 101) >= (stats.spellUser ? 15 : 85)) {
                 action.attack = availableSpells.GetRandom();
                 action.attackType = AttackType.Spell;
             }
@@ -74,7 +74,7 @@ public class EnemyAI {
             }
         }
 
-        if (Random.Range(0, 101) >= (stats.likesToBlock ? 5 : 70)) {
+        if (Random.Range(0, 101) >= (stats.likesToBlock ? 5 : 93)) {
             action.attack = stats.normalAttack;
             action.attackType = AttackType.Block;
         }

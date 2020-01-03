@@ -13697,6 +13697,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AstrellaContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 4564747021644058568, guid: 3993232220c7505448a086a82c0bad48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4564747021644058167, guid: 3993232220c7505448a086a82c0bad48,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13751,6 +13756,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610407523816958155, guid: 3993232220c7505448a086a82c0bad48,
+        type: 3}
+      propertyPath: currentLane
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3993232220c7505448a086a82c0bad48, type: 3}
@@ -29226,6 +29236,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8143834891355485462, guid: 81990c79523ae21499aae804e21f84f4,
+        type: 3}
+      propertyPath: currentLane
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81990c79523ae21499aae804e21f84f4, type: 3}
 --- !u!1001 &7802507010228598224
@@ -29461,6 +29476,11 @@ PrefabInstance:
     - target: {fileID: 4446058236351736865, guid: a86ca3fc2d3f02841a988bff21ead21e,
         type: 3}
       propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491815519009066740, guid: a86ca3fc2d3f02841a988bff21ead21e,
+        type: 3}
+      propertyPath: currentLane
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -178,7 +178,7 @@ public class UIFiller : MonoBehaviour {
 
             Tween moveUp = null;
             foreach (CharacterSlot characterSlot in slotsBelow) {
-                moveUp = characterSlot.slotGroup.transform.DOLocalMoveY(transform.localPosition.y + moveAmount, moveSpeed).SetEase(moveEase);
+                moveUp = characterSlot.slotGroup.transform.DOLocalMoveY(characterSlot.slotGroup.transform.localPosition.y + moveAmount, moveSpeed).SetEase(moveEase);
             }
 
             if (moveUp != null) {
@@ -187,17 +187,19 @@ public class UIFiller : MonoBehaviour {
             else {
                 yield return slotAlpha.WaitForCompletion();
             }
-                    
-            foreach (CharacterSlot characterSlot in slotsBelow) {
-                RectTransform rt = (RectTransform)characterSlot.slotGroup.transform;
-                rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, rt.anchoredPosition.y - moveAmount);
+                
+            if (slotsBelow.Count > 1) {
+                foreach (CharacterSlot characterSlot in slotsBelow) {
+                    RectTransform rt = (RectTransform)characterSlot.slotGroup.transform;
+                    rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, rt.anchoredPosition.y - moveAmount);
+                }
             }
 
-            FillWithStats(true);
             if (slotsBelow.Any(x => x.AssignedCharacter != null)) {
                 slot.slotGroup.alpha = 1;
             }
-                               
+            FillWithStats(true);
+                                          
         }
     }
 }

@@ -155,6 +155,12 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
         if (firstTurn == false) {
             AdvanceTurnIndex();
         }
+
+        List<CharacterBase> characterList = GetCharacterList();
+
+        foreach (CharacterBase character in characterList) {
+            laneMover.SetCharacterToLane(character, character.Lane, character.Faction == Faction.Player ? player : enemy);
+        }
         
         while (turnOrder[turnIndex].IsDead) {
             AdvanceTurnIndex();
