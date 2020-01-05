@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35193cdc262737245ad55697aedf3e63, type: 3}
+  m_Name: Flynn
+  m_EditorClassIdentifier: 
+  characterName: Flynn
+  gender: 2
+  role: Puppeteer
+  weapon: Puppets
+  description: In a dark, seemingly abandoned workshop lives Flynn. The only thing
+    they ever do is craft autonomous puppets for use in the war. Some say Flynn is
+    actually a puppet themself, who took their creator's life.
+  maximumHealth: 45
+  maximumMP: 60
+  attack: 75
+  defense: 50
+  resistance: 75
+  skill: 60
+  speed: 50
+  wantsToLive: 0
+  hatesSelfDamage: 0
+  hatesBlockers: 0
+  likesPreferredLane: 0
+  goesForKill: 0
+  hider: 0
+  likesToBlock: 0
+  spellUser: 0
+  normalAttack:
+    type: 0
+    attackName: 
+    preferredLane: 2
+    element: 1
+    rangeType: 0
+    mPCost: 0
+    basePower: 55
+    comboCharacter: {fileID: 0}
+  spells:
+  - type: 1
+    attackName: Autonomous Puppet
+    preferredLane: 2
+    element: 1
+    rangeType: 1
+    mPCost: 10
+    basePower: 65
+    comboCharacter: {fileID: 0}
+  - type: 1
+    attackName: Million Needles
+    preferredLane: 4
+    element: 0
+    rangeType: 0
+    mPCost: 20
+    basePower: 80
+    comboCharacter: {fileID: 0}
+  combos: []
