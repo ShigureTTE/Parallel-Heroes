@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35193cdc262737245ad55697aedf3e63, type: 3}
-  m_Name: Ellie
+  m_Name: Lis
   m_EditorClassIdentifier: 
-  characterName: Ellie
+  characterName: Lis
   gender: 1
-  role: Baker
-  weapon: Flour
-  description: Where do you go for the best bread and cakes? That's right, Ellie's
-    bakery. She has developed a special technique to combine traditional baking with
-    the use of magic.
-  maximumHealth: 65
-  maximumMP: 60
-  attack: 55
-  defense: 60
-  resistance: 60
-  skill: 35
-  speed: 50
+  role: Hunter
+  weapon: Bow
+  description: Like all children in her family, Lis was trained to be a hunter. She
+    quickly became the best hunter of the region. Lis has once taken down a wyvern
+    all by herself.
+  maximumHealth: 70
+  maximumMP: 50
+  attack: 60
+  defense: 45
+  resistance: 55
+  skill: 40
+  speed: 70
   wantsToLive: 0
   hatesSelfDamage: 0
   hatesBlockers: 0
@@ -37,27 +37,27 @@ MonoBehaviour:
   normalAttack:
     type: 0
     attackName: 
-    preferredLane: 2
+    preferredLane: 4
     element: 0
-    rangeType: 0
+    rangeType: 1
     mPCost: 0
-    basePower: 48
+    basePower: 50
     comboCharacter: {fileID: 0}
   spells:
   - type: 1
-    attackName: Flour Bomb
-    preferredLane: 2
-    element: 0
-    rangeType: 1
-    mPCost: 8
-    basePower: 60
+    attackName: Sneak Attack
+    preferredLane: 1
+    element: 1
+    rangeType: 0
+    mPCost: 9
+    basePower: 65
     comboCharacter: {fileID: 0}
   - type: 1
-    attackName: Cake Surprise
-    preferredLane: 1
-    element: 0
-    rangeType: 0
-    mPCost: 15
+    attackName: Magic Arrow
+    preferredLane: 2
+    element: 1
+    rangeType: 1
+    mPCost: 16
     basePower: 75
     comboCharacter: {fileID: 0}
   combos: []
