@@ -113,6 +113,8 @@ public class UIFiller : MonoBehaviour {
                 continue;
             }
 
+            slots[i].slotGroup.alpha = 1;
+
             CharacterSlot slot = slots[i];
             CharacterBase character = playerParty.characters[i];
 

@@ -47,6 +47,15 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
         }
     }
 
+    public void Regenerate() {
+        int index = sets.IndexOf(Game.Instance.CurrentLevelSet);
+        for (int i = index + 1; i < sets.Count; i++) {
+            Destroy(sets[i].gameObject);
+            CreateLevelTypeRanges();
+            Generate(i);
+        }
+    }
+
     private void DecideEncounters() {
         encounters = new int[maxEncounters];
 
@@ -88,10 +97,10 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
         }
     }
 
-    private void Generate() {
-        if (generatedSets >= maxSets) return; //GENERATE EXIT
+    private void Generate(int index = 0) {
+        if (generatedSets >= maxSets && index == 0) return; //GENERATE EXIT
 
-        generatedSets++;
+        if (index == 0)generatedSets++;
 
         GameObject go = Instantiate(emptyPrefab, transform);
         LevelSet set = go.GetComponent<LevelSet>();
@@ -123,7 +132,12 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
             }
         }
 
-        sets.Add(set);
+        if (index == 0) {
+            sets.Add(set);
+        }
+        else {
+            sets[index] = set;
+        }
 
         int setIndex = sets.IndexOf(set);
 
@@ -139,7 +153,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
 
         if (encounters.Contains(generatedSets)) {
             if (hasSpawnedCharacter == false && System.Array.IndexOf(encounters, generatedSets) == encounters.Length - 1 && BattleSystem.Instance.PlayerParty.characters.Count < 4) {
-                type = LevelType.Battle; //FIX
+                type = LevelType.Character;
             }
             else {
                 type = Probability.Range(levelTypeRanges);

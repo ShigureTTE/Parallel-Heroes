@@ -68,7 +68,7 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
         filler.FillWithStats();
     }
 
-    private void SetupPartyPlayer() {
+    public void SetupPartyPlayer() {
         playerParty.ResetCharacters();
 
         foreach (CharacterBase character in playerParty.characters) {

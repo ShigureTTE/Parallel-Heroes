@@ -13,7 +13,7 @@ Properties {
 		}
 		LOD 200
 
-		Cull Off
+		Cull off
 
 		CGPROGRAM
 		// Lambert lighting model, and enable shadows on all light types
@@ -32,7 +32,7 @@ Properties {
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 			o.Albedo = c.rgb;
 			o.Alpha = c.a;
-			clip(c.a - _Cutoff);
+			clip(o.Alpha - _Cutoff);
 		}
 		ENDCG
 	}

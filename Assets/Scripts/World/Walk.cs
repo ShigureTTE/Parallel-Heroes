@@ -79,31 +79,24 @@ public class Walk : MonoBehaviour {
     private IEnumerator StartWalkingCoroutine() {       
         Transform leader = party.characters[0].transform;
 
-        Tween rotate = null;
-        if (party.characters.Count > 1) {
-            rotate = leader.DOScaleX(-1, rotateSpeed).SetEase(rotateEase);
-            yield return rotate.WaitForCompletion();
+        //Tween rotate = null;
+        //if (party.characters.Count > 1) {
+        //    rotate = leader.DOScaleX(-1, rotateSpeed).SetEase(rotateEase);
+        //    yield return rotate.WaitForCompletion();
 
-            yield return new WaitForSecondsRealtime(waitAfterRotate);
-        }
+        //    yield return new WaitForSecondsRealtime(waitAfterRotate);
+        //}
 
-        int iterator = 0;
-        while (iterator < jumpAmount) {
-            Tween jump = leader.DOLocalMoveY(characterJumpHeight, jumpSpeed).SetEase(jumpEase);
-            yield return jump.WaitForCompletion();
-            jump = jump = leader.DOLocalMoveY(0, jumpSpeed).SetEase(jumpEase);
-            yield return jump.WaitForCompletion();
-            iterator++;
-        }
+        yield return StartCoroutine(Jump.Instance.JumpCoroutine(leader));
 
         yield return new WaitForSecondsRealtime(waitAfterJump);
 
-        if (party.characters.Count > 1) {
-            rotate = leader.DOScaleX(1, rotateSpeed).SetEase(rotateEase);
-            yield return rotate.WaitForCompletion();
+        //if (party.characters.Count > 1) {
+        //    rotate = leader.DOScaleX(1, rotateSpeed).SetEase(rotateEase);
+        //    yield return rotate.WaitForCompletion();
 
-            yield return new WaitForSecondsRealtime(waitAfterRotate);
-        }
+        //    yield return new WaitForSecondsRealtime(waitAfterRotate);
+        //}
 
         Tween cameraTween = cameraContainer.DOMove(new Vector3(cameraContainer.position.x + smoothing, cameraContainer.position.y, cameraContainer.position.z), smoothTime).SetEase(cameraEase);
         walking = true;
@@ -140,14 +133,7 @@ public class Walk : MonoBehaviour {
         exclamationScale = exclamation.DOScaleX(0, scaleSpeed).SetEase(scaleEase);
         yield return exclamationScale.WaitForCompletion();
 
-        int iterator = 0;
-        while (iterator < jumpAmount) {
-            Tween jump = party.characters[0].transform.DOLocalMoveY(characterJumpHeight, jumpSpeed).SetEase(jumpEase);
-            yield return jump.WaitForCompletion();
-            jump = jump = party.characters[0].transform.DOLocalMoveY(0, jumpSpeed).SetEase(jumpEase);
-            yield return jump.WaitForCompletion();
-            iterator++;
-        }
+        yield return StartCoroutine(Jump.Instance.JumpCoroutine(party.characters[0].transform));
 
         yield return new WaitForSecondsRealtime(waitAfterJump);
 

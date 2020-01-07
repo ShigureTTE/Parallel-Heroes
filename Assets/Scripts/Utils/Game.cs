@@ -6,11 +6,16 @@ public class Game : DontDestroySingleton<Game> {
 
     public GameState State { get; private set; }
     public GameObject CameraContainer { get; private set; }
+    public Party PlayerParty { get; private set; }
     public LevelSet CurrentLevelSet { get; set; }
 
     private void Awake() {
         State = GameState.Walk;
         CameraContainer = GameObject.FindGameObjectWithTag(NYRA.Tag.CameraContainer);
+    }
+
+    private void Start() {
+        PlayerParty = BattleSystem.Instance.PlayerParty;
     }
 
     public void SetEncounter() {
@@ -59,6 +64,7 @@ public class Game : DontDestroySingleton<Game> {
 
     private void Character() {
         State = GameState.Character;
-        //CharacterEncounter.Instance.Encounter();
+        IEncounter encounter = CurrentLevelSet.encounterObjects.GetComponentInChildren<IEncounter>();
+        encounter.Encounter();
     }
 }

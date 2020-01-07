@@ -195,6 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2254856687573101988}
+  - component: {fileID: 2100402487133547328}
   m_Layer: 0
   m_Name: PrisonCell
   m_TagString: Untagged
@@ -219,6 +220,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &2100402487133547328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2959293683207479223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fa87ae44f04a9244891fcd69a0143bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomCharacter: {fileID: 689392701}
+  doorTweener: {fileID: 3359398164644854076}
+  jumpAmount: 7
+  jumpStrength: 0.05
+  outOfCellDistance: 0.35
+  outOfCellSpeed: 0.6
+  waitAfterAction: 0.4
 --- !u!1 &6450575212119940213
 GameObject:
   m_ObjectHideFlags: 0
