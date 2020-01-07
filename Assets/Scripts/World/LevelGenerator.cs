@@ -79,6 +79,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
         layers.AddRange(setObject.foreground);
         layers.AddRange(setObject.antiVoid);
         layers.AddRange(setObject.background);
+        layers.AddRange(setObject.guaranteedSpawns);
 
         foreach (LevelLayer layer in layers) {
             Transform parent = null;
@@ -86,6 +87,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
             if (setObject.foreground.Any(x => x == layer)) parent = set.foreground.transform;
             else if (setObject.antiVoid.Any(x => x == layer)) parent = set.antiVoid.transform;
             else if (setObject.background.Any(x => x == layer)) parent = set.background.transform;
+            else parent = set.transform;
 
             for (int i = layer.amountNegative * -1; i <= layer.amountPositive; i++) {
                 GameObject obj = Instantiate(layer.prefabs.GetRandom(), parent);

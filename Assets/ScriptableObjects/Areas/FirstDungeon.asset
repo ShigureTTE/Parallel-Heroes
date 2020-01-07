@@ -16,7 +16,7 @@ MonoBehaviour:
   maximumSets: 12
   minimumEncounters: 3
   maximumEncounters: 4
-  normalLevel: {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
+  normalLevel: {fileID: 11400000, guid: c8d84a7de5c6eb74baea31fc8cb28bcd, type: 2}
   battle: {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
   exit: {fileID: 0}
   branchingPath: {fileID: 0}

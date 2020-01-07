@@ -79,10 +79,13 @@ public class Walk : MonoBehaviour {
     private IEnumerator StartWalkingCoroutine() {       
         Transform leader = party.characters[0].transform;
 
-        Tween rotate = leader.DOScaleX(-1, rotateSpeed).SetEase(rotateEase);
-        yield return rotate.WaitForCompletion();
+        Tween rotate = null;
+        if (party.characters.Count > 1) {
+            rotate = leader.DOScaleX(-1, rotateSpeed).SetEase(rotateEase);
+            yield return rotate.WaitForCompletion();
 
-        yield return new WaitForSecondsRealtime(waitAfterRotate);
+            yield return new WaitForSecondsRealtime(waitAfterRotate);
+        }
 
         int iterator = 0;
         while (iterator < jumpAmount) {
@@ -95,10 +98,12 @@ public class Walk : MonoBehaviour {
 
         yield return new WaitForSecondsRealtime(waitAfterJump);
 
-        rotate = leader.DOScaleX(1, rotateSpeed).SetEase(rotateEase);
-        yield return rotate.WaitForCompletion();
+        if (party.characters.Count > 1) {
+            rotate = leader.DOScaleX(1, rotateSpeed).SetEase(rotateEase);
+            yield return rotate.WaitForCompletion();
 
-        yield return new WaitForSecondsRealtime(waitAfterRotate);
+            yield return new WaitForSecondsRealtime(waitAfterRotate);
+        }
 
         Tween cameraTween = cameraContainer.DOMove(new Vector3(cameraContainer.position.x + smoothing, cameraContainer.position.y, cameraContainer.position.z), smoothTime).SetEase(cameraEase);
         walking = true;

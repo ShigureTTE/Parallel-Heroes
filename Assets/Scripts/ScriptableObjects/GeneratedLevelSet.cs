@@ -13,6 +13,7 @@ public class GeneratedLevelSet : ScriptableObject {
     public List<LevelLayer> foreground;
     public List<LevelLayer> antiVoid;
     public List<LevelLayer> background;
+    public List<LevelLayer> guaranteedSpawns;
 }
 
 
