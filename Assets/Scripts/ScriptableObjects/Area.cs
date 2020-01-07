@@ -14,15 +14,13 @@ public class Area : ScriptableObject {
     public int maximumEncounters;
 
     [Header("Level Sets")]
-    public GeneratedLevelSet normalLevel;
-    public GeneratedLevelSet battle;
-    public GeneratedLevelSet exit;
-    public GeneratedLevelSet branchingPath;
-    public GeneratedLevelSet safeZone;
-    public GeneratedLevelSet treasure;
-    public GeneratedLevelSet magicFountain;
-    public GeneratedLevelSet storageRoom;
-    public GeneratedLevelSet shop;
-    public GeneratedLevelSet character;
-    public List<GeneratedLevelSet> traps;
+    public EncounterSet normalLevel;
+    public List<EncounterSet> encounters;
+}
+
+[System.Serializable]
+public class EncounterSet {
+    public List<GeneratedLevelSet> levelSetObject;
+    public LevelType type;
+    [Range(0, 100)]public int probability = 0;
 }

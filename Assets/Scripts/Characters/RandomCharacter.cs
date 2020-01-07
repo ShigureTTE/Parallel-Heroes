@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class RandomCharacter : MonoBehaviour {
 
-    public GameObject yes;
+    public SpawnableCharacters sc;
+    public bool onAwake = false;
 
     void Awake() {
-        Instantiate(yes, transform);
-        
+        if (onAwake) {
+            SpawnCharacter();
+        }        
     }
 
+    public void SpawnCharacter() {
 
+        BattleSystem.Instance.PlayerParty.ResetCharacters();
+        CharacterBase character = sc.characters.GetUniqueCharacter(BattleSystem.Instance.PlayerParty.characters);
+
+        GameObject go = Instantiate(character.gameObject, this.transform);
+        go.transform.localPosition = Vector3.zero;
+    }
 }

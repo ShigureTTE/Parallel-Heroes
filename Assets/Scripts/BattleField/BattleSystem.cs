@@ -56,6 +56,7 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
     private AIAction action;
 
     public CharacterBase CurrentTurn { get; private set; }
+    public Party PlayerParty { get { return playerParty; } }
     private int turnIndex;
 
     private void Start() {

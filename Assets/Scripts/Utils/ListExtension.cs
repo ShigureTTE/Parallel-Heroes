@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public static class ListExtensions {
     /// <summary>
@@ -20,4 +21,19 @@ public static class ListExtensions {
         int index = Random.Range(0, list.Count);
         return list[index];
     }
+
+    public static CharacterBase GetUniqueCharacter(this IList<CharacterBase> list, List<CharacterBase> existing) {
+        int index = Random.Range(0, list.Count);
+
+        while (existing.Any(x => x.stats.characterName == list[index].stats.characterName)) {
+            Debug.Log("do you even here");
+            index++;
+            if (index >= list.Count) {
+                index = 0;
+            }
+        }
+
+        return list[index];
+    }
+    
 }

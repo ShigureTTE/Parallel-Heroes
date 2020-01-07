@@ -12,18 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66fa63ba5ad800b43bc03035480c5b81, type: 3}
   m_Name: FirstDungeon
   m_EditorClassIdentifier: 
-  minimumSets: 8
-  maximumSets: 12
-  minimumEncounters: 3
-  maximumEncounters: 4
-  normalLevel: {fileID: 11400000, guid: c8d84a7de5c6eb74baea31fc8cb28bcd, type: 2}
-  battle: {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
-  exit: {fileID: 0}
-  branchingPath: {fileID: 0}
-  safeZone: {fileID: 0}
-  treasure: {fileID: 0}
-  magicFountain: {fileID: 0}
-  storageRoom: {fileID: 0}
-  shop: {fileID: 0}
-  character: {fileID: 0}
-  traps: []
+  minimumSets: 3
+  maximumSets: 3
+  minimumEncounters: 2
+  maximumEncounters: 2
+  normalLevel:
+    levelSetObject:
+    - {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
+    type: 0
+    probability: 0
+  encounters:
+  - levelSetObject:
+    - {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
+    type: 1
+    probability: 5
+  - levelSetObject:
+    - {fileID: 11400000, guid: c8d84a7de5c6eb74baea31fc8cb28bcd, type: 2}
+    type: 10
+    probability: 2

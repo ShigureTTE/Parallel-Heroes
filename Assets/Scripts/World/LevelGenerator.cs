@@ -15,6 +15,8 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
     private int maxEncounters;
     private int generatedSets;
     private int[] encounters;
+    private LevelTypeRange[] levelTypeRanges;
+    private bool hasSpawnedCharacter = false;
 
     private void Awake() {
         maxSets = Random.Range(areaObject.minimumSets, areaObject.maximumSets + 1);
@@ -22,8 +24,26 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
         generatedSets = 0;
         DecideEncounters();
 
+        BattleSystem.Instance.PlayerParty.ResetCharacters();
+        CreateLevelTypeRanges();
+
         for (int i = 0; i < maximumSetsSpawned; i++) {
             Generate();
+        }
+    }
+
+    private void CreateLevelTypeRanges() {
+        levelTypeRanges = new LevelTypeRange[areaObject.encounters.Count];
+        for (int i = 0; i < areaObject.encounters.Count; i++) {
+
+            if (areaObject.encounters[i].type == LevelType.Character && BattleSystem.Instance.PlayerParty.characters.Count >= 4) {
+                continue;
+            }
+
+            levelTypeRanges[i] = new LevelTypeRange() {
+                Type = areaObject.encounters[i].type,
+                Weight = areaObject.encounters[i].probability
+            };
         }
     }
 
@@ -111,53 +131,31 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
 
     private GeneratedLevelSet GetLevelSetObject(LevelSet set) {
         LevelType type = LevelType.Normal;
-        GeneratedLevelSet levelSet = areaObject.normalLevel;
+        GeneratedLevelSet levelSet = areaObject.normalLevel.levelSetObject.GetRandom();
 
         if (encounters.Contains(generatedSets)) {
-            //GENERATE AN ENCOUNTER. ONLY BATTLES FOR NOW.
-
-            type = LevelType.Battle;
-
-            switch (type) {
-                case LevelType.Battle:
-                    levelSet = areaObject.battle;
-                    break;
-                case LevelType.Exit:
-                    levelSet = areaObject.exit;
-                    break;
-                case LevelType.BranchingPath:
-                    levelSet = areaObject.branchingPath;
-                    break;
-                case LevelType.SafeZone:
-                    levelSet = areaObject.safeZone;
-                    break;
-                case LevelType.TreasureChest:
-                    levelSet = areaObject.treasure;
-                    break;
-                case LevelType.Mimic:
-                    levelSet = areaObject.treasure;
-                    break;
-                case LevelType.MagicFountain:
-                    levelSet = areaObject.magicFountain;
-                    break;
-                case LevelType.StorageRoom:
-                    levelSet = areaObject.storageRoom;
-                    break;
-                case LevelType.Shop:
-                    levelSet = areaObject.shop;
-                    break;
-                case LevelType.Character:
-                    levelSet = areaObject.character;
-                    break;
-                case LevelType.Trap:
-                    levelSet = areaObject.traps.GetRandom();
-                    break;
-                default:
-                    break;
+            if (hasSpawnedCharacter == false && System.Array.IndexOf(encounters, generatedSets) == encounters.Length - 1 && BattleSystem.Instance.PlayerParty.characters.Count < 4) {
+                type = LevelType.Character;
             }
+            else {
+                type = Probability.Range(levelTypeRanges);
+            }
+          
+            levelSet = areaObject.encounters.Single(x => x.type == type).levelSetObject.GetRandom();
+
+            CreateLevelTypeRanges();
+        }
+
+        if (type == LevelType.Character) {
+            hasSpawnedCharacter = true;
         }
 
         set.Type = type;
         return levelSet;
+    }
+
+    public T RandomEnumValue<T>() {
+        var v = System.Enum.GetValues(typeof(T));
+        return (T)v.GetValue(Random.Range(1, v.Length));
     }
 }
