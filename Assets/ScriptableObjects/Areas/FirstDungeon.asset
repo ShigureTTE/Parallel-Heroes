@@ -26,7 +26,3 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
     type: 1
     probability: 5
-  - levelSetObject:
-    - {fileID: 11400000, guid: c8d84a7de5c6eb74baea31fc8cb28bcd, type: 2}
-    type: 10
-    probability: 2

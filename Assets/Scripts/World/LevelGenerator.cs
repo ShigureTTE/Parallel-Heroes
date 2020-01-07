@@ -74,6 +74,10 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
 
             Generate();
         }
+
+        foreach (LevelSet levelSet in sets) {
+            levelSet.RefreshEncounter();
+        }
     }
 
     public void OnSetEnter(LevelSet set) {
@@ -107,7 +111,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
             if (setObject.foreground.Any(x => x == layer)) parent = set.foreground.transform;
             else if (setObject.antiVoid.Any(x => x == layer)) parent = set.antiVoid.transform;
             else if (setObject.background.Any(x => x == layer)) parent = set.background.transform;
-            else parent = set.transform;
+            else if (setObject.guaranteedSpawns.Any(x => x == layer)) parent = set.encounterObjects.transform;
 
             for (int i = layer.amountNegative * -1; i <= layer.amountPositive; i++) {
                 GameObject obj = Instantiate(layer.prefabs.GetRandom(), parent);
@@ -135,7 +139,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
 
         if (encounters.Contains(generatedSets)) {
             if (hasSpawnedCharacter == false && System.Array.IndexOf(encounters, generatedSets) == encounters.Length - 1 && BattleSystem.Instance.PlayerParty.characters.Count < 4) {
-                type = LevelType.Character;
+                type = LevelType.Battle; //FIX
             }
             else {
                 type = Probability.Range(levelTypeRanges);

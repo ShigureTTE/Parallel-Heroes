@@ -1,5 +1,6 @@
 ﻿public enum GameState {
     Walk,
     Battle,
-    Encounter
+    Encounter,
+    Character
 }

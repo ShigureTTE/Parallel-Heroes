@@ -43,6 +43,7 @@ public class Game : DontDestroySingleton<Game> {
             case LevelType.Shop:
                 break;
             case LevelType.Character:
+                Character();
                 break;
             case LevelType.Trap:
                 break;
@@ -54,5 +55,10 @@ public class Game : DontDestroySingleton<Game> {
     private void BattleEncounter() {
         State = GameState.Battle;
         BattleSystem.Instance.NewBattle();
+    }
+
+    private void Character() {
+        State = GameState.Character;
+        //CharacterEncounter.Instance.Encounter();
     }
 }

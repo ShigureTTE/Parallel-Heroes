@@ -13,12 +13,14 @@ public class RandomCharacter : MonoBehaviour {
         }        
     }
 
-    public void SpawnCharacter() {
+    public GameObject SpawnCharacter() {
 
         BattleSystem.Instance.PlayerParty.ResetCharacters();
         CharacterBase character = sc.characters.GetUniqueCharacter(BattleSystem.Instance.PlayerParty.characters);
 
         GameObject go = Instantiate(character.gameObject, this.transform);
         go.transform.localPosition = Vector3.zero;
+
+        return go;
     }
 }
