@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35193cdc262737245ad55697aedf3e63, type: 3}
+  m_Name: Slim
+  m_EditorClassIdentifier: 
+  characterName: Slim
+  gender: 0
+  role: Knight
+  weapon: Sword
+  description: Slim is a knight of great renown. He has fought more battles than
+    anyone else and his performance is usually a deciding factor. He always carries
+    his father's shield with him.
+  maximumHealth: 85
+  maximumMP: 40
+  attack: 70
+  defense: 85
+  resistance: 15
+  skill: 55
+  speed: 35
+  wantsToLive: 0
+  hatesSelfDamage: 0
+  hatesBlockers: 0
+  likesPreferredLane: 0
+  goesForKill: 0
+  hider: 0
+  likesToBlock: 0
+  spellUser: 0
+  normalAttack:
+    type: 0
+    attackName: 
+    preferredLane: 1
+    element: 0
+    rangeType: 0
+    mPCost: 0
+    basePower: 55
+    comboCharacter: {fileID: 0}
+  spells:
+  - type: 1
+    attackName: Shield Bash
+    preferredLane: 1
+    element: 0
+    rangeType: 0
+    mPCost: 5
+    basePower: 60
+    comboCharacter: {fileID: 0}
+  - type: 1
+    attackName: Flame Slash
+    preferredLane: 1
+    element: 1
+    rangeType: 1
+    mPCost: 15
+    basePower: 85
+    comboCharacter: {fileID: 0}
+  combos: []
