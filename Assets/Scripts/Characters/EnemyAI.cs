@@ -40,24 +40,32 @@ public class EnemyAI {
         //I wasn't able to find anything, so let's try again.
         if (action.target == null) {
             action.target = playerParty.characters.GetRandom();
+            int iterator = 0;
+            int maxIterations = playerParty.characters.Count;
 
             if (stats.wantsToLive) {
                 while (PredictDieFromAttack(currentTurn) || action.target.IsDead) {
+                    if (iterator >= maxIterations) break;
                     action.target = playerParty.characters[IncrementNumber(playerParty, playerParty.characters.IndexOf(action.target))];
+                    iterator++;                   
                 }
             }
 
             if (stats.hatesSelfDamage) {
                 characterList = Calculator.GetCounterAttackers(action.target);
                 while (characterList.Count != 0 || action.target.IsDead) {
+                    if (iterator >= maxIterations) break;
                     action.target = playerParty.characters[IncrementNumber(playerParty, playerParty.characters.IndexOf(action.target))];
                     characterList = Calculator.GetCounterAttackers(action.target);
+                    iterator++;
                 }
             }
 
             if (stats.hatesBlockers && !stats.hatesSelfDamage) {
                 while (action.target.IsBlocking || action.target.IsDead) {
+                    if (iterator >= maxIterations) break;
                     action.target = playerParty.characters[IncrementNumber(playerParty, playerParty.characters.IndexOf(action.target))];
+                    iterator++;
                 }
             }
         }
