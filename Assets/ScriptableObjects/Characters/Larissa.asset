@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35193cdc262737245ad55697aedf3e63, type: 3}
+  m_Name: Larissa
+  m_EditorClassIdentifier: 
+  characterName: Larissa
+  gender: 1
+  role: Priest
+  weapon: Spirits
+  description: 'Nobody has a better connection with spirits than Larissa. This spiritual
+    link has granted her a longer than usual lifespan. She travels from village to
+    village to help out with all sorts of problems caused by spirits.
+
+'
+  maximumHealth: 50
+  maximumMP: 70
+  attack: 60
+  defense: 40
+  resistance: 70
+  skill: 40
+  speed: 55
+  wantsToLive: 0
+  hatesSelfDamage: 0
+  hatesBlockers: 0
+  likesPreferredLane: 0
+  goesForKill: 0
+  hider: 0
+  likesToBlock: 0
+  spellUser: 0
+  normalAttack:
+    type: 0
+    attackName: 
+    preferredLane: 1
+    element: 1
+    rangeType: 1
+    mPCost: 0
+    basePower: 50
+    comboCharacter: {fileID: 0}
+  spells:
+  - type: 1
+    attackName: Vicious Spirit
+    preferredLane: 2
+    element: 1
+    rangeType: 0
+    mPCost: 10
+    basePower: 65
+    comboCharacter: {fileID: 0}
+  - type: 1
+    attackName: Spirit of Death
+    preferredLane: 4
+    element: 1
+    rangeType: 1
+    mPCost: 18
+    basePower: 80
+    comboCharacter: {fileID: 0}
+  combos: []
