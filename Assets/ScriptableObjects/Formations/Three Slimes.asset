@@ -19,7 +19,10 @@ MonoBehaviour:
   enemies:
   - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
     lane: 1
+    minimumPlayerCharacters: 1
   - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
     lane: 2
+    minimumPlayerCharacters: 2
   - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
     lane: 2
+    minimumPlayerCharacters: 3

@@ -19,6 +19,8 @@ public class EnemySpawner : MonoBehaviour {
         enemyParty.ForceLevel(formation);
 
         for (int i = 0; i < formation.enemies.Count; i++) {
+            if (formation.enemies[i].minimumPlayerCharacters > Game.Instance.PlayerParty.characters.Count) continue;
+
             GameObject go = pooler.SpawnFromPool(formation.enemies[i].enemy.tag, enemyParty.transform, spawnLocation, Quaternion.identity);
             CharacterBase cb = go.GetComponent<CharacterBase>();
             cb.Lane = formation.enemies[i].lane;

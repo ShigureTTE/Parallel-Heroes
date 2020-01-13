@@ -104,7 +104,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
 
         GameObject go = Instantiate(emptyPrefab, transform);
         LevelSet set = go.GetComponent<LevelSet>();
-        GeneratedLevelSet setObject = GetLevelSetObject(set);
+        GeneratedLevelSet setObject = GetLevelSetObject(set, index == 0 ? generatedSets : index);
         
         GameObject ground = Instantiate(setObject.groundPrefab, set.transform);
 
@@ -147,12 +147,12 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
         }
     }
 
-    private GeneratedLevelSet GetLevelSetObject(LevelSet set) {
+    private GeneratedLevelSet GetLevelSetObject(LevelSet set, int index) {
         LevelType type = LevelType.Normal;
         GeneratedLevelSet levelSet = areaObject.normalLevel.levelSetObject.GetRandom();
 
-        if (encounters.Contains(generatedSets)) {
-            if (hasSpawnedCharacter == false && System.Array.IndexOf(encounters, generatedSets) == encounters.Length - 1 && BattleSystem.Instance.PlayerParty.characters.Count < 4) {
+        if (encounters.Contains(index)) {
+            if (hasSpawnedCharacter == false && System.Array.IndexOf(encounters, index) == encounters.Length - 1 && BattleSystem.Instance.PlayerParty.characters.Count < 4) {
                 type = LevelType.Character;
             }
             else {

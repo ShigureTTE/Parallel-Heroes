@@ -606,7 +606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29867c4cfa6b2554aaed4d005b875dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  formation: {fileID: 11400000, guid: e8212a6d6de91a248aacf1c4e7ab9941, type: 2}
+  formation: {fileID: 11400000, guid: 3d294c34ce9680042a339ace87d621ec, type: 2}
   enemyParty: {fileID: 120493812}
 --- !u!114 &61358419
 MonoBehaviour:

@@ -21,4 +21,5 @@ public class BattleFormation : ScriptableObject {
 public struct EnemyFormation {
     public ObjectPool enemy;
     public Lane lane;
+    [Range(1,4)] public int minimumPlayerCharacters;
 }
