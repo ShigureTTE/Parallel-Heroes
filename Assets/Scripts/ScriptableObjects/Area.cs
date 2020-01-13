@@ -13,6 +13,9 @@ public class Area : ScriptableObject {
     public int minimumEncounters;
     public int maximumEncounters;
 
+    [Header("Battle Settings")]
+    public List<BattleFormation> battleFormations;
+
     [Header("Level Sets")]
     public EncounterSet normalLevel;
     public List<EncounterSet> encounters;

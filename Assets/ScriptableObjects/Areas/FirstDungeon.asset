@@ -16,6 +16,8 @@ MonoBehaviour:
   maximumSets: 8
   minimumEncounters: 2
   maximumEncounters: 3
+  battleFormations:
+  - {fileID: 11400000, guid: 3d294c34ce9680042a339ace87d621ec, type: 2}
   normalLevel:
     levelSetObject:
     - {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}

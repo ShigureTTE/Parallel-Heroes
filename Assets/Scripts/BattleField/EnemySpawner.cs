@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
-    [SerializeField] private BattleFormation formation;
+    [SerializeField] private Area currentArea;
     [SerializeField] private Party enemyParty;
 
-    ObjectPooler pooler;
+    private ObjectPooler pooler;
+    private BattleFormation formation;
 
     private readonly string letters = "ABCDEFGHIJK";
 
     private void Awake() {
         pooler = ObjectPooler.Instance;
+        formation = currentArea.battleFormations.GetRandom();
     }
 
     public void SpawnNewFormation(Vector3 spawnLocation = new Vector3()) {
+        formation = currentArea.battleFormations.GetRandom();
+
         enemyParty.ForceLevel(formation);
 
         for (int i = 0; i < formation.enemies.Count; i++) {
@@ -39,4 +43,7 @@ public class EnemySpawner : MonoBehaviour {
         return formation.experience;
     }
 
+    public void SetArea(Area area) {
+        currentArea = area;
+    }
 }

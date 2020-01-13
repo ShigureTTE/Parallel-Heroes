@@ -50,9 +50,10 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
     public void Regenerate() {
         int index = sets.IndexOf(Game.Instance.CurrentLevelSet);
         for (int i = index + 1; i < sets.Count; i++) {
-            Destroy(sets[i].gameObject);
+            LevelSet set = sets[i];
+            Destroy(set.gameObject);
             CreateLevelTypeRanges();
-            Generate(i);
+            Generate(set.Index);
         }
     }
 
@@ -104,6 +105,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
 
         GameObject go = Instantiate(emptyPrefab, transform);
         LevelSet set = go.GetComponent<LevelSet>();
+        set.Index = index == 0 ? generatedSets : index;
         GeneratedLevelSet setObject = GetLevelSetObject(set, index == 0 ? generatedSets : index);
         
         GameObject ground = Instantiate(setObject.groundPrefab, set.transform);
@@ -136,7 +138,8 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
             sets.Add(set);
         }
         else {
-            sets[index] = set;
+            LevelSet oldSet = sets.Single(x => x.Index == index);
+            sets[sets.IndexOf(oldSet)] = set;
         }
 
         int setIndex = sets.IndexOf(set);

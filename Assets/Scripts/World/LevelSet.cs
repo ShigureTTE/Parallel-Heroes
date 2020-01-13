@@ -16,6 +16,7 @@ public class LevelSet : MonoBehaviour {
     public OnRefresh onRefreshEvent;
 
     public LevelType Type { get; set; }
+    public int Index { get; set; }
 
     private void OnEnable() {
         generator = LevelGenerator.Instance;
