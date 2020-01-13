@@ -32,6 +32,7 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
     [SerializeField] private float waitBetweenEnter;
 
     [Header("End Battle Settings")]
+    [SerializeField] private float recoverPercentage;
     [SerializeField] private ObjectPool coinStack;
     [SerializeField] private Vector3 coinOrigin;
     [SerializeField] private float waitBetweenActions;
@@ -228,9 +229,27 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
         infoBox.GainExperienceText(experience);
         yield return new WaitForSecondsRealtime(waitBetweenText);
 
+        RecoverAfterBattle();
+        infoBox.RecoverdSomeHP();
+        yield return new WaitForSecondsRealtime(waitBetweenText);
+
         ShowHideLines(false);
         healthMenu.PlayTweenReversed();
         Game.Instance.SetWalking();
+    }
+
+    private void RecoverAfterBattle() {
+        foreach (CharacterBase character in player) {
+            int maxHealth = Calculator.GetStat(character.stats.maximumHealth, playerParty.Level, true);
+            character.SetHealth(character.CurrentHealth + Mathf.RoundToInt((maxHealth * recoverPercentage)) + 1);
+            if (character.CurrentHealth > maxHealth) character.SetHealth(maxHealth);
+
+            int maxMana = Calculator.GetStat(character.stats.maximumMP, playerParty.Level, true);
+            character.SetMP(character.CurrentMP + Mathf.RoundToInt((maxMana * recoverPercentage)) + 1);
+            if (character.CurrentMP > maxMana) character.SetMP(maxMana);
+        }
+
+        UpdateStats();
     }
 
     private void ClearEnemyParty() {

@@ -109,6 +109,10 @@ public class InformationBox : MonoBehaviour {
         StartCoroutine(NewText(text));
     }
 
+    public void RecoverdSomeHP() {
+        StartCoroutine(NewText(IBConstants.recovered));
+    }
+
     public void ClearText() {
         StartCoroutine(NewText(""));
     }
@@ -144,4 +148,5 @@ public class IBConstants {
     public static readonly string gained = "Gained ";
     public static readonly string gold = " gold!";
     public static readonly string experience = " experience!";
+    public static readonly string recovered = "Recovered some HP and MP!";
 }
