@@ -75,8 +75,12 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
         foreach (CharacterBase character in playerParty.characters) {
             int level = character.Faction == Faction.Player ? playerParty.Level : enemyParty.Level;
 
-            character.SetHealth(Calculator.GetStat(character.stats.maximumHealth, level, true));
-            character.SetMP(Calculator.GetStat(character.stats.maximumMP, level, true));
+            if (character.Instantiated == false) {
+                character.SetHealth(Calculator.GetStat(character.stats.maximumHealth, level, true));
+                character.SetMP(Calculator.GetStat(character.stats.maximumMP, level, true));
+
+                character.Instantiated = true;
+            }
         }
     }
 

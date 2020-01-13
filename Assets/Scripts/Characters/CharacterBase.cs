@@ -12,6 +12,7 @@ public class CharacterBase : MonoBehaviour {
     public Party Party { get; set; }
     public bool IsBlocking { get; set; }
     public bool IsDead { get; set; }
+    public bool Instantiated { get; set; }
 
     [SerializeField] private SpriteRenderer rangeSprite;
     public SpriteRenderer RangeSprite { get { return rangeSprite; } }
@@ -49,5 +50,6 @@ public class CharacterBase : MonoBehaviour {
 
     public void SubtractMP(int manaCost) {
         CurrentMP -= manaCost;
+        if (CurrentMP <= 0) CurrentMP = 0;
     }
 }
