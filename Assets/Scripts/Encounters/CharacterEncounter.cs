@@ -19,7 +19,6 @@ public class CharacterEncounter : MonoBehaviour, IEncounter {
 
     public IEnumerator EncounterCoroutine() {
         GameObject character = randomCharacter.SpawnCharacter();
-        character.transform.parent = Game.Instance.PlayerParty.transform;
         doorTweener.PlayTween();
 
         yield return StartCoroutine(Jump.Instance.JumpCoroutine(character.transform, jumpAmount));
@@ -27,6 +26,7 @@ public class CharacterEncounter : MonoBehaviour, IEncounter {
         Tween outOfCell = character.transform.DOLocalJump(new Vector3(character.transform.localPosition.x, 0 , character.transform.localPosition.z - outOfCellDistance), jumpStrength, 1, outOfCellSpeed).SetEase(Ease.InOutQuart);
 
         yield return outOfCell.WaitForCompletion();
+        character.transform.parent = Game.Instance.PlayerParty.transform;
 
         yield return new WaitForSecondsRealtime(waitAfterAction);
 
