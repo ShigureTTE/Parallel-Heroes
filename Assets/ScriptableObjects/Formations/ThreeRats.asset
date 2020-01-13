@@ -10,13 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9c04b6969ed6f148a33f071a7cea84d, type: 3}
-  m_Name: One Slime
+  m_Name: ThreeRats
   m_EditorClassIdentifier: 
-  levelLowerThanPlayer: 0
-  minCoins: 2
-  maxCoins: 5
-  experience: 5
+  levelLowerThanPlayer: 2
+  minCoins: 5
+  maxCoins: 10
+  experience: 15
   enemies:
-  - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
+  - enemy: {fileID: 11400000, guid: 64bc1363030b57e4e85be02b476c9c64, type: 2}
     lane: 1
     minimumPlayerCharacters: 1
+  - enemy: {fileID: 11400000, guid: 64bc1363030b57e4e85be02b476c9c64, type: 2}
+    lane: 4
+    minimumPlayerCharacters: 2
+  - enemy: {fileID: 11400000, guid: 64bc1363030b57e4e85be02b476c9c64, type: 2}
+    lane: 4
+    minimumPlayerCharacters: 3

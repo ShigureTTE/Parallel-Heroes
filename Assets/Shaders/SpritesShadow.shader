@@ -13,7 +13,7 @@ Properties {
 		}
 		LOD 200
 
-		Cull off
+		Cull Off
 
 		CGPROGRAM
 		// Lambert lighting model, and enable shadows on all light types

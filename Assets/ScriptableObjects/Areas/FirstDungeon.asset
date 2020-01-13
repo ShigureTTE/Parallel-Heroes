@@ -17,7 +17,10 @@ MonoBehaviour:
   minimumEncounters: 2
   maximumEncounters: 3
   battleFormations:
+  - {fileID: 11400000, guid: 63a217685a32cd84da7eb2c829282f26, type: 2}
   - {fileID: 11400000, guid: 3d294c34ce9680042a339ace87d621ec, type: 2}
+  - {fileID: 11400000, guid: e8212a6d6de91a248aacf1c4e7ab9941, type: 2}
+  - {fileID: 11400000, guid: d4c36628ae820354691329d1b3b47203, type: 2}
   normalLevel:
     levelSetObject:
     - {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
@@ -27,7 +30,7 @@ MonoBehaviour:
   - levelSetObject:
     - {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
     type: 1
-    probability: 5
+    probability: 63
   - levelSetObject:
     - {fileID: 11400000, guid: c8d84a7de5c6eb74baea31fc8cb28bcd, type: 2}
     type: 10

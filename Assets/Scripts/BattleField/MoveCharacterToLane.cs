@@ -54,15 +54,6 @@ public class MoveCharacterToLane : MonoBehaviour {
             }
 
             Transform characterTransform = laneCharacters[i].transform;
-
-            switch (laneCharacters[i].Faction) {
-                case Faction.Player:
-                    characterTransform.localScale = new Vector3(1f, 1f, 1f);
-                    break;
-                case Faction.Enemy:
-                    characterTransform.localScale = new Vector3(-1f, 1f, 1f);
-                    break;
-            }
            
             characterTransform.DOMove(laneCharacters[i].Faction == Faction.Player ?
                 targetPosition.position : new Vector3(transform.position.x * 2 - targetPosition.position.x, targetPosition.position.y,targetPosition.position.z),

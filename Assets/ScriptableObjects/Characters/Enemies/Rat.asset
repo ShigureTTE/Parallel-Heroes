@@ -10,32 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35193cdc262737245ad55697aedf3e63, type: 3}
-  m_Name: Slime
+  m_Name: Rat
   m_EditorClassIdentifier: 
-  characterName: Slime
+  characterName: Rat
   gender: 2
   role: Monster
-  weapon: Goo
-  description: A simple monster. These little critters can be found almost anywhere.
-  maximumHealth: 35
+  weapon: Claws
+  description: A standard rat. They're deeply fond of cheese.
+  maximumHealth: 30
   maximumMP: 40
-  attack: 40
-  defense: 45
-  resistance: 45
-  skill: 35
-  speed: 50
+  attack: 45
+  defense: 40
+  resistance: 40
+  skill: 10
+  speed: 60
   wantsToLive: 0
-  hatesSelfDamage: 0
+  hatesSelfDamage: 1
   hatesBlockers: 0
-  likesPreferredLane: 1
-  goesForKill: 1
+  likesPreferredLane: 0
+  goesForKill: 0
   hider: 0
   likesToBlock: 0
   spellUser: 0
   normalAttack:
     type: 0
     attackName: 
-    preferredLane: 1
+    preferredLane: 2
     element: 0
     rangeType: 0
     mPCost: 0
@@ -43,18 +43,18 @@ MonoBehaviour:
     comboCharacter: {fileID: 0}
   spells:
   - type: 1
-    attackName: Slime Ball
-    preferredLane: 2
+    attackName: Spit
+    preferredLane: 4
     element: 0
-    rangeType: 0
-    mPCost: 6
+    rangeType: 1
+    mPCost: 8
     basePower: 65
     comboCharacter: {fileID: 0}
   - type: 1
-    attackName: Goo Cannon
-    preferredLane: 4
-    element: 1
-    rangeType: 1
+    attackName: Venom Bite
+    preferredLane: 1
+    element: 0
+    rangeType: 0
     mPCost: 12
     basePower: 70
     comboCharacter: {fileID: 0}

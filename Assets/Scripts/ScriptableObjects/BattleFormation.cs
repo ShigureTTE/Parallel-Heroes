@@ -6,7 +6,7 @@ using UnityEngine;
 public class BattleFormation : ScriptableObject {
 
     [Header("Party / AI Settings")]
-    public int level;
+    public int levelLowerThanPlayer;
 
     [Header("Reward Settings")]
     public int minCoins;

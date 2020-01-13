@@ -44,7 +44,7 @@ public class Party : MonoBehaviour {
         Gold += amount;
     }
 
-    public void ForceLevel(BattleFormation battleFormation) {
-        Level = battleFormation.level;
+    public void ForceLevel(int level) {
+        Level = level;
     }
 }

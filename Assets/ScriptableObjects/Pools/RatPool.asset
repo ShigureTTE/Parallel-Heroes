@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c552d977918b2748a28c4a6b464b8aa, type: 3}
-  m_Name: Slime
+  m_Name: RatPool
   m_EditorClassIdentifier: 
-  tag: slime
-  prefab: {fileID: 1917119462954272161, guid: 693f387c15966ff46b800899dcb7b34e, type: 3}
+  tag: rat
+  prefab: {fileID: 488670780967445374, guid: 8e0e9ae67059af546bac84af18664555, type: 3}
   size: 5

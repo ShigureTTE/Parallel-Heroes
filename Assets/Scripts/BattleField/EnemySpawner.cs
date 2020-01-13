@@ -20,7 +20,9 @@ public class EnemySpawner : MonoBehaviour {
     public void SpawnNewFormation(Vector3 spawnLocation = new Vector3()) {
         formation = currentArea.battleFormations.GetRandom();
 
-        enemyParty.ForceLevel(formation);
+        int level = Game.Instance.PlayerParty.Level - formation.levelLowerThanPlayer;
+        if (level <= 0) level = 1;
+        enemyParty.ForceLevel(level);
 
         for (int i = 0; i < formation.enemies.Count; i++) {
             if (formation.enemies[i].minimumPlayerCharacters > Game.Instance.PlayerParty.characters.Count) continue;
