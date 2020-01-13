@@ -10,19 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9c04b6969ed6f148a33f071a7cea84d, type: 3}
-  m_Name: SlimeSkeletonRat
+  m_Name: KnuppelAndSkeleton
   m_EditorClassIdentifier: 
   levelLowerThanPlayer: 1
-  minCoins: 5
+  minCoins: 6
   maxCoins: 10
-  experience: 14
+  experience: 15
   enemies:
-  - enemy: {fileID: 11400000, guid: e8e37dbe2de7da64889ed0f6de87315f, type: 2}
+  - enemy: {fileID: 11400000, guid: 3df57919d7662544a9051a2ad16c50f9, type: 2}
     lane: 2
     minimumPlayerCharacters: 1
-  - enemy: {fileID: 11400000, guid: cdf2ea3656697034bb63d6832049e4a1, type: 2}
-    lane: 2
-    minimumPlayerCharacters: 2
-  - enemy: {fileID: 11400000, guid: 64bc1363030b57e4e85be02b476c9c64, type: 2}
+  - enemy: {fileID: 11400000, guid: e8e37dbe2de7da64889ed0f6de87315f, type: 2}
     lane: 1
     minimumPlayerCharacters: 2

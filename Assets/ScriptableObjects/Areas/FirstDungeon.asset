@@ -24,6 +24,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e1df6d0c3ab2a9347a3b6403063077fd, type: 2}
   - {fileID: 11400000, guid: 36681a7ab5b13aa45b0eb89abafd9274, type: 2}
   - {fileID: 11400000, guid: f1170759c897fcd429d98d260880b616, type: 2}
+  - {fileID: 11400000, guid: fd5c2763651c9574c9175722a34992fd, type: 2}
+  - {fileID: 11400000, guid: fcb57c5f521813a43859255467044854, type: 2}
+  - {fileID: 11400000, guid: 2191d3722ea234c479674bb69ea0223c, type: 2}
   normalLevel:
     levelSetObject:
     - {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
@@ -37,4 +40,4 @@ MonoBehaviour:
   - levelSetObject:
     - {fileID: 11400000, guid: c8d84a7de5c6eb74baea31fc8cb28bcd, type: 2}
     type: 10
-    probability: 100
+    probability: 3
