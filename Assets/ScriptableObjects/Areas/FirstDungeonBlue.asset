@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: FirstDungeonBlue
   areaName: 1
-  minimumSets: 3
-  maximumSets: 3
-  minimumEncounters: 2
-  maximumEncounters: 2
+  minimumSets: 5
+  maximumSets: 7
+  minimumEncounters: 3
+  maximumEncounters: 4
   nextPossibleAreas:
   - {fileID: 11400000, guid: a119966dff5ed2b45802f850e0994d7b, type: 2}
   - {fileID: 11400000}
@@ -46,8 +46,8 @@ MonoBehaviour:
   - levelSetObject:
     - {fileID: 11400000, guid: ab20bbafa925455419befc37fa918c21, type: 2}
     type: 1
-    probability: 50
+    probability: 4
   - levelSetObject:
     - {fileID: 11400000, guid: 6281fac2ff5627944a30183eb584cc50, type: 2}
     type: 10
-    probability: 50
+    probability: 5
