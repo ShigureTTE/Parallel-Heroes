@@ -25,6 +25,7 @@ public class SceneTransition : MonoBehaviour {
         }
 
         Game.Instance.CurrentArea = nextArea;
+        Game.Instance.SetWalking();
 
         text.text = nextArea.areaName.ToString() + '\n' + floor + Game.Instance.FloorNumber.ToString();
 

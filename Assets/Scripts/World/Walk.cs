@@ -74,8 +74,6 @@ public class Walk : MonoBehaviour {
     private IEnumerator StartWalkingCoroutine() {       
         Transform leader = party.characters[0].transform;
 
-        Game.Instance.SetWalking();
-
         yield return StartCoroutine(Jump.Instance.JumpCoroutine(leader));
 
         yield return new WaitForSecondsRealtime(waitAfterJump);

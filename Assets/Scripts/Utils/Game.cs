@@ -19,7 +19,7 @@ public class Game : DontDestroySingleton<Game> {
         FloorNumber = 1;
         PlayerParty = GetComponentInChildren<Party>();
         CameraContainer = GameObject.FindGameObjectWithTag(NYRA.Tag.CameraContainer);
-        State = GameState.Exit; //Why no exit?
+        State = GameState.Walk;
     }
 
     public void SetEncounter() {
