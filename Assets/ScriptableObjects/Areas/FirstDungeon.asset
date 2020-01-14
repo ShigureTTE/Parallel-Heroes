@@ -49,4 +49,4 @@ MonoBehaviour:
   - levelSetObject:
     - {fileID: 11400000, guid: c8d84a7de5c6eb74baea31fc8cb28bcd, type: 2}
     type: 10
-    probability: 3
+    probability: 50

@@ -53,6 +53,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
         int index = sets.IndexOf(Game.Instance.CurrentLevelSet);
         for (int i = index + 1; i < sets.Count; i++) {
             LevelSet set = sets[i];
+            if (set.Type == LevelType.Exit) continue;
             Destroy(set.gameObject);
             CreateLevelTypeRanges();
             Generate(set.Index);
