@@ -7,13 +7,11 @@ public class EnemySpawner : MonoBehaviour {
     [SerializeField] private Area currentArea;
     [SerializeField] private Party enemyParty;
 
-    private ObjectPooler pooler;
     private BattleFormation formation;
 
     private readonly string letters = "ABCDEFGHIJK";
 
     private void Awake() {
-        pooler = ObjectPooler.Instance;
         formation = currentArea.battleFormations.GetRandom();
     }
 
@@ -27,7 +25,7 @@ public class EnemySpawner : MonoBehaviour {
         for (int i = 0; i < formation.enemies.Count; i++) {
             if (formation.enemies[i].minimumPlayerCharacters > Game.Instance.PlayerParty.characters.Count) continue;
 
-            GameObject go = pooler.SpawnFromPool(formation.enemies[i].enemy.tag, enemyParty.transform, spawnLocation, Quaternion.identity);
+            GameObject go = ObjectPooler.Instance.SpawnFromPool(formation.enemies[i].enemy.tag, enemyParty.transform, spawnLocation, Quaternion.identity);
             CharacterBase cb = go.GetComponent<CharacterBase>();
             cb.Lane = formation.enemies[i].lane;
             cb.IsDead = false;

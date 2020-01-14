@@ -14,7 +14,6 @@ public class Walk : MonoBehaviour {
 
     [Header("Walking Settings")]
     [SerializeField] private float walkSpeed;
-    [SerializeField] private Transform cameraContainer;
     [SerializeField] private float smoothing;
     [SerializeField] private float smoothTime;
     [SerializeField] private Ease cameraEase;
@@ -32,7 +31,6 @@ public class Walk : MonoBehaviour {
     [SerializeField] private float waitAfterRotate;
 
     [Header("Encounter Animation Settings")]
-    [SerializeField] private Transform exclamation;
     [SerializeField] private float scaleSpeed;
     [SerializeField] private Ease scaleEase;
     [SerializeField] private float maxHeightExclamation;
@@ -44,9 +42,11 @@ public class Walk : MonoBehaviour {
     private const string characterWalkKey = "CharacterWalk";
     private const string characterIdleKey = "Idle";
     private Party party;
+    private Transform cameraContainer;
 
     void Start() {
         party = Game.Instance.PlayerParty;
+        cameraContainer = Game.Instance.CameraContainer.transform;
         party.transform.position = partyPosition;
     }
 
@@ -74,26 +74,13 @@ public class Walk : MonoBehaviour {
     private IEnumerator StartWalkingCoroutine() {       
         Transform leader = party.characters[0].transform;
 
-        //Tween rotate = null;
-        //if (party.characters.Count > 1) {
-        //    rotate = leader.DOScaleX(-1, rotateSpeed).SetEase(rotateEase);
-        //    yield return rotate.WaitForCompletion();
-
-        //    yield return new WaitForSecondsRealtime(waitAfterRotate);
-        //}
+        Game.Instance.SetWalking();
 
         yield return StartCoroutine(Jump.Instance.JumpCoroutine(leader));
 
         yield return new WaitForSecondsRealtime(waitAfterJump);
 
-        //if (party.characters.Count > 1) {
-        //    rotate = leader.DOScaleX(1, rotateSpeed).SetEase(rotateEase);
-        //    yield return rotate.WaitForCompletion();
-
-        //    yield return new WaitForSecondsRealtime(waitAfterRotate);
-        //}
-
-        Tween cameraTween = cameraContainer.DOMove(new Vector3(cameraContainer.position.x + smoothing, cameraContainer.position.y, cameraContainer.position.z), smoothTime).SetEase(cameraEase);
+        Tween cameraTween = cameraContainer.transform.DOMove(new Vector3(cameraContainer.position.x + smoothing, cameraContainer.position.y, cameraContainer.position.z), smoothTime).SetEase(cameraEase);
         walking = true;
 
         foreach (CharacterBase character in party.characters) {
@@ -116,16 +103,16 @@ public class Walk : MonoBehaviour {
 
         yield return new WaitForSecondsRealtime(waitAfterRotate);
 
-        exclamation.DOLocalMoveY(exclamation.localPosition.y + maxHeightExclamation, exclamationMoveSpeed).SetEase(Ease.Linear).OnComplete(() => {
-            exclamation.DOLocalMoveY(exclamation.localPosition.y - maxHeightExclamation, 0);
+        party.Exclamation.DOLocalMoveY(party.Exclamation.localPosition.y + maxHeightExclamation, exclamationMoveSpeed).SetEase(Ease.Linear).OnComplete(() => {
+            party.Exclamation.DOLocalMoveY(party.Exclamation.localPosition.y - maxHeightExclamation, 0);
         });
 
-        Tween exclamationScale = exclamation.DOScaleX(1, scaleSpeed).SetEase(scaleEase);
+        Tween exclamationScale = party.Exclamation.DOScaleX(1, scaleSpeed).SetEase(scaleEase);
         yield return exclamationScale.WaitForCompletion();
 
         yield return new WaitForSecondsRealtime(waitInBetweenScale);
 
-        exclamationScale = exclamation.DOScaleX(0, scaleSpeed).SetEase(scaleEase);
+        exclamationScale = party.Exclamation.DOScaleX(0, scaleSpeed).SetEase(scaleEase);
         yield return exclamationScale.WaitForCompletion();
 
         yield return StartCoroutine(Jump.Instance.JumpCoroutine(party.characters[0].transform));

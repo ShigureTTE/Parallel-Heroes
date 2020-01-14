@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: FirstDungeon
   areaName: 0
-  minimumSets: 3
-  maximumSets: 3
-  minimumEncounters: 2
-  maximumEncounters: 2
+  minimumSets: 1
+  maximumSets: 1
+  minimumEncounters: 0
+  maximumEncounters: 0
   nextPossibleAreas:
   - {fileID: 11400000}
   battleFormations:

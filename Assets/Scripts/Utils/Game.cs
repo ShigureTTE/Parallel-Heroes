@@ -10,18 +10,16 @@ public class Game : DontDestroySingleton<Game> {
     public Party PlayerParty { get; set; }
     public LevelSet CurrentLevelSet { get; set; }
     public Area CurrentArea { get; set; }
+    public int FloorNumber { get; set; }
 
     private void Awake() {
         if (Instance != this) Destroy(gameObject);
         else DontDestroyOnLoad(gameObject);
 
+        FloorNumber = 1;
         PlayerParty = GetComponentInChildren<Party>();
         CameraContainer = GameObject.FindGameObjectWithTag(NYRA.Tag.CameraContainer);
-        State = GameState.Walk; //Why no exit?
-    }
-
-    private void OnLevelWasLoaded(int level) {        
-        State = GameState.Walk;
+        State = GameState.Exit; //Why no exit?
     }
 
     public void SetEncounter() {

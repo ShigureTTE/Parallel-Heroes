@@ -12,11 +12,14 @@ public class ScreenFade : MonoBehaviourSingleton<ScreenFade> {
     private CanvasGroup canvasGroup;
     private Tweener tweener;
 
+    public float WaitTime { get; private set; }
+
     private void Awake() {
         canvasGroup = GetComponent<CanvasGroup>();
         tweener = GetComponent<Tweener>();
 
         canvasGroup.alpha = 1;
+        WaitTime = tweener.tweenObjects[0].duration + tweener.tweenObjects[0].durationReverse;
         StartCoroutine(WaitFadeOnAwake());
     }
 
@@ -50,7 +53,7 @@ public class ScreenFade : MonoBehaviourSingleton<ScreenFade> {
             tweener.PlayTween();
         }
 
-        yield return new WaitForSecondsRealtime(tweener.tweenObjects[0].duration);
+        yield return new WaitForSecondsRealtime(WaitTime);
         onComplete?.Invoke();
     }
 }

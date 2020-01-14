@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Party : MonoBehaviour {
 
+    public Transform Exclamation;
+
     [SerializeField] private Faction faction;
     [SerializeField] private int expNeededForLevel = 100;
 
