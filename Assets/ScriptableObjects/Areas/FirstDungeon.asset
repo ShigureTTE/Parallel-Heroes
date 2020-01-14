@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66fa63ba5ad800b43bc03035480c5b81, type: 3}
   m_Name: FirstDungeon
   m_EditorClassIdentifier: 
-  minimumSets: 4
-  maximumSets: 4
-  minimumEncounters: 3
-  maximumEncounters: 3
+  minimumSets: 2
+  maximumSets: 2
+  minimumEncounters: 0
+  maximumEncounters: 0
+  sceneNames:
+  - DemoExit
   battleFormations:
   - {fileID: 11400000, guid: 63a217685a32cd84da7eb2c829282f26, type: 2}
   - {fileID: 11400000, guid: 3d294c34ce9680042a339ace87d621ec, type: 2}
@@ -32,6 +34,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
     type: 0
     probability: 0
+  exit:
+    levelSetObject:
+    - {fileID: 11400000, guid: a97a1e1ac72b24749bfd959c1fd97cb1, type: 2}
+    type: 2
+    probability: 0
   encounters:
   - levelSetObject:
     - {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
@@ -40,4 +47,4 @@ MonoBehaviour:
   - levelSetObject:
     - {fileID: 11400000, guid: c8d84a7de5c6eb74baea31fc8cb28bcd, type: 2}
     type: 10
-    probability: 3
+    probability: 100

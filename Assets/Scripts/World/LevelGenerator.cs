@@ -19,6 +19,8 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
     private bool hasSpawnedCharacter = false;
 
     private void Awake() {
+        Game.Instance.CurrentArea = areaObject;
+
         maxSets = Random.Range(areaObject.minimumSets, areaObject.maximumSets + 1);
         maxEncounters = Random.Range(areaObject.minimumEncounters, areaObject.maximumEncounters + 1);
         generatedSets = 0;
@@ -99,14 +101,21 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
     }
 
     private void Generate(int index = 0) {
-        if (generatedSets >= maxSets && index == 0) return; //GENERATE EXIT
+        if (generatedSets > maxSets && index == 0) return;
+
+        GeneratedLevelSet setObject = null;
+        GameObject go = Instantiate(emptyPrefab, transform);
+        LevelSet set = go.GetComponent<LevelSet>();
+
+        if (generatedSets == maxSets && index == 0) {
+            setObject = areaObject.exit.levelSetObject[0];
+            set.Type = LevelType.Exit;
+        } 
 
         if (index == 0)generatedSets++;
 
-        GameObject go = Instantiate(emptyPrefab, transform);
-        LevelSet set = go.GetComponent<LevelSet>();
         set.Index = index == 0 ? generatedSets : index;
-        GeneratedLevelSet setObject = GetLevelSetObject(set, index == 0 ? generatedSets : index);
+        if (setObject == null) setObject = GetLevelSetObject(set, index == 0 ? generatedSets : index);
         
         GameObject ground = Instantiate(setObject.groundPrefab, set.transform);
 
@@ -173,10 +182,5 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
 
         set.Type = type;
         return levelSet;
-    }
-
-    public T RandomEnumValue<T>() {
-        var v = System.Enum.GetValues(typeof(T));
-        return (T)v.GetValue(Random.Range(1, v.Length));
     }
 }

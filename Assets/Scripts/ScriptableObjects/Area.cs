@@ -13,11 +13,15 @@ public class Area : ScriptableObject {
     public int minimumEncounters;
     public int maximumEncounters;
 
+    [Header("Next Floor Settings")]
+    public List<string> sceneNames;
+
     [Header("Battle Settings")]
     public List<BattleFormation> battleFormations;
 
     [Header("Level Sets")]
     public EncounterSet normalLevel;
+    public EncounterSet exit;
     public List<EncounterSet> encounters;
 }
 

@@ -2,5 +2,6 @@
     Walk,
     Battle,
     Encounter,
-    Character
+    Character,
+    Exit
 }

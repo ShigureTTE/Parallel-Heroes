@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,29 +26,31 @@ public class ScreenFade : MonoBehaviourSingleton<ScreenFade> {
     }
 
     public void FadeIn() {
-        DoFade(true);
+        StartCoroutine(DoFade(true));
     }
 
     public void FadeOut() {
-        DoFade(false);
+        StartCoroutine(DoFade(false));
     }
 
     public void FadeIn(Action onComplete) {
-        DoFade(true);
-        onComplete();
+        StartCoroutine(DoFade(true, onComplete));
+
     }
 
     public void FadeOut(Action onComplete) {
-        DoFade(false);
-        onComplete();
+        StartCoroutine(DoFade(false, onComplete));
     }
 
-    private void DoFade(bool fadeIn) {
+    private IEnumerator DoFade(bool fadeIn, Action onComplete = null) {
         if (fadeIn) {
             tweener.PlayTweenReversed();
         }
         else {
             tweener.PlayTween();
         }
+
+        yield return new WaitForSecondsRealtime(tweener.tweenObjects[0].duration);
+        onComplete?.Invoke();
     }
 }

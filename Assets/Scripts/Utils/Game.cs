@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : DontDestroySingleton<Game> {
 
@@ -8,6 +9,7 @@ public class Game : DontDestroySingleton<Game> {
     public GameObject CameraContainer { get; private set; }
     public Party PlayerParty { get; private set; }
     public LevelSet CurrentLevelSet { get; set; }
+    public Area CurrentArea { get; set; }
 
     private void Awake() {
         State = GameState.Walk;
@@ -32,6 +34,7 @@ public class Game : DontDestroySingleton<Game> {
                 BattleEncounter();
                 break;
             case LevelType.Exit:
+                State = GameState.Exit;
                 break;
             case LevelType.BranchingPath:
                 break;
@@ -48,13 +51,16 @@ public class Game : DontDestroySingleton<Game> {
             case LevelType.Shop:
                 break;
             case LevelType.Character:
-                Character();
+                State = GameState.Character;
                 break;
             case LevelType.Trap:
                 break;
             default:
                 break;
         }
+
+        IEncounter encounter = CurrentLevelSet.encounterObjects.GetComponentInChildren<IEncounter>();
+        encounter.Encounter();
     }
 
     private void BattleEncounter() {
@@ -62,9 +68,7 @@ public class Game : DontDestroySingleton<Game> {
         BattleSystem.Instance.NewBattle();
     }
 
-    private void Character() {
-        State = GameState.Character;
-        IEncounter encounter = CurrentLevelSet.encounterObjects.GetComponentInChildren<IEncounter>();
-        encounter.Encounter();
+    public void ChangeScene(string sceneName, LoadSceneMode mode) {
+        SceneManager.LoadScene(sceneName, mode);
     }
 }
