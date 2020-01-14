@@ -6,6 +6,10 @@ using UnityEngine;
 public class Area : ScriptableObject {
 
     [Header("Area Settings")]
+    public string sceneName;
+    public AreaName areaName;
+
+    [Header("Generator Settings")]
     public int minimumSets;
     public int maximumSets;
 
@@ -14,7 +18,7 @@ public class Area : ScriptableObject {
     public int maximumEncounters;
 
     [Header("Next Floor Settings")]
-    public List<string> sceneNames;
+    public List<Area> nextPossibleAreas;
 
     [Header("Battle Settings")]
     public List<BattleFormation> battleFormations;

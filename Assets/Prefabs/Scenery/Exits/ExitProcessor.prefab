@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f1b4036df04a5443aeec61b658d27f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneChangeName: DemoExit

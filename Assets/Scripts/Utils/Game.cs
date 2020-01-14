@@ -7,17 +7,21 @@ public class Game : DontDestroySingleton<Game> {
 
     public GameState State { get; private set; }
     public GameObject CameraContainer { get; private set; }
-    public Party PlayerParty { get; private set; }
+    public Party PlayerParty { get; set; }
     public LevelSet CurrentLevelSet { get; set; }
     public Area CurrentArea { get; set; }
 
     private void Awake() {
-        State = GameState.Walk;
+        if (Instance != this) Destroy(gameObject);
+        else DontDestroyOnLoad(gameObject);
+
+        PlayerParty = GetComponentInChildren<Party>();
         CameraContainer = GameObject.FindGameObjectWithTag(NYRA.Tag.CameraContainer);
+        State = GameState.Walk; //Why no exit?
     }
 
-    private void Start() {
-        PlayerParty = BattleSystem.Instance.PlayerParty;
+    private void OnLevelWasLoaded(int level) {        
+        State = GameState.Walk;
     }
 
     public void SetEncounter() {
@@ -32,7 +36,7 @@ public class Game : DontDestroySingleton<Game> {
         switch (CurrentLevelSet.Type) {
             case LevelType.Battle:
                 BattleEncounter();
-                break;
+                return;
             case LevelType.Exit:
                 State = GameState.Exit;
                 break;

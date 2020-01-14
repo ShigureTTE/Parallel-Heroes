@@ -9,7 +9,6 @@ using System;
 public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
 
     [Header("Parties")]
-    [SerializeField] private Party playerParty;
     [SerializeField] private Party enemyParty;
 
     [Header("UI")]
@@ -45,6 +44,7 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
     [HideInInspector] public List<CharacterBase> player = new List<CharacterBase>();
     [HideInInspector] public List<CharacterBase> enemy = new List<CharacterBase>();
 
+    private Party playerParty;
     private MoveCharacterToLane laneMover;
     private List<CharacterBase> turnOrder;
     private EnemySpawner enemySpawner;
@@ -57,10 +57,11 @@ public class BattleSystem : MonoBehaviourSingleton<BattleSystem> {
     private AIAction action;
 
     public CharacterBase CurrentTurn { get; private set; }
-    public Party PlayerParty { get { return playerParty; } }
     private int turnIndex;
 
     private void Start() {
+        playerParty = Game.Instance.PlayerParty;
+
         laneMover = GetComponent<MoveCharacterToLane>();
         enemySpawner = GetComponent<EnemySpawner>();
         performAction = GetComponent<PerformAction>();

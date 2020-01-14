@@ -26,6 +26,12 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour
         }
     }
 
+    public static bool HasInstance {
+        get {
+            return instance != null;
+        }
+    }
+
     private void Awake() {
         instance = this as T;
     }

@@ -6,7 +6,6 @@ using DG.Tweening;
 public class Walk : MonoBehaviour {
 
     [Header("Party Settings")]
-    [SerializeField] private Party party;
     [SerializeField] private Vector3 partyPosition;
     [SerializeField] private float characterSpacing;
     [SerializeField] private float tweenDuration;
@@ -44,21 +43,17 @@ public class Walk : MonoBehaviour {
     private bool readyToExplore = false;
     private const string characterWalkKey = "CharacterWalk";
     private const string characterIdleKey = "Idle";
+    private Party party;
 
     void Start() {
-        if (Game.Instance.State == GameState.Walk) {
-            party.transform.position = partyPosition;
-            for (int i = 0; i < party.characters.Count; i++) {
-                float xOffset = i * characterSpacing;
-                Tween t = party.characters[i].transform.DOLocalMove(new Vector3(xOffset, 0, 0), 0);
-            }
-        }
+        party = Game.Instance.PlayerParty;
+        party.transform.position = partyPosition;
     }
 
     private IEnumerator SetToExplorePosition() {
         readyToExplore = true;
 
-        Game.Instance.CameraContainer.GetComponent<Tweener>().PlayTweenReversed();
+        if (Game.Instance.CameraContainer) Game.Instance.CameraContainer.GetComponent<Tweener>().PlayTweenReversed();
         exploreMenu.PlayTween();
 
         List<Tween> characterTweens = new List<Tween>();

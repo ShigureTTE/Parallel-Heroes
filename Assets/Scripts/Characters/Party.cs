@@ -5,19 +5,16 @@ using UnityEngine;
 
 public class Party : MonoBehaviour {
 
-    [SerializeField] private BattleSystem battlefield;
-
     [SerializeField] private Faction faction;
     [SerializeField] private int expNeededForLevel = 100;
 
-    public CharacterBase CurrentTurn { get { return battlefield.CurrentTurn; } }
     [HideInInspector] public List<CharacterBase> characters;
 
     public int Level { get; private set; }
     public int Gold { get; private set; }
     private int experiencePoints = 0;
 
-    private void Awake() {       
+    private void Awake() {  
         Level = 5; //TODO: remove hard coded level setter
         ResetCharacters();
     }

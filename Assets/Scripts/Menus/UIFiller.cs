@@ -10,7 +10,6 @@ using System;
 public class UIFiller : MonoBehaviour {
 
     [Header("Party")]
-    [SerializeField] private Party playerParty;
     [SerializeField] private Party enemyParty;
 
     [Header("Battle System")]
@@ -48,11 +47,16 @@ public class UIFiller : MonoBehaviour {
     [SerializeField] private float moveAmount;
     [SerializeField] private Ease moveEase;
 
+    private Party playerParty;
     private CharacterStats stats;
 
     private readonly string hpText = " HP";
     private readonly string mpText = " MP";
     private readonly string letters = "ABCDEFGHIJK";
+
+    private void Start() {
+        playerParty = Game.Instance.PlayerParty;
+    }
 
     public void FillAll() {
         FillCurrentTurn();
@@ -106,6 +110,8 @@ public class UIFiller : MonoBehaviour {
     }
 
     public void FillWithStats(bool snap = false) {
+        if (playerParty == null) playerParty = Game.Instance.PlayerParty;
+
         for (int i = 0; i < slots.Count; i++) {
             if (i >= playerParty.characters.Count) {
                 slots[i].slotGroup.alpha = 0;

@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class ExitEncounter : MonoBehaviour, IEncounter {
 
-    [SerializeField] private Area areaObject;
+    [SerializeField] private string sceneChangeName;
+
+    private Area areaObject;
 
     public void Encounter() {
         areaObject = Game.Instance.CurrentArea;
@@ -14,7 +16,7 @@ public class ExitEncounter : MonoBehaviour, IEncounter {
 
     public IEnumerator EncounterCoroutine() {
         yield return null;
-        ScreenFade.Instance.FadeOut(() => Game.Instance.ChangeScene(areaObject.sceneNames.GetRandom(), LoadSceneMode.Single));
+        ScreenFade.Instance.FadeOut(() => Game.Instance.ChangeScene(sceneChangeName, LoadSceneMode.Single));
     }
 
 }

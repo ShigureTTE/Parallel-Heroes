@@ -26,7 +26,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
         generatedSets = 0;
         DecideEncounters();
 
-        BattleSystem.Instance.PlayerParty.ResetCharacters();
+        Game.Instance.PlayerParty.ResetCharacters();
         CreateLevelTypeRanges();
 
         for (int i = 0; i < maximumSetsSpawned; i++) {
@@ -38,7 +38,7 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
         levelTypeRanges = new LevelTypeRange[areaObject.encounters.Count];
         for (int i = 0; i < areaObject.encounters.Count; i++) {
 
-            if (areaObject.encounters[i].type == LevelType.Character && BattleSystem.Instance.PlayerParty.characters.Count >= 4) {
+            if (areaObject.encounters[i].type == LevelType.Character && Game.Instance.PlayerParty.characters.Count >= 4) {
                 continue;
             }
 
@@ -110,13 +110,13 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
         if (generatedSets == maxSets && index == 0) {
             setObject = areaObject.exit.levelSetObject[0];
             set.Type = LevelType.Exit;
-        } 
+        }
 
-        if (index == 0)generatedSets++;
+        if (index == 0) generatedSets++;
 
         set.Index = index == 0 ? generatedSets : index;
         if (setObject == null) setObject = GetLevelSetObject(set, index == 0 ? generatedSets : index);
-        
+
         GameObject ground = Instantiate(setObject.groundPrefab, set.transform);
 
         List<LevelLayer> layers = new List<LevelLayer>();
@@ -164,13 +164,13 @@ public class LevelGenerator : MonoBehaviourSingleton<LevelGenerator> {
         GeneratedLevelSet levelSet = areaObject.normalLevel.levelSetObject.GetRandom();
 
         if (encounters.Contains(index)) {
-            if (hasSpawnedCharacter == false && System.Array.IndexOf(encounters, index) == encounters.Length - 1 && BattleSystem.Instance.PlayerParty.characters.Count < 4) {
+            if (hasSpawnedCharacter == false && System.Array.IndexOf(encounters, index) == encounters.Length - 1 && Game.Instance.PlayerParty.characters.Count < 4) {
                 type = LevelType.Character;
             }
             else {
                 type = Probability.Range(levelTypeRanges);
             }
-          
+
             levelSet = areaObject.encounters.Single(x => x.type == type).levelSetObject.GetRandom();
 
             CreateLevelTypeRanges();

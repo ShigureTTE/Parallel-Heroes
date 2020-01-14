@@ -15,8 +15,8 @@ public class RandomCharacter : MonoBehaviour {
 
     public GameObject SpawnCharacter() {
 
-        BattleSystem.Instance.PlayerParty.ResetCharacters();
-        CharacterBase character = sc.characters.GetUniqueCharacter(BattleSystem.Instance.PlayerParty.characters);
+        Game.Instance.PlayerParty.ResetCharacters();
+        CharacterBase character = sc.characters.GetUniqueCharacter(Game.Instance.PlayerParty.characters);
 
         GameObject go = Instantiate(character.gameObject, this.transform);
         go.transform.localPosition = Vector3.zero;
