@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66fa63ba5ad800b43bc03035480c5b81, type: 3}
-  m_Name: FirstDungeon
+  m_Name: FirstDungeonBlue
   m_EditorClassIdentifier: 
-  sceneName: FirstDungeon
+  sceneName: FirstDungeonBlue
   areaName: 1
   minimumSets: 3
   maximumSets: 3
   minimumEncounters: 2
   maximumEncounters: 2
   nextPossibleAreas:
+  - {fileID: 11400000, guid: a119966dff5ed2b45802f850e0994d7b, type: 2}
   - {fileID: 11400000}
-  - {fileID: 11400000, guid: 23ad3f41f1980f4408bcdcab2006c8e4, type: 2}
   battleFormations:
   - {fileID: 11400000, guid: 63a217685a32cd84da7eb2c829282f26, type: 2}
   - {fileID: 11400000, guid: 3d294c34ce9680042a339ace87d621ec, type: 2}
@@ -34,20 +34,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2191d3722ea234c479674bb69ea0223c, type: 2}
   normalLevel:
     levelSetObject:
-    - {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
+    - {fileID: 11400000, guid: ab20bbafa925455419befc37fa918c21, type: 2}
     type: 0
     probability: 0
   exit:
     levelSetObject:
-    - {fileID: 11400000, guid: a97a1e1ac72b24749bfd959c1fd97cb1, type: 2}
+    - {fileID: 11400000, guid: 1a124790949c0ac4f867694e078b4bef, type: 2}
     type: 2
     probability: 0
   encounters:
   - levelSetObject:
-    - {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
+    - {fileID: 11400000, guid: ab20bbafa925455419befc37fa918c21, type: 2}
     type: 1
     probability: 50
   - levelSetObject:
-    - {fileID: 11400000, guid: c8d84a7de5c6eb74baea31fc8cb28bcd, type: 2}
+    - {fileID: 11400000, guid: 6281fac2ff5627944a30183eb584cc50, type: 2}
     type: 10
     probability: 50

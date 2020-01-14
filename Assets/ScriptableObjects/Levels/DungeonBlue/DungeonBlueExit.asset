@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d275cef40f24eab42856bcdf93c2bbf6, type: 3}
-  m_Name: Dungeon
+  m_Name: DungeonBlueExit
   m_EditorClassIdentifier: 
   groundPrefab: {fileID: 525568818657688926, guid: bc2288c794573ab49a1c2fc73bcacfd2,
     type: 3}
@@ -33,16 +33,38 @@ MonoBehaviour:
   antiVoid:
   - prefabs:
     - {fileID: 1411994790204690656, guid: 8ade260c13c2fe348a3fe3d7858c1128, type: 3}
-    origin: {x: 0, y: 0, z: 0}
-    offset: 1.4
-    amountPositive: 2
-    amountNegative: 2
+    origin: {x: -2.8, y: 0, z: 0}
+    offset: 0
+    amountPositive: 0
+    amountNegative: 0
     scaleWithPositive: 0
   - prefabs:
-    - {fileID: 7902322336893404225, guid: 53c7ff337634d0f4ca3c397c92b55f07, type: 3}
+    - {fileID: 7902322336893404225, guid: a715814c5afaba44d8acbd85936b04f8, type: 3}
     origin: {x: 0.7, y: 0.375, z: -0.285}
     offset: 1.4
     amountPositive: 2
     amountNegative: 2
     scaleWithPositive: 0
+  - prefabs:
+    - {fileID: 1411994790204690656, guid: 8ade260c13c2fe348a3fe3d7858c1128, type: 3}
+    origin: {x: 0, y: 0, z: 0}
+    offset: 1.4
+    amountPositive: 2
+    amountNegative: 0
+    scaleWithPositive: 0
+  - prefabs:
+    - {fileID: 7531541003543306272, guid: 70959e9856271b546b8c767371ffe2dd, type: 3}
+    origin: {x: -1.4, y: 0, z: 0}
+    offset: 0
+    amountPositive: 0
+    amountNegative: 0
+    scaleWithPositive: 0
   background: []
+  guaranteedSpawns:
+  - prefabs:
+    - {fileID: 6360672739775289431, guid: 3a09ec463a64f5946b4290de91acdaab, type: 3}
+    origin: {x: 0, y: 0, z: 0}
+    offset: 0
+    amountPositive: 0
+    amountNegative: 0
+    scaleWithPositive: 0
