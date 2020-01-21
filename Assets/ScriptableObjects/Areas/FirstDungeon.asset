@@ -14,17 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: FirstDungeon
   areaName: 1
-  minimumSets: 5
-  maximumSets: 7
-  minimumEncounters: 3
-  maximumEncounters: 4
+  minimumSets: 3
+  maximumSets: 3
+  minimumEncounters: 2
+  maximumEncounters: 2
   nextPossibleAreas:
-  - {fileID: 11400000}
   - {fileID: 11400000, guid: 23ad3f41f1980f4408bcdcab2006c8e4, type: 2}
   battleFormations:
   - {fileID: 11400000, guid: 63a217685a32cd84da7eb2c829282f26, type: 2}
   - {fileID: 11400000, guid: 3d294c34ce9680042a339ace87d621ec, type: 2}
-  - {fileID: 11400000, guid: e8212a6d6de91a248aacf1c4e7ab9941, type: 2}
   - {fileID: 11400000, guid: d4c36628ae820354691329d1b3b47203, type: 2}
   - {fileID: 11400000, guid: e1df6d0c3ab2a9347a3b6403063077fd, type: 2}
   - {fileID: 11400000, guid: 36681a7ab5b13aa45b0eb89abafd9274, type: 2}
@@ -46,8 +44,8 @@ MonoBehaviour:
   - levelSetObject:
     - {fileID: 11400000, guid: 2f4ce1bbfcbd2c042ac977521e305eb4, type: 2}
     type: 1
-    probability: 5
+    probability: 100
   - levelSetObject:
     - {fileID: 11400000, guid: c8d84a7de5c6eb74baea31fc8cb28bcd, type: 2}
     type: 10
-    probability: 4
+    probability: 0
