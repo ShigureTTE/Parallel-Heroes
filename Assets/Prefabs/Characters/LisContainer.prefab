@@ -78,21 +78,31 @@ PrefabInstance:
       propertyPath: currentLane
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7585229203648473030, guid: c4556545544191142a61fb7e8ec22526,
+        type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7585229203648473030, guid: c4556545544191142a61fb7e8ec22526,
+        type: 3}
+      propertyPath: ShapeModule.arc.value
+      value: 360
+      objectReference: {fileID: 0}
     - target: {fileID: 895957821890477360, guid: c4556545544191142a61fb7e8ec22526,
         type: 3}
       propertyPath: m_Name
       value: Lis
       objectReference: {fileID: 0}
-    - target: {fileID: 895957821890477373, guid: c4556545544191142a61fb7e8ec22526,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 4eb4151b7152e634893a72d093856f41, type: 2}
     - target: {fileID: 895957821890477374, guid: c4556545544191142a61fb7e8ec22526,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1694569292476288102, guid: 0bb256e3ec617794bb554af6956411a3,
         type: 3}
+    - target: {fileID: 895957821890477373, guid: c4556545544191142a61fb7e8ec22526,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4eb4151b7152e634893a72d093856f41, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4556545544191142a61fb7e8ec22526, type: 3}
