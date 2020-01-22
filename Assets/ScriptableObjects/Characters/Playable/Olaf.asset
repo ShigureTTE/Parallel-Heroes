@@ -58,6 +58,6 @@ MonoBehaviour:
     element: 1
     rangeType: 1
     mPCost: 25
-    basePower: 90
+    basePower: 95
     comboCharacter: {fileID: 0}
   combos: []

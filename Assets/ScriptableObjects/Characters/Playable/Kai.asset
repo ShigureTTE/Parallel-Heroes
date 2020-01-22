@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35193cdc262737245ad55697aedf3e63, type: 3}
-  m_Name: Olaf
+  m_Name: Kai
   m_EditorClassIdentifier: 
-  characterName: Olaf
+  characterName: Kai
   gender: 0
-  role: Viking
-  weapon: Battle Axe
-  description: The cruel viking Olaf was known for his unflinching desire to conquer
-    the known world. He is extremely stubborn and becomes annoyed when things don't
-    go his way. Legends say he married a Valkyrie.
-  maximumHealth: 55
-  maximumMP: 55
-  attack: 55
-  defense: 55
+  role: Cannoneer
+  weapon: Cannon
+  description: Like his twin sister, Mai, he is part of the Sacred Guard. Kai is
+    very aggressive and has a short temper, but at the same time he's a great fighter.
+    He is the main defender of the goddess' temple and a big fan of explosions.
+  maximumHealth: 80
+  maximumMP: 45
+  attack: 70
+  defense: 45
   resistance: 55
-  skill: 55
-  speed: 55
+  skill: 60
+  speed: 40
   wantsToLive: 0
   hatesSelfDamage: 0
   hatesBlockers: 0
@@ -39,25 +39,25 @@ MonoBehaviour:
     attackName: 
     preferredLane: 2
     element: 0
-    rangeType: 0
+    rangeType: 1
     mPCost: 0
     basePower: 50
     comboCharacter: {fileID: 0}
   spells:
   - type: 1
-    attackName: Horn Headbutt
-    preferredLane: 2
+    attackName: Belly Shot
+    preferredLane: 1
     element: 0
     rangeType: 0
     mPCost: 10
     basePower: 65
     comboCharacter: {fileID: 0}
   - type: 1
-    attackName: Smite
+    attackName: Holy Cannonball
     preferredLane: 4
     element: 1
     rangeType: 1
-    mPCost: 25
-    basePower: 90
+    mPCost: 27
+    basePower: 110
     comboCharacter: {fileID: 0}
   combos: []
